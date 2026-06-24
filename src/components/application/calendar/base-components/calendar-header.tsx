@@ -1,7 +1,7 @@
 "use client";
 
 import { CalendarDate, endOfWeek, getLocalTimeZone, startOfWeek } from "@internationalized/date";
-import { useLocale } from "@react-aria/i18n";
+import { useLocale } from "react-aria";
 import { ArrowLeft, ArrowRight, Plus, SearchLg } from "@untitledui/icons";
 import { Badge } from "@/components/base/badges/badges";
 import { ButtonGroup, ButtonGroupItem } from "@/components/base/button-group/button-group";

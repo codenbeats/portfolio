@@ -1,6 +1,6 @@
 "use client";
 
-import type { PropsWithChildren, ReactNode } from "react";
+import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
 import { Fragment, useState } from "react";
 import { getLocalTimeZone, today } from "@internationalized/date";
 import { ChevronLeft, ChevronRight } from "@untitledui/icons";
@@ -24,7 +24,9 @@ export const CalendarContextProvider = ({ children }: PropsWithChildren) => {
     const [value, onChange] = useState<DateValue | null>(null);
     const [focusedValue, onFocusChange] = useState<DateValue | undefined>();
 
-    return <AriaCalendarContext.Provider value={{ value, onChange, focusedValue, onFocusChange }}>{children}</AriaCalendarContext.Provider>;
+    const contextValue = { value, onChange, focusedValue, onFocusChange } as ComponentProps<typeof AriaCalendarContext.Provider>["value"];
+
+    return <AriaCalendarContext.Provider value={contextValue}>{children}</AriaCalendarContext.Provider>;
 };
 
 interface CalendarProps extends AriaCalendarProps<DateValue> {

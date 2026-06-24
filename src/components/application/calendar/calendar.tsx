@@ -19,7 +19,7 @@ import {
     toZoned,
     today,
 } from "@internationalized/date";
-import { type DateFormatter, useDateFormatter, useLocale } from "@react-aria/i18n";
+import { type DateFormatter, useDateFormatter, useLocale } from "react-aria";
 import { BellRinging01, Calendar as CalendarIcon, ChevronLeft, ChevronRight, Clock, Copy01, Edit01, Trash01 } from "@untitledui/icons";
 import {
     Calendar as AriaCalendar,
