@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ondine — Cinematic Landing Page · ALIVE Design Studio</title>
+  <meta name="description" content="A landing page for a fictional ocean conservation nonprofit, built around an emotional arc instead of fear-based design." />
+  <link rel="canonical" href="https://alivedesignstudio.net/ondine.html" />
+  <link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/ondine.html" />
+  <link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/ondine.html" />
+  <link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/ondine.html" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alivedesignstudio.net/ondine.html" />
+  <meta property="og:title" content="Ondine — Cinematic Landing Page · ALIVE Design Studio" />
+  <meta property="og:description" content="A landing page that makes you feel the ocean before it asks you for anything." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ondine — Cinematic Landing Page · ALIVE Design Studio" />
+  <meta name="twitter:description" content="A landing page that makes you feel the ocean before it asks you for anything." />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YP41XDWRW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0YP41XDWRW');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --dark-bg: #090F15;
+      --dark-surface: #262E36;
+      --light-bg: #EDEBE6;
+      --accent: #6C6D74;
+      --accent-warm: #88867A;
+      --accent-border: rgba(108, 109, 116, 0.25);
+      --ondine: #5fe3d4;
+      --ondine-dim: rgba(95, 227, 212, 0.12);
+      --ondine-border: rgba(95, 227, 212, 0.3);
+      --text-light: #D3D1CE;
+      --text-secondary: #B3B7BA;
+      --text-dark: #090F15;
+      --text-dark-secondary: #4A4F54;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
+      --container: 1200px;
+      --transition: 0.35s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--dark-bg); color: var(--text-light); line-height: 1.6; overflow-x: hidden; cursor: none; }
+    a { text-decoration: none; color: inherit; }
+    img, video { max-width: 100%; display: block; }
+    ul { list-style: none; }
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+    #cursor-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+    #cursor-ring { width: 32px; height: 32px; border: 1.5px solid #fff; border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: transform 0.3s ease; mix-blend-mode: difference; }
+    #cursor-ring.hovered { transform: translate(-50%, -50%) scale(2); }
+
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    #navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: transparent; transition: background var(--transition), backdrop-filter var(--transition); }
+    #navbar.scrolled { background: rgba(9, 15, 21, 0.85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(108, 109, 116, 0.12); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-name { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--accent-warm); letter-spacing: 0.05em; }
+    .nav-logo-tagline { font-size: 0.65rem; color: var(--text-secondary); letter-spacing: 0.12em; text-transform: uppercase; }
+    .nav-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); transition: color var(--transition); }
+    .nav-back:hover { color: var(--accent-warm); }
+    .nav-back:hover svg { transform: translateX(-4px); }
+    .nav-back svg { transition: transform var(--transition); }
+
+    .cs-section { padding: 100px 0; }
+    .cs-section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ondine); margin-bottom: 16px; }
+    .cs-section-title { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; color: var(--text-light); line-height: 1.2; margin-bottom: 32px; }
+    .cs-section-title em { font-style: italic; color: var(--ondine); }
+    .cs-body { font-size: 0.98rem; color: var(--text-secondary); line-height: 1.85; max-width: 720px; }
+    .cs-body + .cs-body { margin-top: 18px; }
+    .cs-body strong { color: var(--text-light); font-weight: 500; }
+    .cs-body em { font-style: italic; color: var(--text-light); }
+    .cs-divider { border: none; border-top: 1px solid rgba(108, 109, 116, 0.12); }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .two-col-start { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+    .light { background-color: var(--light-bg); }
+    .light .cs-section-title { color: var(--text-dark); }
+    .light .cs-body { color: var(--text-dark-secondary); }
+    .light .cs-body strong { color: var(--text-dark); }
+    .light .cs-body em { color: var(--text-dark); }
+    .light .cs-section-label { color: var(--ondine); }
+
+    .cs-video-frame { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--accent-border); box-shadow: 0 24px 60px rgba(0,0,0,0.5); aspect-ratio: 16/10; background: #000; }
+    .cs-video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cs-video-frame::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 60px rgba(0,0,0,0.4); pointer-events: none; }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; border: none; transition: all var(--transition); cursor: none; }
+    .btn-primary { background: var(--accent-warm); color: var(--dark-bg); }
+    .btn-primary:hover { background: #9b9888; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(136,134,122,0.3); }
+    .btn-ondine { background: var(--ondine); color: var(--dark-bg); }
+    .btn-ondine:hover { background: #7eede0; transform: translateY(-2px); box-shadow: 0 0 28px rgba(95,227,212,0.35); }
+    .btn-ghost { background: transparent; color: var(--text-light); border: 1.5px solid rgba(211,209,206,0.22); }
+    .btn-ghost:hover { border-color: var(--ondine); color: var(--ondine); transform: translateY(-2px); }
+
+    #cs-hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding: 160px 0 120px; background-color: #090F15; background-image: url(https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779014929/Case_study_hy97qn.png); background-size: cover; background-position: center; }
+    #cs-hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(95,227,212,0.10) 1px, transparent 1px); background-size: 36px 36px; pointer-events: none; z-index: 0; mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 80%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 80%); }
+    .cs-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .cs-back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ondine); margin-bottom: 32px; transition: gap var(--transition); }
+    .cs-back-link:hover { gap: 10px; }
+    .cs-hero-title { font-family: var(--font-serif); font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.05; color: var(--text-light); margin-bottom: 16px; }
+    .cs-hero-subtitle-tagline { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.15rem, 1.7vw, 1.5rem); color: var(--ondine); margin-bottom: 28px; line-height: 1.4; }
+    .cs-hero-subtitle { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; max-width: 480px; margin-bottom: 36px; }
+    .cs-meta { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
+    .cs-meta-row { display: flex; align-items: baseline; gap: 12px; }
+    .cs-meta-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ondine); min-width: 80px; }
+    .cs-meta-value { font-size: 0.88rem; color: var(--text-secondary); }
+    .cs-hero-media { position: relative; }
+
+    .arc-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 48px; }
+    .arc-step { padding: 24px 18px; border-top: 1px solid var(--ondine-border); }
+    .arc-num { font-family: var(--font-serif); font-style: italic; font-size: 0.78rem; color: var(--ondine); letter-spacing: 0.08em; margin-bottom: 10px; }
+    .arc-word { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .arc-desc { font-size: 0.82rem; color: var(--text-dark-secondary); line-height: 1.65; }
+
+    .pillars { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
+    .pillar { padding: 28px 0; border-top: 1px solid rgba(108,109,116,0.16); }
+    .pillar:last-child { border-bottom: 1px solid rgba(108,109,116,0.16); }
+    .pillar-num { font-family: var(--font-serif); font-style: italic; font-size: 0.8rem; color: var(--ondine); letter-spacing: 0.08em; margin-bottom: 8px; }
+    .pillar-title { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: var(--text-light); line-height: 1.3; margin-bottom: 10px; }
+    .pillar-body { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.85; }
+    .pillar-body em { font-style: italic; color: var(--text-light); }
+
+    .quote-list { display: flex; flex-direction: column; gap: 22px; margin-top: 32px; padding-left: 24px; border-left: 2px solid var(--ondine); max-width: 720px; }
+    .quote-list li { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; color: var(--text-light); line-height: 1.55; }
+
+    .cs-pullquote { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.3rem, 2.2vw, 1.9rem); line-height: 1.45; color: var(--text-light); max-width: 820px; margin: 56px auto 0; text-align: center; padding: 0 24px; }
+    .cs-pullquote .pq-em { color: var(--ondine); }
+    .cs-pullquote .pq-attr { display: block; font-style: normal; font-family: var(--font-sans); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-secondary); margin-top: 22px; }
+    .light .cs-pullquote { color: var(--text-dark); }
+    .light .cs-pullquote .pq-attr { color: var(--text-dark-secondary); }
+
+    .build-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 32px; }
+    .build-col-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ondine); margin-bottom: 16px; }
+    .build-list { display: flex; flex-direction: column; gap: 10px; }
+    .build-list li { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; padding-left: 18px; position: relative; }
+    .build-list li::before { content: '→'; position: absolute; left: 0; color: var(--ondine); }
+    .build-list li strong { color: var(--text-light); font-weight: 500; }
+
+    .next-steps { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+    .next-steps li { padding: 16px 22px; background: #FFFFFF; border-left: 2px solid var(--ondine); border-radius: 0 6px 6px 0; font-size: 0.9rem; color: var(--text-dark-secondary); line-height: 1.7; }
+    .next-steps li strong { color: var(--text-dark); font-weight: 500; }
+
+    #cs-next { padding: 120px 0; text-align: center; position: relative; background-color: #090F15; background-image: url(https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779014929/Case_study_hy97qn.png); background-size: cover; background-position: center; }
+    #cs-next::before { content: ''; position: absolute; inset: 0; background: rgba(9,15,21,0.78); pointer-events: none; z-index: 0; }
+    #cs-next .container { position: relative; z-index: 1; }
+    .cs-next-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 16px; }
+    .cs-next-title { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--text-light); margin-bottom: 16px; line-height: 1.2; }
+    .cs-next-title em { font-style: italic; color: var(--ondine); }
+    .cs-next-subtitle { font-size: 0.95rem; color: var(--text-secondary); max-width: 580px; margin: 0 auto 40px; line-height: 1.75; }
+
+    #footer { padding: 40px 0; border-top: 1px solid rgba(108,109,116,0.12); background: var(--dark-bg); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { font-size: 0.82rem; color: var(--text-secondary); }
+
+    @media (max-width: 968px) {
+      .cs-hero-inner, .two-col, .two-col-start, .build-grid { grid-template-columns: 1fr; gap: 40px; }
+      .arc-grid { grid-template-columns: repeat(2, 1fr); }
+      .cs-section { padding: 60px 0; }
+      #cs-hero { padding: 120px 0 80px; }
+      #cursor-dot, #cursor-ring { display: none; }
+      body { cursor: auto; }
+    }
+    @media (max-width: 560px) {
+      .arc-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <header id="navbar">
+    <nav class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-name">ALIVE</span>
+        <span class="nav-logo-tagline">Design Studio</span>
+      </a>
+      <a href="index.html#work" class="nav-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Work
+      </a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="cs-hero">
+      <div class="container">
+        <div class="cs-hero-inner">
+          <div>
+            <a href="index.html#work" class="cs-back-link fade-up">← All Projects</a>
+            <h1 class="cs-hero-title fade-up delay-1">Ondine</h1>
+            <p class="cs-hero-subtitle-tagline fade-up delay-1">A landing page that asks you to <em>feel</em> first.</p>
+            <p class="cs-hero-subtitle fade-up delay-2">A cinematic concept page for a fictional ocean conservation nonprofit — built around love, not fear.</p>
+            <div class="cs-meta fade-up delay-2">
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Role</span>
+                <span class="cs-meta-value">Concept · Design · Frontend · Copywriting</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Type</span>
+                <span class="cs-meta-value">Self-initiated · Fictional nonprofit</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Stack</span>
+                <span class="cs-meta-value">Figma · HTML · CSS · JavaScript · AI imagery</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Live</span>
+                <span class="cs-meta-value">liviakiss.github.io/ondine</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;" class="fade-up delay-3">
+              <a href="https://liviakiss.github.io/ondine/" target="_blank" rel="noopener" class="btn btn-ondine">
+                View Live Site
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="cs-hero-media fade-up delay-2">
+            <div class="cs-video-frame" style="margin-top:32px;">
+              <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1780317008/ondine_mockup_image_ku8x47.jpg" alt="Ondine landing page mockup">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 01 WHY -->
+    <section id="cs-why" class="cs-section light">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">01 — Why I made this</p>
+            <h2 class="cs-section-title">It started with a <em>feeling</em>, not a brief.</h2>
+          </div>
+          <div class="fade-up delay-1">
+            <p class="cs-body">My partner and I dream about sailing one day. But every time we talk about it, the same sad thought comes up: the sea is full of garbage. The thing we want to fall in love with is the thing we're slowly ruining.</p>
+            <p class="cs-body">Then one day in Amsterdam, I saw a mother and her daughter on paddleboards in the canal, lifting trash out of the water by hand. Such a small thing. Such a good thing. No campaign, no funding, no spotlight — just two people who decided the water was worth their afternoon.</p>
+            <p class="cs-body">That stayed with me. I wanted to design something that captured that exact feeling: not guilt, not fear, but <strong>quiet love for the sea</strong> — and the simple belief that protecting it is something ordinary people can actually do.</p>
+            <p class="cs-body">So I created <strong>Ondine</strong>, a fictional ocean conservation nonprofit, and designed the landing page I wished more environmental organizations had. One that makes you feel the ocean before it ever asks you for anything.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 02 PROBLEM -->
+    <section id="cs-problem" class="cs-section">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">02 — The Problem</p>
+            <h2 class="cs-section-title">Most environmental sites <em>scare people into closing the tab.</em></h2>
+            <div class="cs-video-frame" style="margin-top:32px;">
+              <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                <source src="https://res.cloudinary.com/dnnfhyeuv/video/upload/v1779961773/Section_2_background_bsu8ht.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="fade-up delay-1">
+            <p class="cs-body">Before designing, I looked closely at how conservation and nonprofit sites usually communicate. Most do the same thing: lead with alarm. Huge scary statistics. Red warning colors. Urgent countdowns. <em>"Act now before it's too late."</em></p>
+            <p class="cs-body">The intention is good — but the psychology backfires.</p>
+            <p class="cs-body">When people are flooded with frightening information, the brain doesn't move toward action. It moves toward self-protection. Faced with overwhelming threat, the nervous system tends toward avoidance and emotional shutdown. Psychologists call it the <strong>"finite pool of worry"</strong> — we can only hold so much fear before we tune out to protect ourselves.</p>
+            <p class="cs-body">In plain terms: scaring people doesn't make them help. It makes them close the tab. <strong>I wanted to design the opposite of that.</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 03 CORE IDEA — the arc -->
+    <section id="cs-arc" class="cs-section light">
+      <div class="container">
+        <div class="fade-up">
+          <p class="cs-section-label">03 — The Core Idea</p>
+          <h2 class="cs-section-title">Make people <em>fall in love</em> first. Then show the stakes. Then show it's fixable. Then invite them in — gently.</h2>
+          <p class="cs-body" style="max-width: 820px;">Everything about Ondine is built around one emotional journey, in this exact order. It isn't decorative — it's based on how people actually decide to care about something and act on it.</p>
+        </div>
+
+        <div class="arc-grid">
+          <div class="arc-step fade-up delay-1">
+            <p class="arc-num">— i.</p>
+            <h3 class="arc-word">Awe</h3>
+            <p class="arc-desc">Opens people up. Research on awe shows it makes us feel connected to something bigger and more willing to act for the collective good. The site opens with the beauty of the ocean, not its destruction.</p>
+          </div>
+          <div class="arc-step fade-up delay-1">
+            <p class="arc-num">— ii.</p>
+            <h3 class="arc-word">Meaning</h3>
+            <p class="arc-desc">Gives the feeling a reason. Once someone feels something, they're ready to understand why it matters.</p>
+          </div>
+          <div class="arc-step fade-up delay-2">
+            <p class="arc-num">— iii.</p>
+            <h3 class="arc-word">Reality</h3>
+            <p class="arc-desc">Introduced gently, only after the emotional connection exists — so it lands as motivation, not despair.</p>
+          </div>
+          <div class="arc-step fade-up delay-2">
+            <p class="arc-num">— iv.</p>
+            <h3 class="arc-word">Hope</h3>
+            <p class="arc-desc">Immediately follows the hard truth, because people only act on problems they believe can be solved. The site says clearly: this is reversible.</p>
+          </div>
+          <div class="arc-step fade-up delay-3">
+            <p class="arc-num">— v.</p>
+            <h3 class="arc-word">Action</h3>
+            <p class="arc-desc">Comes last, when the person is emotionally ready — and offered kindly, with no pressure.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 04 HOW DESIGN SUPPORTS THE FEELING -->
+    <section id="cs-design" class="cs-section">
+      <div class="container">
+        <div class="fade-up">
+          <p class="cs-section-label">04 — How design supports the feeling</p>
+          <h2 class="cs-section-title">Every choice carries the <em>same calm</em>.</h2>
+          <p class="cs-body">A site about quiet care for the sea can't move, sound, or look like a fintech ad. Every design decision — palette, motion, copy, structure — had to match the feeling I wanted the visitor to leave with.</p>
+        </div>
+
+        <div class="two-col-start" style="margin-top:48px;">
+          <div class="fade-up">
+            <div class="cs-video-frame">
+              <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                <source src="https://res.cloudinary.com/dnnfhyeuv/video/upload/v1779961773/Section_3_background_mqjyjt.mp4" type="video/mp4">
+              </video>
+            </div>
+            <ul class="quote-list fade-up" style="margin-top:56px;">
+                <li>"The ocean is not a backdrop. It is a living thing — and someone has to protect it."</li>
+                <li>"We give animals a second tide."</li>
+                <li>"Protection has a price. It's a kind one."</li>
+                <li>"Choose what feels right. There's no wrong amount, and no follow-up you didn't ask for."</li>
+            </ul>
+          </div>
+
+          <div class="pillars fade-up delay-1">
+            <div class="pillar">
+              <p class="pillar-num">— i.</p>
+              <h3 class="pillar-title">You descend as you scroll.</h3>
+              <p class="pillar-body">The whole site is built like a dive. The background stays fixed while content moves over it, and the ocean gradually deepens — from sunlit surface to dark, glowing deep. You don't watch the ocean. <em>You're in it.</em></p>
+            </div>
+            <div class="pillar">
+              <p class="pillar-num">— ii.</p>
+              <h3 class="pillar-title">Calm motion, on purpose.</h3>
+              <p class="pillar-body">Every animation is slow. Transitions fade gently. Fast aggressive motion triggers alertness; slow predictable motion signals safety. Since the message is <em>calm care</em>, the way the site moves had to match the way it wants you to feel. The medium carries the message.</p>
+            </div>
+            <div class="pillar">
+              <p class="pillar-num">— iii.</p>
+              <h3 class="pillar-title">One color that means "alive".</h3>
+              <p class="pillar-body">The palette is deep ocean blue. Against all that blue, there is exactly one accent: a soft glowing teal, like bioluminescence. I used it only in the most important moments — the navigation marker and the donation button. <em>Restraint is what gives the accent its power.</em></p>
+            </div>
+            <div class="pillar">
+              <p class="pillar-num">— iv.</p>
+              <h3 class="pillar-title">Words that respect the reader.</h3>
+              <p class="pillar-body">The writing is quiet and honest. No guilt, no hype, no corporate language. So much of the internet uses pressure and manipulation. Ondine proves you can ask for help with dignity — and trust people to respond.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 05 THE GENTLE REALITY -->
+    <section id="cs-reality" class="cs-section light">
+      <div class="container">
+        <div class="two-col">
+          <div class="fade-up">
+            <p class="cs-section-label">05 — The reality, shown gently</p>
+            <h2 class="cs-section-title">One bottle. One line. <em>One quiet truth.</em></h2>
+            <p class="cs-body">One section names the hard truth. But instead of shocking images of dead animals or piles of waste, it shows a single bottle drifting alone in the deep — and one honest line about how much plastic enters the sea.</p>
+            <p class="cs-body">This is intentional. <strong>One clear, specific image lands more deeply than ten overwhelming ones.</strong> The brain processes a single focused thing far better than a flood of horror — and a flood just triggers the shutdown response again. So the section is quiet, almost beautiful, and somehow sadder for it. Then it immediately turns toward hope: <em>it's reversible.</em></p>
+          </div>
+          <div class="fade-up delay-1">
+            <div class="cs-video-frame">
+              <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                <source src="https://res.cloudinary.com/dnnfhyeuv/video/upload/v1779961773/Section_4_background_s8tifv.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <p class="cs-pullquote fade-up">"The ocean asks for so little. Mostly, it asks us to <span class="pq-em">stop making it worse</span>."<span class="pq-attr">— Dr. Mara Vinke, Marine Ecologist</span></p>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 06 BUILD -->
+    <section id="cs-build" class="cs-section">
+      <div class="container">
+        <div class="fade-up">
+          <p class="cs-section-label">06 — What I designed &amp; built</p>
+          <h2 class="cs-section-title">A working front-end demo. <em>Not just a picture.</em></h2>
+          <p class="cs-body">Designed and coded from scratch — no frameworks, no template. Just HTML, CSS, JavaScript, and decisions.</p>
+        </div>
+
+        <div class="build-grid">
+          <div class="fade-up delay-1">
+            <p class="build-col-title">Designed</p>
+            <ul class="build-list">
+              <li>The <strong>full emotional journey</strong> and page structure</li>
+              <li>The <strong>visual identity</strong> — palette, typography, the bioluminescent accent system</li>
+              <li>All section layouts, desktop and mobile</li>
+              <li>The <strong>copywriting</strong> and tone of voice</li>
+              <li>Cinematic underwater imagery (AI-generated, then art-directed for a single consistent mood)</li>
+            </ul>
+          </div>
+          <div class="fade-up delay-2">
+            <p class="build-col-title">Built</p>
+            <ul class="build-list">
+              <li>The <strong>fixed-background, scrolling-content "descent"</strong> effect</li>
+              <li>Smooth crossfade transitions between ocean scenes</li>
+              <li>The calm, slow animation system</li>
+              <li>A scroll-progress indicator</li>
+              <li>Fully responsive layout for phone and desktop</li>
+              <li>An interactive donation section with selectable amounts</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 07 WHAT'D BE NEXT -->
+    <section id="cs-future" class="cs-section light">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">07 — What I'd do next</p>
+            <h2 class="cs-section-title">If Ondine were <em>real</em>.</h2>
+            <p class="cs-body">A landing page is the start of a relationship, not the whole of it. If this were a real organization, the next steps would be:</p>
+          </div>
+          <div class="fade-up delay-1">
+            <ul class="next-steps">
+              <li><strong>Real photography and footage</strong> from actual operations, alongside the cinematic imagery.</li>
+              <li><strong>Real impact data</strong> — kept honest and transparent. Where every donation goes.</li>
+              <li><strong>A short film</strong> for the hero section instead of a still scene.</li>
+              <li><strong>Accessibility refinements</strong> — contrast, motion-reduction settings for those sensitive to movement.</li>
+              <li><strong>User testing</strong> to confirm the emotional journey lands the way it's intended.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT CTA -->
+    <section id="cs-next">
+      <div class="container fade-up">
+        <p class="cs-next-label">— The result —</p>
+        <h2 class="cs-next-title">By the time you reach the end,<br/>the ask doesn't feel like an <em>ask</em>.</h2>
+        <p class="cs-next-subtitle">It feels like a natural next step — the same impulse that made that mother and daughter lift trash out of an Amsterdam canal with their hands. That was the whole point.</p>
+
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:80px;">
+          <a href="https://liviakiss.github.io/ondine/" target="_blank" rel="noopener" class="btn btn-ondine">
+            Experience the Site
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="cs-next-project">
+          <p class="cs-next-label">Next Project</p>
+          <h3 class="cs-next-title">ALIVE Design Studio — <em>Built from scratch.</em></h3>
+          <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px;">
+            <a href="alive-studio.html" class="btn btn-primary">
+              View Case Study
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="index.html#work" class="btn btn-ghost">Back to All Work</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="nav-logo">
+          <span class="nav-logo-name">ALIVE</span>
+          <span class="nav-logo-tagline">Design Studio</span>
+        </a>
+        <p class="footer-copy">&copy; 2026 Lívia Kiss</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top = mouseY + 'px';
+    });
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function animateRing() {
+      ringX = lerp(ringX, mouseX, 0.12);
+      ringY = lerp(ringY, mouseY, 0.12);
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    requestAnimationFrame(() => {
+      document.querySelectorAll('#cs-hero .fade-up').forEach(el => setTimeout(() => el.classList.add('visible'), 50));
+    });
+  </script>
+
+</body>
+</html>

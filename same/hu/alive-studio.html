@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YP41XDWRW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0YP41XDWRW');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALIVE Design Studio — Esettanulmány · ALIVE Design Studio</title>
+  <meta name="description" content="Egy személyes stúdió weboldal, ami tisztaságra, szándékos mozgásra és olyan design rendszerre épül, ami azt tükrözi, ahogy én valóban gondolkodom a designról." />
+  <link rel="canonical" href="https://alivedesignstudio.net/hu/alive-studio.html" />
+  <link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/alive-studio.html" />
+  <link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/alive-studio.html" />
+  <link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/alive-studio.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
+<link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alivedesignstudio.net/hu/alive-studio.html" />
+  <meta property="og:title" content="ALIVE Design Studio — Esettanulmány · ALIVE Design Studio" />
+  <meta property="og:description" content="Egy személyes stúdió weboldal, ami tisztaságra, szándékos mozgásra és design rendszerre épül." />
+  <meta property="og:image" content="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779020991/brave_screenshot_1_lcggjd.png" />
+  <meta property="og:locale" content="hu_HU" />
+  <!-- Twitter/X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ALIVE Design Studio — Esettanulmány · ALIVE Design Studio" />
+  <meta name="twitter:description" content="Egy személyes stúdió weboldal, ami tisztaságra, szándékos mozgásra és design rendszerre épül." />
+  <meta name="twitter:image" content="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779020991/brave_screenshot_1_lcggjd.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Theme Name: Velvet Moss & Plum / Moody Vignette */
+      --dark-bg: #090F15;                  /* Deep slate charcoal background */
+      --light-bg: #D3D1CE;                 /* Elegant warm bone white replacing bright cyan */
+      --accent: #6C6D74;                   /* Velvet Moss Green accent */
+      --accent-border: rgba(94, 107, 92, 0.25);
+      --text-light: #D3D1CE;               /* Warm bone text matching light-bg layout principles */
+      --text-secondary: #B3B7BA;           /* Muted stormy silver */
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
+      --container: 1200px;
+      --transition: 0.35s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--dark-bg); color: var(--text-light); line-height: 1.6; overflow-x: hidden; cursor: none; }
+    a { text-decoration: none; color: inherit; }
+    img, video { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+    /* Cursor */
+    #cursor-dot {
+      width: 8px; height: 8px; background: #EAE5DB; border-radius: 50%;
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%); mix-blend-mode: difference;
+    }
+    #cursor-ring {
+      width: 32px; height: 32px; border: 1.5px solid #EAE5DB; border-radius: 50%;
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
+      transform: translate(-50%, -50%); transition: transform 0.3s ease; mix-blend-mode: difference;
+    }
+    #cursor-ring.hovered { transform: translate(-50%, -50%) scale(2); }
+
+    /* Animations */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* Navbar */
+    #navbar {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      background: transparent; transition: background var(--transition), backdrop-filter var(--transition);
+    }
+    #navbar.scrolled {
+      background: rgba(18, 22, 26, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(94, 107, 92, 0.1);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-name { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; }
+    .nav-logo-tagline { font-size: 0.65rem; color: var(--text-secondary); letter-spacing: 0.12em; text-transform: uppercase; }
+    .nav-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); transition: color var(--transition); }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back:hover svg { transform: translateX(-4px); }
+    .nav-back svg { transition: transform var(--transition); }
+
+    /* Shared section */
+    .cs-section { padding: 100px 0; }
+    .cs-section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .cs-section-title { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--text-light); line-height: 1.2; margin-bottom: 32px; }
+    .cs-body { font-size: 0.98rem; color: var(--text-secondary); line-height: 1.85; max-width: 680px; }
+    .cs-divider { border: none; border-top: 1px solid rgba(94, 107, 92, 0.1); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .two-col-start { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .cs-img { border-radius: 12px; border: 1px solid var(--accent-border); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+
+    /* Light sections */
+    .light { background-color: var(--light-bg); }
+    .light .cs-section-title { color: #12161A; }     /* Updated to Slate Charcoal */
+    .light .cs-body { color: #434D56; }             /* Balanced graphite for highly legible reading */
+    .light .cs-section-label { color: var(--accent); }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; border: none; transition: all var(--transition); cursor: none; }
+    .btn-primary { background: var(--accent); color: var(--dark-bg); }
+    .btn-primary:hover { background: #4D574B; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(94,107,92,0.3); }
+    .btn-ghost { background: transparent; color: var(--text-light); border: 1.5px solid rgba(234,229,219,0.25); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* Hero */
+    #cs-hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center;
+      overflow: hidden; padding: 160px 0 120px;
+      background-color: #090F15;
+      background-image: url(https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779014929/Case_study_hy97qn.png);
+      background-size: cover; background-position: center;
+    }
+    #cs-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(94,107,92,0.15) 1px, transparent 1px);
+      background-size: 36px 36px; pointer-events: none; z-index: 0;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 80%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 80%);
+    }
+    #cs-hero::after {
+      content: ''; position: absolute;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(94,107,92,0.1) 0%, transparent 65%);
+      top: -10%; right: -5%; filter: blur(80px); pointer-events: none; z-index: 0;
+    }
+    .cs-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .cs-back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; transition: gap var(--transition); }
+    .cs-back-link:hover { gap: 10px; }
+    .cs-hero-title { font-family: var(--font-serif); font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.05; color: var(--text-light); margin-bottom: 20px; }
+    .cs-hero-title em { font-style: italic; color: var(--accent); }
+    .cs-hero-subtitle { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; max-width: 480px; margin-bottom: 40px; }
+    .cs-meta { display: flex; flex-direction: column; gap: 10px; }
+    .cs-meta-row { display: flex; align-items: baseline; gap: 12px; }
+    .cs-meta-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); min-width: 50px; }
+    .cs-meta-value { font-size: 0.88rem; color: #8E989F; }
+    .cs-hero-media img { width: 100%; border-radius: 12px; border: 1px solid var(--accent-border); box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 40px rgba(94,107,92,0.06); }
+
+    /* Goals */
+    .cs-goals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 16px; }
+    .cs-goals-col-title { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+    .cs-goals-list { display: flex; flex-direction: column; gap: 14px; }
+    .cs-goals-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; }
+    .cs-goals-list li::before { content: '→'; color: var(--accent); font-size: 0.8rem; margin-top: 2px; flex-shrink: 0; }
+
+    /* Decision cards */
+    .cs-decisions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; }
+    .cs-decision-card { background: rgba(0,0,0,0.03); border: 1px solid rgba(94, 107, 92, 0.2); border-radius: 10px; padding: 28px; transition: border-color var(--transition), background var(--transition); }
+    .cs-decision-card:hover { border-color: var(--accent); background: rgba(94, 107, 92, 0.05); }
+    .cs-decision-number { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 12px; }
+    .cs-decision-title { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: #12161A; margin-bottom: 10px; } /* Updated to Slate Charcoal */
+    .cs-decision-desc { font-size: 0.88rem; color: #434D56; line-height: 1.7; }
+
+    /* Visual tokens */
+    #cs-visual { background-color: #12161A; }
+    .cs-tokens { display: flex; flex-direction: column; gap: 32px; margin-top: 32px; }
+    .cs-token-group-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 14px; }
+    .cs-swatches { display: flex; gap: 12px; flex-wrap: wrap; }
+    .cs-swatch { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+    .cs-swatch-box { width: 52px; height: 52px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); }
+    .cs-swatch span { font-size: 0.65rem; color: var(--text-secondary); letter-spacing: 0.04em; text-align: center; }
+    .cs-type-samples { display: flex; flex-direction: column; gap: 8px; }
+    .cs-type-serif { font-family: var(--font-serif); font-size: 1.4rem; color: var(--text-light); }
+    .cs-type-sans { font-family: var(--font-sans); font-size: 0.9rem; color: var(--text-secondary); letter-spacing: 0.04em; }
+
+    /* Result stat */
+    .cs-stat { display: inline-flex; flex-direction: column; margin-top: 32px; }
+    .cs-stat-number { font-family: var(--font-serif); font-size: 4rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .cs-stat-label { font-size: 0.82rem; color: var(--text-secondary); letter-spacing: 0.08em; margin-top: 8px; }
+
+    /* Learned */
+    .cs-learned-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .cs-learned-col-title { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+    .cs-learned-col-title.went-well { color: var(--accent); }
+    .cs-learned-col-title.refine { color: #8E989F; }
+    .cs-learned-list { display: flex; flex-direction: column; gap: 16px; }
+    .cs-learned-list li { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.65; padding-left: 20px; position: relative; }
+    .cs-learned-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-size: 1.2rem; line-height: 1.4; }
+    .cs-learned-list li strong { color: var(--text-light); font-weight: 600; }
+
+    /* Next CTA */
+    #cs-next { 
+      padding: 80px 0; 
+      background-color: #090F15;
+      background-image: url(https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779014929/Case_study_hy97qn.png);
+      background-size: cover; background-position: center; 
+      text-align: center; }
+    .cs-next-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 16px; }
+    .cs-next-title { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--text-light); margin-bottom: 32px; }
+    .cs-next-title span { font-style: italic; color: var(--accent); }
+
+    /* Footer */
+    #footer { padding: 40px 0; border-top: 1px solid rgba(94, 107, 92, 0.12); background: var(--dark-bg); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { font-size: 0.82rem; color: var(--text-secondary); }
+
+    /* Layout masking over backgrounds */
+    #cs-goals, #cs-visual, #cs-build, #cs-result, #cs-next, #cs-hero {
+      position: relative;
+    }
+    #cs-goals::before, #cs-visual::before, #cs-build::before, #cs-next::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 22, 26, 0.75); /* Consolidated with uniform deep tone shield */
+      pointer-events: none;
+      z-index: 0;
+    }
+    #cs-goals .container, #cs-visual .container, #cs-build .container, #cs-next .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .cs-hero-inner, .two-col, .two-col-start, .cs-goals-grid, .cs-decisions-grid, .cs-learned-grid { grid-template-columns: 1fr; gap: 40px; }
+      .cs-section { padding: 60px 0; }
+      #cs-hero { padding: 120px 0 80px; }
+      #cursor-dot, #cursor-ring { display: none; }
+      body { cursor: auto; }
+    }
+</style>
+</head>
+<body>
+
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <header id="navbar">
+    <nav class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-name">ALIVE</span>
+        <span class="nav-logo-tagline">Design Studio</span>
+      </a>
+      <a href="index.html#work" class="nav-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Vissza a munkákhoz
+      </a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section id="cs-hero">
+      <div class="container">
+        <div class="cs-hero-inner">
+          <div>
+            <a href="index.html#work" class="cs-back-link fade-up">← Összes projekt</a>
+            <h1 class="cs-hero-title fade-up delay-1">ALIVE<br><em>Design Studio</em></h1>
+            <p class="cs-hero-subtitle fade-up delay-2">Egy személyes stúdió weboldal, ami tisztaságra, szándékos mozgásra és olyan design rendszerre épül, ami azt tükrözi, ahogy én valóban gondolkodom a designról.</p>
+            <div class="cs-meta fade-up delay-3">
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Szerep</span>
+                <span class="cs-meta-value">UX/UI Design · Brand & Vizuális design</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Típus</span>
+                <span class="cs-meta-value">Személyes projekt</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Eszközök</span>
+                <span class="cs-meta-value">Figma · Procreate Dreams · VS Code</span>
+              </div>
+            </div>
+          </div>
+          <div class="cs-hero-media fade-up delay-2">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779020991/brave_screenshot_1_lcggjd.png" alt="ALIVE Design Studio előnézet" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Challenge -->
+    <section id="cs-challenge" class="cs-section light">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">A kihívás</p>
+            <h2 class="cs-section-title">Megtalálni az arany középutat a vizuális és a strukturális között.</h2>
+          </div>
+          <div class="fade-up delay-1">
+            <p class="cs-body">Sok portfólió oldal egyik irányba húz — vagy vizuálisan ütős, de nehéz benne navigálni, vagy strukturálisan szilárd, de lapos. Én az arany középutat akartam: egy oldalt, ami nyugodt és átgondolt érzést kelt, épp annyi személyiséggel, hogy egyértelműen az enyém legyen.</p>
+            <p class="cs-body" style="margin-top:16px;">Multidiszciplináris dizájnerként arra is szükségem volt, hogy az oldal egyértelműen kommunikálja a tudásom szélességét anélkül, hogy szétszórtnak tűnne — egy összefüggő rendszer, ami a különböző típusú munkák között is egyben tartja az egészet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Goals -->
+    <section id="cs-goals" class="cs-section" style="background-color: #090F15;">
+      <div class="container">
+        <p class="cs-section-label fade-up">Tervezési célok</p>
+        <h2 class="cs-section-title fade-up delay-1">Mit tűztem ki magam elé.</h2>
+        <div class="cs-goals-grid">
+          <div class="fade-up delay-1">
+            <p class="cs-goals-col-title">Célok</p>
+            <ul class="cs-goals-list">
+              <li>A munkák tiszta, könnyen átlátható formátumban való bemutatása</li>
+              <li>Összefüggő vizuális és érzelmi identitás kifejezése</li>
+              <li>A mozgás használata a jelentés erősítésére, nem a hely kitöltésére</li>
+              <li>Rugalmas alap építése, ami a praxisommal együtt nő</li>
+            </ul>
+          </div>
+          <div class="fade-up delay-2">
+            <p class="cs-goals-col-title">Megkötések</p>
+            <ul class="cs-goals-list">
+              <li>Személyes projekt hatókör — nincs külső felhasználói tesztelés</li>
+              <li>Mobile-first gondolkodás végig</li>
+              <li>Fókuszált funkciókészlet a felesleges komplexitás elkerülésére</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Key Design Decisions -->
+    <section id="cs-decisions" class="cs-section light">
+      <div class="container">
+        <p class="cs-section-label fade-up">Tervezési folyamat</p>
+        <h2 class="cs-section-title fade-up delay-1">Kulcsfontosságú tervezési döntések.</h2>
+        <div class="cs-decisions-grid">
+          <div class="cs-decision-card fade-up delay-1">
+            <p class="cs-decision-number">01</p>
+            <h3 class="cs-decision-title">Visszafogottság a díszítés helyett</h3>
+            <p class="cs-decision-desc">A díszítő komplexitást szándékosan kivágtam. A nyugodt és könnyen követhető érzés értékesebbnek tűnt, mint a vizuálisan lenyűgöző.</p>
+          </div>
+          <div class="cs-decision-card fade-up delay-2">
+            <p class="cs-decision-number">02</p>
+            <h3 class="cs-decision-title">Szándékos vizuális súly</h3>
+            <p class="cs-decision-desc">A nagy vizuális elemek vezetik a szemet anélkül, hogy túlterhelnének. A tipográfia tömör és jól strukturált marad a gyors olvasás érdekében.</p>
+          </div>
+          <div class="cs-decision-card fade-up delay-1">
+            <p class="cs-decision-number">03</p>
+            <h3 class="cs-decision-title">Cél nélküli mozgás nincs</h3>
+            <p class="cs-decision-desc">A mozgás csak ott jelenik meg, ahol a ritmust támogatja vagy visszajelzést ad — soha nem dekorációként vagy elvonásként.</p>
+          </div>
+          <div class="cs-decision-card fade-up delay-2">
+            <p class="cs-decision-number">04</p>
+            <h3 class="cs-decision-title">Kiszámítható struktúra</h3>
+            <p class="cs-decision-desc">Újrahasználható elrendezések, konzisztens térközök, tiszta hierarchia és kiszámítható interakciók — komponensek, amik megerősítik a bizalmat.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Visual Development -->
+    <section id="cs-visual" class="cs-section" style="background-color: #090F15;">
+      <div class="container">
+        <div class="two-col">
+          <div class="fade-up">
+            <p class="cs-section-label">Vizuális fejlesztés</p>
+            <h2 class="cs-section-title">Felfedezésen át épített rendszer.</h2>
+            <p class="cs-body">A rendszer két váltakozó felületre épül — egy mély sötét háttérre és egy lágy világosra — ami természetes ritmust hoz létre a szakaszok között. A tompított Apres Ski végig accentként szolgál, lehorgonyozva a palettát anélkül, hogy elnyomná.</p>
+            <div class="cs-tokens">
+              <div>
+                <p class="cs-token-group-title">Színek</p>
+                <div class="cs-swatches">
+                  <div class="cs-swatch">
+                    <div class="cs-swatch-box" style="background:#090F15;"></div>
+                    <span>#090F15</span>
+                  </div>
+                  <div class="cs-swatch">
+                    <div class="cs-swatch-box" style="background:#D3D1CE;"></div>
+                    <span>#D3D1CE</span>
+                  </div>
+                  <div class="cs-swatch">
+                    <div class="cs-swatch-box" style="background:#5E6B5C;"></div>
+                    <span>#5E6B5C</span>
+                  </div>
+                  <div class="cs-swatch">
+                    <div class="cs-swatch-box" style="background:#8E989F;"></div>
+                    <span>#8E989F</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class="cs-token-group-title">Tipográfia</p>
+                <div class="cs-type-samples">
+                  <p class="cs-type-serif">Playfair Display — Editorial súly</p>
+                  <p class="cs-type-sans">Inter — Tisztaság & olvashatóság</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="fade-up delay-1">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/08f33ab6-3d8e-460e-8f81-b667f2b03485_z3oa7x" alt="ALIVE Design Studio vizuális fejlesztés" class="cs-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Motion & Interaction -->
+    <section id="cs-motion" class="cs-section light">
+      <div class="container">
+        <div class="two-col">
+          <div class="fade-up delay-1">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779020991/brave_screenshot_1_lcggjd.png" alt="ALIVE Design Studio mozgás" class="cs-img" />
+          </div>
+          <div class="fade-up">
+            <p class="cs-section-label">Mozgás és interakció</p>
+            <h2 class="cs-section-title">Annyira jelen van, hogy érezzük: él.</h2>
+            <p class="cs-body">A mozgás csendes, támogató szerepet játszik. Görgetés alapú fade-up animációk, egyedi mix-blend-mode kurzor, lágy hover állapotok és glassmorphism navbar — mind vanilla JavaScriptben építve. Az animációk Procreate Dreams-ben készültek, beleértve egy hurkolt ALIVE szimbólumot is. Annyira jelen van, hogy érezzük: él, de annyira visszafogott, hogy ne vonja el a figyelmet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Building It Out -->
+    <section id="cs-build" class="cs-section" style="background-color: #090F15;">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">Az építés</p>
+            <h2 class="cs-section-title">Minden sor kézzel írva.</h2>
+            <p class="cs-body">Teljes egészében VS Code-ban építve, vanilla HTML, CSS és JavaScript használatával — keretrendszerek nélkül. Verziókövetés Gittel, GitHubon hosztolva. Minden sor kézzel írása mind a gondolkodásban, mind a kivitelezésben tisztaságot kényszerített ki.</p>
+          </div>
+          <div class="fade-up delay-1">
+            <div style="display:flex;flex-direction:column;gap:16px;margin-top:8px;">
+              <div style="background:rgba(91,168,160,0.06);border:1px solid var(--accent-border);border-radius:10px;padding:20px 24px;">
+                <p style="font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Stack</p>
+                <p style="font-size:0.92rem;color:var(--text-secondary);">HTML · CSS · Vanilla JavaScript</p>
+              </div>
+              <div style="background:rgba(91,168,160,0.06);border:1px solid var(--accent-border);border-radius:10px;padding:20px 24px;">
+                <p style="font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Munkafolyamat</p>
+                <p style="font-size:0.92rem;color:var(--text-secondary);">VS Code · Git · GitHub</p>
+              </div>
+              <div style="background:rgba(91,168,160,0.06);border:1px solid var(--accent-border);border-radius:10px;padding:20px 24px;">
+                <p style="font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Design</p>
+                <p style="font-size:0.92rem;color:var(--text-secondary);">Figma · Procreate Dreams</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Result -->
+    <section id="cs-result" class="cs-section light">
+      <div class="container">
+        <div class="two-col">
+          <div class="fade-up">
+            <p class="cs-section-label">Az eredmény</p>
+            <h2 class="cs-section-title">Egy nyugodt, strukturált tér.</h2>
+            <p class="cs-body">A végleges oldal a tervezési értékeimet tükrözi: tisztaság, visszafogottság és szándékos interakció. A rendszer elég rugalmas ahhoz, hogy a praxisom fejlődésével mozgás, 3D és interaktív média irányába is bővíthető legyen.</p>
+            <div class="cs-stat" style="margin-top:32px;">
+              <span class="cs-stat-number" style="color:#090F15;">100%</span>
+              <span class="cs-stat-label" style="color:#4A4F54;">kézzel kódolva, keretrendszerek nélkül</span>
+            </div>
+          </div>
+          <div class="fade-up delay-1">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779020991/brave_screenshot_2_hqnag2.png" alt="ALIVE Design Studio végeredmény" class="cs-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- What I Learned -->
+    <section id="cs-learned" class="cs-section" style="background-color:#090F15;"> 
+      <div class="container">
+        <p class="cs-section-label fade-up">Reflexió</p>
+        <h2 class="cs-section-title fade-up delay-1">Mit tanultam.</h2>
+        <p class="cs-body fade-up delay-2" style="margin-bottom:48px;">Ez a projekt megerősítette, mennyire fontos egyensúlyt találni a struktúra és a személyes kifejezés között — és hogy a megkötések, ha elfogadjuk őket, jobb eredményeket szülnek.</p>
+        <div class="cs-learned-grid">
+          <div class="fade-up delay-1">
+            <p class="cs-learned-col-title went-well">Ami jól sikerült</p>
+            <ul class="cs-learned-list">
+              <li><strong>A tiszta hierarchia</strong> első látogatástól kezdve intuitívvá tette a navigációt</li>
+              <li><strong>A finom mozgás</strong> gazdagságot adott anélkül, hogy elvonta volna a figyelmet</li>
+              <li><strong>A visszafogott rendszer</strong> természetes teret hagyott a jövőbeli növekedésnek</li>
+            </ul>
+          </div>
+          <div class="fade-up delay-2">
+            <p class="cs-learned-col-title refine">Amit finomítanék</p>
+            <ul class="cs-learned-list">
+              <li>Valódi felhasználói visszajelzések gyűjtése a tervezési döntések validálására</li>
+              <li>Adaptív mozgás felfedezése, ami a felhasználói viselkedésre reagál</li>
+              <li>Az akadálymentességi szempontok mélyebb beépítése</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Next CTA -->
+    <section id="cs-next">
+      <div class="container fade-up">
+        <p class="cs-next-label">Következő projekt</p>
+        <h2 class="cs-next-title">Moral Me — <span>Web redesign</span></h2>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="moral-me.html" class="btn btn-primary">
+            Esettanulmány megtekintése
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="index.html#work" class="btn btn-ghost">Vissza az összes munkához</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="nav-logo">
+          <span class="nav-logo-name">ALIVE</span>
+          <span class="nav-logo-tagline">Design Studio</span>
+        </a>
+        <p class="footer-copy">&copy; 2026 Kiss Lívia</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top = mouseY + 'px';
+    });
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function animateRing() {
+      ringX = lerp(ringX, mouseX, 0.12);
+      ringY = lerp(ringY, mouseY, 0.12);
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    requestAnimationFrame(() => {
+      document.querySelectorAll('#cs-hero .fade-up').forEach(el => setTimeout(() => el.classList.add('visible'), 50));
+    });
+  </script>
+
+</body>
+</html>

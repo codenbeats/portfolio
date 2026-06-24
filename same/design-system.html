@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Warm Component System · ALIVE Design Studio</title>
+  <meta name="description" content="A production-ready design system built from scratch — Figma component library, coded HTML/CSS, and advanced interactions." />
+  <link rel="canonical" href="https://alivedesignstudio.net/design-system.html" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alivedesignstudio.net/design-system.html" />
+  <meta property="og:title" content="Warm Component System · ALIVE Design Studio" />
+  <meta property="og:description" content="A production-ready design system built from scratch — Figma component library, coded HTML/CSS, and advanced interactions." />
+  <meta property="og:image" content="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1774336767/Frame_1_r3o7vl.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Warm Component System · ALIVE Design Studio" />
+  <meta name="twitter:description" content="A production-ready design system built from scratch — Figma component library, coded HTML/CSS, and advanced interactions." />
+  <meta name="twitter:image" content="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1774336767/Frame_1_r3o7vl.png" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YP41XDWRW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0YP41XDWRW');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --dark-bg: #090F15;                  /* Midnight */
+      --dark-surface: #262E36;             /* Mountainside */
+      --light-bg: #D3D1CE;                 /* Arctic (Replaces light-bg pale blue) */
+      --accent: #88867A;                   /* Golden Hour */
+      --accent-border: rgba(108, 109, 116, 0.25); /* Apres Ski based border overlay */
+      --text-light: #D3D1CE;               /* Arctic */
+      --text-secondary: #B3B7BA;           /* Slopes */
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
+      --container: 1200px;
+      --transition: 0.35s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--dark-bg); color: var(--text-light); line-height: 1.6; overflow-x: hidden; cursor: none; }
+    a { text-decoration: none; color: inherit; }
+    img, video { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+    /* Cursor */
+    #cursor-dot { width: 8px; height: 8px; background: #D3D1CE; border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+    #cursor-ring { width: 32px; height: 32px; border: 1.5px solid #D3D1CE; border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: transform 0.3s ease; mix-blend-mode: difference; }
+    #cursor-ring.hovered { transform: translate(-50%, -50%) scale(2); }
+
+    /* Animations */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* Navbar */
+    #navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: transparent; transition: background var(--transition), backdrop-filter var(--transition); }
+    #navbar.scrolled { background: rgba(9, 15, 21, 0.85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(108, 109, 116, 0.1); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-name { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; }
+    .nav-logo-tagline { font-size: 0.65rem; color: var(--text-secondary); letter-spacing: 0.12em; text-transform: uppercase; }
+    .nav-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); transition: color var(--transition); }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back:hover svg { transform: translateX(-4px); }
+    .nav-back svg { transition: transform var(--transition); }
+
+    /* Shared section styles */
+    .cs-section { padding: 100px 0; }
+    .cs-section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .cs-section-title { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--text-light); line-height: 1.2; margin-bottom: 32px; }
+    .cs-body { font-size: 0.98rem; color: var(--text-secondary); line-height: 1.85; max-width: 680px; }
+    .cs-divider { border: none; border-top: 1px solid rgba(108, 109, 116, 0.1); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .two-col-start { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .cs-img { border-radius: 12px; border: 1px solid var(--accent-border); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+    .cs-video { border-radius: 12px; border: 1px solid var(--accent-border); box-shadow: 0 24px 60px rgba(0,0,0,0.5); width: 100%; }
+
+    /* Light sections */
+    .light { background-color: var(--light-bg); }
+    .light .cs-section-title { color: #090F15; } /* Updated to Midnight */
+    .light .cs-body { color: #262E36; }          /* Updated to Mountainside */
+    .light .cs-section-label { color: var(--accent); }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; border: none; transition: all var(--transition); cursor: none; }
+    .btn-primary { background: var(--accent); color: var(--dark-bg); }
+    .btn-primary:hover { background: #6F6D64; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(136,134,122,0.3); } /* Tuned to match Golden Hour */
+    .btn-ghost { background: transparent; color: var(--text-light); border: 1.5px solid rgba(108,109,116,0.4); } /* Updated to Apres Ski */
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* Hero */
+    #cs-hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center;
+      overflow: hidden; padding: 160px 0 120px;
+      background-color: #090F15; /* Midnight */
+      background-image: url(https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779014929/Case_study_hy97qn.png);
+      background-size: cover; background-position: center;
+    }
+    #cs-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(136,134,122,0.12) 1px, transparent 1px); /* Golden Hour accent glow */
+      background-size: 36px 36px; pointer-events: none; z-index: 0;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 80%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 80%);
+    }
+    .cs-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .cs-back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; transition: gap var(--transition); }
+    .cs-back-link:hover { gap: 10px; }
+    .cs-hero-title { font-family: var(--font-serif); font-size: clamp(2.4rem, 4.5vw, 4rem); font-weight: 700; line-height: 1.05; color: var(--text-light); margin-bottom: 20px; }
+    .cs-hero-title em { font-style: italic; color: var(--accent); }
+    .cs-hero-subtitle { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; max-width: 480px; margin-bottom: 40px; }
+    .cs-meta { display: flex; flex-direction: column; gap: 10px; }
+    .cs-meta-row { display: flex; align-items: baseline; gap: 12px; }
+    .cs-meta-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); min-width: 50px; }
+    .cs-meta-value { font-size: 0.88rem; color: var(--text-secondary); }
+
+    /* Goal cards */
+    .cs-goals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .cs-goal-card { border-radius: 12px; overflow: hidden; border: 1px solid var(--accent-border); background: var(--dark-surface); transition: border-color var(--transition), transform var(--transition); }
+    .cs-goal-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .cs-goal-card img { width: 100%; height: 200px; object-fit: cover; object-position: top; }
+    .cs-goal-card-body { padding: 24px; }
+    .cs-goal-num { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .cs-goal-title { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: var(--text-light); margin-bottom: 8px; }
+    .cs-goal-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; }
+
+    /* Process cards */
+    .cs-process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
+    .cs-process-card { border: 1px solid rgba(108, 109, 116, 0.15); border-radius: 10px; padding: 28px; background: rgba(9, 15, 21, 0.2); transition: border-color var(--transition); }
+    .cs-process-card:hover { border-color: var(--accent); }
+    .cs-process-num { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .cs-process-title { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: #090F15; margin-bottom: 10px; }
+    .cs-process-desc { font-size: 0.88rem; color: #262E36; line-height: 1.65; }
+
+    /* Screenshots grid */
+    .cs-screenshots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    .cs-screenshots-grid img { border-radius: 8px; border: 1px solid var(--accent-border); width: 100%; aspect-ratio: 16/10; object-fit: cover; object-position: top; }
+
+    /* Outcome list */
+    .cs-outcome-list { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+    .cs-outcome-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.93rem; color: var(--text-secondary); line-height: 1.65; }
+    .cs-outcome-list li::before { content: '→'; color: var(--accent); font-size: 0.8rem; margin-top: 3px; flex-shrink: 0; }
+    .light .cs-outcome-list li { color: #262E36; }
+
+    /* Learned */
+    .cs-learned-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .cs-learned-col-title { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+    .cs-learned-col-title.went-well { color: var(--accent); }
+    .cs-learned-col-title.refine { color: var(--text-secondary); }
+    .cs-learned-list { display: flex; flex-direction: column; gap: 16px; }
+    .cs-learned-list li { font-size: 0.92rem; color: #262E36; line-height: 1.65; padding-left: 20px; position: relative; }
+    .cs-learned-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-size: 1.2rem; line-height: 1.4; }
+    .cs-learned-list li strong { color: #090F15; font-weight: 500; }
+
+    /* GitHub link */
+    .cs-github-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; font-size: 0.88rem; font-weight: 500; color: var(--accent); border-bottom: 1px solid var(--accent-border); padding-bottom: 2px; transition: border-color var(--transition); }
+    .cs-github-link:hover { border-color: var(--accent); }
+
+    /* Next CTA */
+    #cs-next { padding: 120px 0; text-align: center; position: relative; background-color: #090F15; /* Midnight */
+      background-image: url(https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779014929/Case_study_hy97qn.png);
+      background-size: cover; background-position: center;}
+    #cs-next::before { content: ''; position: absolute; inset: 0; background: rgba(9, 15, 21, 0.75); pointer-events: none; z-index: 0; }
+    #cs-next .container { position: relative; z-index: 1; }
+    .cs-next-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 16px; }
+    .cs-next-title { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--text-light); margin-bottom: 32px; }
+    .cs-next-title span { font-style: italic; color: var(--accent); }
+
+    /* Footer */
+    #footer { padding: 40px 0; border-top: 1px solid rgba(108, 109, 116, 0.1); background: var(--dark-bg); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { font-size: 0.82rem; color: var(--text-secondary); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .cs-hero-inner, .two-col, .two-col-start, .cs-goals-grid, .cs-process-grid, .cs-screenshots-grid, .cs-learned-grid { grid-template-columns: 1fr; gap: 40px; }
+      .cs-section { padding: 60px 0; }
+      #cs-hero { padding: 120px 0 80px; }
+      #cursor-dot, #cursor-ring { display: none; }
+      body { cursor: auto; }
+    }
+</style>
+</head>
+<body>
+
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <header id="navbar">
+    <nav class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-name">ALIVE</span>
+        <span class="nav-logo-tagline">Design Studio</span>
+      </a>
+      <a href="index.html#work" class="nav-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Work
+      </a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section id="cs-hero">
+      <div class="container">
+        <div class="cs-hero-inner">
+          <div>
+            <a href="index.html#work" class="cs-back-link fade-up">← All Projects</a>
+            <h1 class="cs-hero-title fade-up delay-1">Warm <em>Component</em> System</h1>
+            <p class="cs-hero-subtitle fade-up delay-2">A production-ready design system built from scratch — Figma component library, coded HTML/CSS, and advanced interactions.</p>
+            <div class="cs-meta fade-up delay-3">
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Role</span>
+                <span class="cs-meta-value">Design System Architecture · Visual Design · Frontend Development</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Type</span>
+                <span class="cs-meta-value">Self-initiated / Package 05 Deliverable</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Tools</span>
+                <span class="cs-meta-value">Figma · Claude Code · VS Code · HTML · CSS · JavaScript</span>
+              </div>
+            </div>
+          </div>
+          <div class="fade-up delay-2">
+            <video class="cs-video" autoplay muted loop playsinline>
+              <source src="https://res.cloudinary.com/dnnfhyeuv/video/upload/v1774336789/done_cgs5kj.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Challenge -->
+    <section id="cs-challenge" class="cs-section light">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">The Challenge</p>
+            <h2 class="cs-section-title">Build a system once, built properly.</h2>
+          </div>
+          <div class="fade-up delay-1">
+            <p class="cs-body">Most small studios and freelance designers treat every project as a blank canvas — rebuilding buttons, inputs, and navigation from scratch each time. The result is inconsistency, wasted time, and a gap between what's designed and what gets built.</p>
+            <p class="cs-body" style="margin-top:16px;">I wanted to solve that problem for myself first. Build a system once, built properly, that could be adapted for any client — and in the process, demonstrate that a designer who codes can deliver something most design-only studios can't.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Design Goals -->
+    <section id="cs-goals" class="cs-section">
+      <div class="container">
+        <p class="cs-section-label fade-up">Design Goals</p>
+        <h2 class="cs-section-title fade-up delay-1">What I set out to do.</h2>
+        <div class="cs-goals-grid">
+          <div class="cs-goal-card fade-up delay-1">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/Frame_2_jstgem" alt="Warmth as a system" />
+            <div class="cs-goal-card-body">
+              <p class="cs-goal-num">01</p>
+              <h3 class="cs-goal-title">Warmth as a system</h3>
+              <p class="cs-goal-desc">Most design systems default to cool, neutral palettes. I wanted to prove a warm, earthy palette — deep olive, burgundy, cream — could be just as rigorous and systematic as any tech-facing system.</p>
+            </div>
+          </div>
+          <div class="cs-goal-card fade-up delay-2">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/files_jbi96g" alt="Design and code as one process" />
+            <div class="cs-goal-card-body">
+              <p class="cs-goal-num">02</p>
+              <h3 class="cs-goal-title">Design and code as one process</h3>
+              <p class="cs-goal-desc">The Figma component library and the coded CSS files were built in parallel, not sequentially. Every design decision had implementation in mind from the start.</p>
+            </div>
+          </div>
+          <div class="cs-goal-card fade-up delay-3">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/Frame_1_r3o7vl" alt="Real deliverable, not a concept" />
+            <div class="cs-goal-card-body">
+              <p class="cs-goal-num">03</p>
+              <h3 class="cs-goal-title">Real deliverable, not a concept</h3>
+              <p class="cs-goal-desc">This is not a mockup of a design system. It is a design system — with working components, CSS custom properties, JavaScript interactions, and documentation a developer can actually use.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Design Process -->
+    <section id="cs-process" class="cs-section light">
+      <div class="container">
+        <p class="cs-section-label fade-up">Design Process</p>
+        <h2 class="cs-section-title fade-up delay-1">Key decisions.</h2>
+        <div class="cs-screenshots-grid fade-up delay-1">
+          <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/brave_screenshot_1_uvvnng" alt="Design process screenshot 1" />
+          <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/brave_screenshot_russcn" alt="Design process screenshot 2" />
+          <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/code_xqacvn" alt="Code implementation" />
+        </div>
+        <div class="cs-process-grid" style="margin-top:48px;">
+          <div class="cs-process-card fade-up delay-1">
+            <p class="cs-process-num">01</p>
+            <h3 class="cs-process-title">Foundations first</h3>
+            <p class="cs-process-desc">Before a single component was designed, the token layer was established — colour, typography, spacing, border radius. Every component inherits from these tokens. Changing a token cascades through the entire system.</p>
+          </div>
+          <div class="cs-process-card fade-up delay-2">
+            <p class="cs-process-num">02</p>
+            <h3 class="cs-process-title">Typographic contrast as character</h3>
+            <p class="cs-process-desc">Pairing Cormorant Garamond for display with DM Sans for body creates a system with personality — editorial warmth at scale, legibility at the detail level. The contrast between serif and sans-serif mirrors the tension between the palette's organic warmth and its structured grid.</p>
+          </div>
+          <div class="cs-process-card fade-up delay-1">
+            <p class="cs-process-num">03</p>
+            <h3 class="cs-process-title">Restraint in radius</h3>
+            <p class="cs-process-desc">Maximum border radius of 6px throughout. The warmth in this system comes from colour, not shape. Soft corners would undermine the refined, considered quality the palette suggests.</p>
+          </div>
+          <div class="cs-process-card fade-up delay-2">
+            <p class="cs-process-num">04</p>
+            <h3 class="cs-process-title">Interactions that feel physical</h3>
+            <p class="cs-process-desc">Hover states are not colour shifts. A magnetic cursor effect pulls elements gently toward the pointer. A liquid gradient border rotates on focus. A shimmer sweeps across cards on hover. Motion is felt, not watched.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- The Result -->
+    <section id="cs-result" class="cs-section">
+      <div class="container">
+        <div class="two-col">
+          <div class="fade-up">
+            <p class="cs-section-label">The Result</p>
+            <h2 class="cs-section-title">A complete, documented component system.</h2>
+            <p class="cs-body">The system includes a Figma component library with full variant and state coverage, a coded implementation with CSS custom properties, seven component files, utility layers, and a live showcase page.</p>
+            <p class="cs-body" style="margin-top:16px;">Every interactive state — hover, focus, active, disabled, error — is implemented in CSS with smooth transitions. All animations respect prefers-reduced-motion.</p>
+            <a href="https://github.com/liviakiss/design-system" target="_blank" rel="noopener" class="cs-github-link">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              View on GitHub →
+            </a>
+          </div>
+          <div class="fade-up delay-1">
+            <video class="cs-video" autoplay muted loop playsinline>
+              <source src="https://res.cloudinary.com/dnnfhyeuv/video/upload/v1774336775/2026-03-24_08-11-36_qzf0bh.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Reflection -->
+    <section id="cs-reflection" class="cs-section light">
+      <div class="container">
+        <p class="cs-section-label fade-up">Reflection</p>
+        <h2 class="cs-section-title fade-up delay-1">What I learned.</h2>
+        <p class="cs-body fade-up delay-2" style="margin-bottom:48px;">Building a design system end-to-end — from token decisions to deployed code — changes how you think about both disciplines. Design decisions that seemed purely visual turned out to have significant implementation implications. Implementation constraints pushed back on design choices in ways that made the system stronger.</p>
+        <div class="cs-learned-grid">
+          <div class="fade-up delay-1">
+            <p class="cs-learned-col-title went-well">What went well</p>
+            <ul class="cs-learned-list">
+              <li><strong>Token architecture:</strong> changing one value updates the entire system correctly</li>
+              <li><strong>The Figma-to-code workflow</strong> using Claude Code MCP reduced translation time significantly</li>
+              <li><strong>Interactions feel premium</strong> without distracting from content</li>
+            </ul>
+          </div>
+          <div class="fade-up delay-2">
+            <p class="cs-learned-col-title refine">What I'd refine</p>
+            <ul class="cs-learned-list">
+              <li>Add a dark/light mode toggle with CSS custom property switching</li>
+              <li>Build a React component version of the library</li>
+              <li>Create a Storybook documentation layer for developer handoff</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Next CTA -->
+    <section id="cs-next">
+      <div class="container fade-up">
+        <p class="cs-next-label">Next Project</p>
+        <h2 class="cs-next-title">Goldmaster — <span>A production dashboard for indie game studios.</span></h2>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="goldmaster.html" class="btn btn-primary">
+            View Case Study
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="index.html#work" class="btn btn-ghost">Back to All Work</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="nav-logo">
+          <span class="nav-logo-name">ALIVE</span>
+          <span class="nav-logo-tagline">Design Studio</span>
+        </a>
+        <p class="footer-copy">&copy; 2026 Lívia Kiss</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top = mouseY + 'px';
+    });
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function animateRing() {
+      ringX = lerp(ringX, mouseX, 0.12);
+      ringY = lerp(ringY, mouseY, 0.12);
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    requestAnimationFrame(() => {
+      document.querySelectorAll('#cs-hero .fade-up').forEach(el => setTimeout(() => el.classList.add('visible'), 50));
+    });
+  </script>
+
+</body>
+</html>

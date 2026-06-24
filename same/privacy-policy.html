@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0YP41XDWRW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0YP41XDWRW');
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy · ALIVE Design Studio</title>
+  <meta name="description" content="Privacy Policy for ALIVE Design Studio — how I collect, use, and protect your personal data." />
+  <link rel="canonical" href="https://alivedesignstudio.net/privacy-policy.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <style>
+    :root {
+      /* Theme Name: Velvet Moss & Plum / Moody Vignette */
+      --dark-bg: #12161A;                  /* Deep slate charcoal background */
+      --accent: #5E6B5C;                   /* Velvet Moss Green accent */
+      --accent-border: rgba(94, 107, 92, 0.25);
+      --text-light: #EAE5DB;               /* Elegant warm bone white */
+      --text-secondary: #8E989F;           /* Muted stormy silver */
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
+      --container: 800px;
+      --transition: 0.35s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--dark-bg);
+      background-image: url(https://res.cloudinary.com/dnnfhyeuv/image/upload/echolocate1_i7lbup);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+    
+    /* Global Section Base Overlay to anchor text contrast over background images */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 22, 26, 0.82); /* Overlay shield protecting typography contrast */
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Target direct page elements to sit comfortably above full-screen backdrop shield */
+    #navbar, .page-wrapper, #footer, #cursor-dot, #cursor-ring {
+      position: relative;
+      z-index: 1;
+    }
+
+    a { text-decoration: none; color: var(--accent); transition: opacity var(--transition); }
+    a:hover { opacity: 0.75; }
+
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+    /* Cursor */
+    #cursor-dot {
+      width: 8px; height: 8px; background: #EAE5DB; border-radius: 50%;
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%); mix-blend-mode: difference;
+    }
+    #cursor-ring {
+      width: 32px; height: 32px; border: 1.5px solid #EAE5DB; border-radius: 50%;
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
+      transform: translate(-50%, -50%); transition: transform 0.3s ease; mix-blend-mode: difference;
+    }
+    #cursor-ring.hovered { transform: translate(-50%, -50%) scale(2); }
+
+    /* Animations */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+
+    /* Navbar */
+    #navbar {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      background: transparent; transition: background var(--transition), backdrop-filter var(--transition);
+    }
+    #navbar.scrolled {
+      background: rgba(18, 22, 26, 0.88);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(94, 107, 92, 0.12);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-name { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; }
+    .nav-logo-tagline { font-size: 0.65rem; color: var(--text-secondary); letter-spacing: 0.12em; text-transform: uppercase; }
+    .nav-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); transition: color var(--transition); }
+    .nav-back:hover { color: var(--accent); opacity: 1; }
+    .nav-back:hover svg { transform: translateX(-4px); }
+    .nav-back svg { transition: transform var(--transition); }
+
+    /* Page wrapper */
+    .page-wrapper { padding: 160px 0 100px; }
+
+    /* Hero */
+    .pp-hero { margin-bottom: 64px; }
+    .pp-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .pp-title { font-family: var(--font-serif); font-size: clamp(2.4rem, 5vw, 3.5rem); font-weight: 700; color: #EAE5DB; line-height: 1.1; margin-bottom: 16px; }
+    .pp-updated { font-size: 0.82rem; color: var(--text-secondary); }
+
+    /* Divider */
+    .pp-divider { border: none; border-top: 1px solid rgba(94, 107, 92, 0.15); margin: 48px 0; }
+
+    /* Section */
+    .pp-section { margin-bottom: 48px; }
+    .pp-section-number { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .pp-section-title { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700; color: #EAE5DB; margin-bottom: 16px; }
+    .pp-body { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.85; }
+    .pp-body + .pp-body { margin-top: 12px; }
+
+    /* List */
+    .pp-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+    .pp-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.93rem; color: var(--text-secondary); line-height: 1.65; }
+    .pp-list li::before { content: '→'; color: var(--accent); font-size: 0.8rem; margin-top: 3px; flex-shrink: 0; }
+
+    /* Sub label */
+    .pp-sub-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A4ADB5; margin: 20px 0 8px; } /* Clean muted tint */
+
+    /* Table */
+    .pp-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    .pp-table th { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-align: left; padding: 10px 16px; border-bottom: 1px solid var(--accent-border); }
+    .pp-table td { font-size: 0.9rem; color: var(--text-secondary); padding: 12px 16px; border-bottom: 1px solid rgba(94,107,92,0.1); line-height: 1.6; }
+    .pp-table tr:last-child td { border-bottom: none; }
+
+    /* Contact box */
+    .pp-contact-box {
+      background: rgba(94,107,92,0.08);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 48px;
+      text-align: center;
+    }
+    .pp-contact-box p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 12px; }
+    .pp-contact-box a { font-size: 1rem; font-weight: 500; color: var(--accent); }
+
+    /* Footer */
+    #footer { padding: 40px 0; border-top: 1px solid rgba(94,107,92,0.12); background: rgba(18, 22, 26, 0.7); backdrop-filter: blur(10px); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .footer-copy { font-size: 0.82rem; color: var(--text-secondary); }
+
+    @media (max-width: 768px) {
+      .page-wrapper { padding: 120px 0 80px; }
+      .pp-table { font-size: 0.85rem; }
+      #cursor-dot, #cursor-ring { display: none; }
+      body { cursor: auto; }
+    }
+</style>
+</head>
+<body>
+
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <header id="navbar">
+    <nav class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-name">ALIVE</span>
+        <span class="nav-logo-tagline">Design Studio</span>
+      </a>
+      <a href="index.html" class="nav-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Site
+      </a>
+    </nav>
+  </header>
+
+  <main class="page-wrapper">
+    <div class="container">
+
+      <!-- Hero -->
+      <div class="pp-hero fade-up">
+        <p class="pp-label">Legal</p>
+        <h1 class="pp-title">Privacy Policy</h1>
+        <p class="pp-updated">Last updated: 05 January 2026</p>
+      </div>
+
+      <hr class="pp-divider" />
+
+      <!-- 1. Who I Am -->
+      <div class="pp-section fade-up">
+        <p class="pp-section-number">01</p>
+        <h2 class="pp-section-title">Who I Am</h2>
+        <p class="pp-body">I'm Lívia Kiss, operating as ALIVE Design Studio — a sole proprietorship based in the Netherlands. I operate in accordance with the General Data Protection Regulation (GDPR).</p>
+        <ul class="pp-list" style="margin-top:16px;">
+          <li>Website: <a href="index.html">ALIVE Design Studio</a></li>
+          <li>Email: <a href="mailto:alivedesignstudio00@gmail.com">alivedesignstudio00@gmail.com</a></li>
+          <li>KVK number: 99302810</li>
+        </ul>
+      </div>
+
+      <hr class="pp-divider" />
+
+      <!-- 2. What I Collect -->
+      <div class="pp-section fade-up">
+        <p class="pp-section-number">02</p>
+        <h2 class="pp-section-title">What Personal Data I Collect</h2>
+        <p class="pp-sub-label">Provided directly by you</p>
+        <ul class="pp-list">
+          <li>Name and email address</li>
+          <li>Project details or any information included in contact messages</li>
+          <li>Business information, where applicable</li>
+        </ul>
+        <p class="pp-sub-label">Collected automatically</p>
+        <ul class="pp-list">
+          <li>IP address</li>
+          <li>Browser type and device information</li>
+          <li>Pages visited and interactions — anonymous and aggregated where possible</li>
+        </ul>
+      </div>
+
+      <hr class="pp-divider" />
+
+      <!-- 3. How I Use It -->
+      <div class="pp-section fade-up">
+        <p class="pp-section-number">03</p>
+        <h2 class="pp-section-title">How I Use Your Data</h2>
+        <p class="pp-body">I use your information to:</p>
+        <ul class="pp-list">
+          <li>Respond to inquiries and project requests</li>
+          <li>Provide design services and communicate throughout a project</li>
+          <li>Send proposals, invoices, and agreements</li>
+          <li>Improve website performance and user experience</li>
+        </ul>
+        <p class="pp-body" style="margin-top:16px;">I never sell or share your personal data with unauthorized third parties.</p>
+      </div>
+
+      <hr class="pp-divider" />
+
+      <!-- 4. Legal Basis -->
+      <div class="pp-section fade-up">
+        <p class="pp-section-number">04</p>
+        <h2 class="pp-section-title">Legal Basis for Processing</h2>
+        <p class="pp-body">Under GDPR Article 6, I process your information based on:</p>
+        <ul class="pp-list">
+          <li><strong style="color:#f0f0f0;font-weight:500;">Legitimate interest</strong> — when responding to contact requests</li>
+          <li><strong style="color:#f0f0f0;font-weight:500;">Contract basis</strong> — when preparing or fulfilling a design service agreement</li>
+          <li><strong style="color:#f0f0f0;font-weight:500;">Consent</strong> — when you agree to optional communications</li>
+        </ul>
+      </div>
+
+      <hr class="pp-divider" />
+
+      <!-- 5. Retention -->
+      <div class="pp-section fade-up">
+        <p class="pp-section-number">05</p>
+        <h2 class="pp-section-title">How Long I Keep Your Data</h2>
+        <p class="pp-body">I keep collected data only as long as necessary:</p>
+        <table class="pp-table">
+          <thead>
+            <tr>
+              <th>Data Type</th>
+              <th>Retention Period</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Contact inquiries without a project</td>
+              <td>Up to 12 months</td>
+            </tr>
+            <tr>
+              <td>Client project records & invoices</td>
+              <td>Up to 7 years (required by Dutch law)</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="pp-body" style="margin-top:16px;">You may request deletion at any time — see Section 7.</p>
+      </div>
+
+      <hr class="pp-divider" />
+
+      <!-- 6. Third Parties -->
+      <div class="pp-section fade-up">
+        <p class="pp-section-number">06</p>
+        <h2 class="pp-section-title">Third-Party Services</h2>
+        <p class="pp-body">To operate my business I may use trusted providers for website hosting, email, and payment processing (such as Revolut or PayPal). These parties process data strictly on my behalf under GDPR-compliant agreements.</p>
+      </div>
+
+      <hr class="pp-divider" />
+
+      <!-- 7. Your Rights -->
+      <div class="pp-section fade-up">
+        <p class="pp-section-number">07</p>
+        <h2 class="pp-section-title">Your Rights Under GDPR</h2>
+        <p class="pp-body">You have the right to:</p>
+        <ul class="pp-list">
+          <li>Request access to your personal data</li>
+          <li>Request correction or deletion</li>
+          <li>Withdraw consent at any time</li>
+          <li>Request limitation or objection to processing</li>
+          <li>Request data portability</li>
+        </ul>
+        <p class="pp-body" style="margin-top:16px;">To exercise any of these rights, contact me at <a href="mailto:alivedesignstudio00@gmail.com">alivedesignstudio00@gmail.com</a>.</p>
+      </div>
+
+      <hr class="pp-divider" />
+
+      <!-- 8. Cookies -->
+      <div class="pp-section fade-up">
+        <p class="pp-section-number">08</p>
+        <h2 class="pp-section-title">Cookies & Tracking</h2>
+        <p class="pp-body">My website may use cookies or analytics tools to understand page performance and improve user experience. You can disable cookies in your browser settings at any time.</p>
+      </div>
+
+      <hr class="pp-divider" />
+
+      <!-- 9. Security -->
+      <div class="pp-section fade-up">
+        <p class="pp-section-number">09</p>
+        <h2 class="pp-section-title">Security</h2>
+        <p class="pp-body">I take appropriate technical and organizational measures to protect your data from unauthorized access, loss, or misuse.</p>
+      </div>
+
+      <hr class="pp-divider" />
+
+      <!-- 10. Updates -->
+      <div class="pp-section fade-up">
+        <p class="pp-section-number">10</p>
+        <h2 class="pp-section-title">Updates to This Policy</h2>
+        <p class="pp-body">I may update this policy to stay compliant with legal requirements. The "Last updated" date at the top will always reflect the most recent revision.</p>
+      </div>
+
+      <!-- Contact box -->
+      <div class="pp-contact-box fade-up">
+        <p>Questions or requests about your data?</p>
+        <a href="mailto:alivedesignstudio00@gmail.com">alivedesignstudio00@gmail.com</a>
+        <p style="margin-top:8px;font-size:0.82rem;">Based in the Netherlands</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-name">ALIVE</span>
+        <span class="nav-logo-tagline">Design Studio</span>
+      </a>
+      <p class="footer-copy">&copy; 2026 Lívia Kiss</p>
+    </div>
+  </footer>
+
+  <script>
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top = mouseY + 'px';
+    });
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function animateRing() {
+      ringX = lerp(ringX, mouseX, 0.12);
+      ringY = lerp(ringY, mouseY, 0.12);
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.pp-hero.fade-up').forEach(el => setTimeout(() => el.classList.add('visible'), 50));
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goldmaster — Production Dashboard · ALIVE Design Studio</title>
+  <meta name="description" content="A production dashboard for indie game studios. UX research, UI design, and frontend development from blank brief to working product." />
+  <link rel="canonical" href="https://alivedesignstudio.net/goldmaster.html" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alivedesignstudio.net/goldmaster.html" />
+  <meta property="og:title" content="Goldmaster — Production Dashboard · ALIVE Design Studio" />
+  <meta property="og:description" content="A production dashboard for indie game studios." />
+  <meta property="og:image" content="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1776082971/macbook_mockup_oinn2r.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Goldmaster — Production Dashboard · ALIVE Design Studio" />
+  <meta name="twitter:description" content="A production dashboard for indie game studios." />
+  <meta name="twitter:image" content="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1776082971/macbook_mockup_oinn2r.jpg" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YP41XDWRW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0YP41XDWRW');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --dark-bg: #090F15;                  /* Midnight */
+      --dark-surface: #262E36;             /* Mountainside */
+      --light-bg: #D3D1CE;                 /* Arctic (Replaces light pale-blue) */
+      --accent: #88867A;                   /* Golden Hour */
+      --accent-border: rgba(108, 109, 116, 0.25); /* Apres Ski based border overlay */
+      --gold: #E8C547;                     /* Preserved intentional case study accent */
+      --gold-dim: rgba(232, 197, 71, 0.15); /* Preserved intentional case study accent */
+      --gold-border: rgba(232, 197, 71, 0.25); /* Preserved intentional case study accent */
+      --text-light: #D3D1CE;               /* Arctic */
+      --text-secondary: #B3B7BA;           /* Slopes */
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
+      --container: 1200px;
+      --transition: 0.35s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--dark-bg); color: var(--text-light); line-height: 1.6; overflow-x: hidden; cursor: none; }
+    a { text-decoration: none; color: inherit; }
+    img, video { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+    /* Cursor */
+    #cursor-dot { width: 8px; height: 8px; background: #D3D1CE; border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+    #cursor-ring { width: 32px; height: 32px; border: 1.5px solid #D3D1CE; border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: transform 0.3s ease; mix-blend-mode: difference; }
+    #cursor-ring.hovered { transform: translate(-50%, -50%) scale(2); }
+
+    /* Animations */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* Navbar */
+    #navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: transparent; transition: background var(--transition), backdrop-filter var(--transition); }
+    #navbar.scrolled { background: rgba(9, 15, 21, 0.85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(108, 109, 116, 0.1); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-name { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; }
+    .nav-logo-tagline { font-size: 0.65rem; color: var(--text-secondary); letter-spacing: 0.12em; text-transform: uppercase; }
+    .nav-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); transition: color var(--transition); }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back:hover svg { transform: translateX(-4px); }
+    .nav-back svg { transition: transform var(--transition); }
+
+    /* Shared */
+    .cs-section { padding: 100px 0; }
+    .cs-section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .cs-section-title { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--text-light); line-height: 1.2; margin-bottom: 32px; }
+    .cs-body { font-size: 0.98rem; color: var(--text-secondary); line-height: 1.85; max-width: 680px; }
+    .cs-divider { border: none; border-top: 1px solid rgba(108, 109, 116, 0.1); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .two-col-start { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .cs-img { border-radius: 12px; border: 1px solid var(--accent-border); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+    .cs-video { border-radius: 12px; border: 1px solid var(--accent-border); box-shadow: 0 24px 60px rgba(0,0,0,0.5); width: 100%; }
+    .cs-scroll-inner { overflow-x: auto; cursor: grab; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; border-radius: 12px; border: 1px solid var(--accent-border); }
+    .cs-scroll-inner img { height: 420px; width: auto; max-width: none; display: block; }
+
+    /* Light */
+    .light { background-color: var(--light-bg); }
+    .light .cs-section-title { color: #090F15; } /* Updated to Midnight */
+    .light .cs-body { color: #262E36; }          /* Updated to Mountainside */
+    .light .cs-section-label { color: var(--accent); }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; border: none; transition: all var(--transition); cursor: none; }
+    .btn-primary { background: var(--accent); color: var(--dark-bg); }
+    .btn-primary:hover { background: #6F6D64; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(136,134,122,0.3); } /* Tuned to match Golden Hour */
+    .btn-gold { background: var(--gold); color: #090F15; } /* Text updated to Midnight */
+    .btn-gold:hover { background: #d4b23a; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,197,71,0.3); }
+    .btn-ghost { background: transparent; color: var(--text-light); border: 1.5px solid rgba(108,109,116,0.4); } /* Updated to Apres Ski */
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* Hero */
+    #cs-hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center;
+      overflow: hidden; padding: 160px 0 120px;
+      background-color: #090F15; /* Midnight */
+      background-image: url(https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779014929/Case_study_hy97qn.png);
+      background-size: cover; background-position: center;
+    }
+    #cs-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(136,134,122,0.12) 1px, transparent 1px); /* Golden Hour accent glow */
+      background-size: 36px 36px; pointer-events: none; z-index: 0;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 80%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 80%);
+    }
+    .cs-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .cs-back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; transition: gap var(--transition); }
+    .cs-back-link:hover { gap: 10px; }
+    .cs-hero-title { font-family: var(--font-serif); font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.05; color: var(--text-light); margin-bottom: 20px; }
+    .cs-hero-title em { font-style: italic; color: var(--gold); }
+    .cs-hero-subtitle { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; max-width: 480px; margin-bottom: 40px; }
+    .cs-meta { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
+    .cs-meta-row { display: flex; align-items: baseline; gap: 12px; }
+    .cs-meta-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); min-width: 70px; }
+    .cs-meta-value { font-size: 0.88rem; color: var(--text-secondary); }
+
+    /* Gold badge */
+    .cs-status-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-dim); border: 1px solid var(--gold-border); border-radius: 20px; padding: 6px 14px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+    .cs-status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+    /* Problem cards */
+    .cs-problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
+    .cs-problem-card { border: 1px solid var(--accent-border); border-radius: 10px; padding: 28px; background: var(--dark-surface); }
+    .cs-problem-tool { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .cs-problem-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; }
+
+    /* User card */
+    .cs-user-card { background: var(--dark-surface); border: 1px solid var(--accent-border); border-radius: 12px; padding: 40px; display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; margin-top: 40px; }
+    .cs-user-card img { width: 200px; height: 200px; object-fit: cover; border-radius: 8px; border: 1px solid var(--accent-border); }
+    .cs-user-name { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--text-light); margin-bottom: 4px; }
+    .cs-user-role { font-size: 0.8rem; color: var(--gold); font-weight: 500; letter-spacing: 0.08em; margin-bottom: 20px; }
+    .cs-user-bio { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 24px; }
+    .cs-user-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; }
+    .cs-user-col-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .cs-user-list li { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; padding-left: 16px; position: relative; margin-bottom: 8px; }
+    .cs-user-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); }
+
+    /* Research patterns */
+    .cs-pattern-list { display: flex; flex-direction: column; gap: 0; margin-top: 24px; }
+    .cs-pattern-item { padding: 24px 0; border-bottom: 1px solid rgba(108,109,116,0.12); } /* Updated to Apres Ski */
+    .cs-pattern-item:last-child { border-bottom: none; }
+    .cs-pattern-title { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: #090F15; margin-bottom: 8px; } /* Updated to Midnight */
+    .cs-pattern-desc { font-size: 0.88rem; color: #262E36; line-height: 1.7; } /* Updated to Mountainside */
+
+    /* Design system images */
+    .cs-ds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    .cs-ds-grid img { border-radius: 8px; border: 1px solid var(--accent-border); width: 100%; }
+
+    /* Screen sections */
+    .cs-screen { margin-top: 60px; padding-top: 60px; border-top: 1px solid rgba(108,109,116,0.12); } /* Updated to Apres Ski */
+    .cs-screen:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+    .cs-screen-header { margin-bottom: 28px; }
+    .cs-screen-num { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .cs-screen-title { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--text-light); margin-bottom: 4px; }
+    .cs-screen-question { font-size: 0.88rem; color: var(--text-secondary); font-style: italic; }
+    .cs-screen-body { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.8; max-width: 640px; margin-bottom: 24px; }
+
+    /* Build details */
+    .cs-tech-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+    .cs-tech-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.92rem; color: #262E36; line-height: 1.65; } /* Updated to Mountainside */
+    .cs-tech-list li::before { content: '→'; color: var(--accent); font-size: 0.8rem; margin-top: 3px; flex-shrink: 0; }
+
+    /* Outcome / learned */
+    .cs-outcome-list { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+    .cs-outcome-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.93rem; color: var(--text-secondary); line-height: 1.65; }
+    .cs-outcome-list li::before { content: '→'; color: var(--accent); font-size: 0.8rem; margin-top: 3px; flex-shrink: 0; }
+    .light .cs-outcome-list li { color: #262E36; } /* Updated to Mountainside */
+    .cs-learned-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .cs-learned-col-title { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+    .cs-learned-col-title.went-well { color: var(--accent); }
+    .cs-learned-col-title.refine { color: var(--text-secondary); }
+    .cs-learned-list { display: flex; flex-direction: column; gap: 16px; }
+    .cs-learned-list li { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.65; padding-left: 20px; position: relative; }
+    .cs-learned-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-size: 1.2rem; line-height: 1.4; }
+    .cs-learned-list li strong { color: var(--text-light); font-weight: 500; }
+
+    /* Next CTA */
+    #cs-next { padding: 120px 0; text-align: center; position: relative; background-color: #090F15; /* Midnight */
+      background-image: url(https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779014929/Case_study_hy97qn.png);
+      background-size: cover; background-position: center;}
+    #cs-next::before { content: ''; position: absolute; inset: 0; background: rgba(9, 15, 21, 0.75); pointer-events: none; z-index: 0; } /* Updated to Midnight overlay */
+    #cs-next .container { position: relative; z-index: 1; }
+    .cs-next-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 16px; }
+    .cs-next-title { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--text-light); margin-bottom: 16px; }
+    .cs-next-title span { font-style: italic; color: var(--accent); }
+    .cs-next-subtitle { font-size: 0.95rem; color: var(--text-secondary); max-width: 560px; margin: 0 auto 40px; line-height: 1.75; }
+
+    /* Footer */
+    #footer { padding: 40px 0; border-top: 1px solid rgba(108,109,116,0.1); background: var(--dark-bg); } /* Updated to Apres Ski */
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { font-size: 0.82rem; color: var(--text-secondary); }
+
+    /* Section Overlays */
+    #cs-goals, #cs-visual, #cs-build, #cs-result, #cs-next, #cs-hero {
+      position: relative;
+    }
+
+    #cs-goals::before, #cs-visual::before, #cs-result::before, #cs-next::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(9, 15, 21, 0.72); /* Updated to Midnight background overlay */
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #cs-goals .container, #cs-visual .container, #cs-build .container, #cs-result .container, #cs-next .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .cs-hero-inner, .two-col, .two-col-start, .cs-problem-grid, .cs-ds-grid, .cs-learned-grid, .cs-user-card, .cs-user-cols { grid-template-columns: 1fr; gap: 40px; }
+      .cs-user-card img { width: 100%; height: 240px; }
+      .cs-section { padding: 60px 0; }
+      #cs-hero { padding: 120px 0 80px; }
+      #cursor-dot, #cursor-ring { display: none; }
+      body { cursor: auto; }
+    }
+</style>
+</head>
+<body>
+
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <header id="navbar">
+    <nav class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-name">ALIVE</span>
+        <span class="nav-logo-tagline">Design Studio</span>
+      </a>
+      <a href="index.html#work" class="nav-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Work
+      </a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="cs-hero">
+      <div class="container">
+        <div class="cs-hero-inner">
+          <div>
+            <a href="index.html#work" class="cs-back-link fade-up">← All Projects</a>
+            <div class="cs-status-badge fade-up delay-1">
+              <span class="cs-status-dot"></span>
+              Live — Package 4 Deliverable
+            </div>
+            <h1 class="cs-hero-title fade-up delay-1"><em>Gold</em>master</h1>
+            <p class="cs-hero-subtitle fade-up delay-2">A production dashboard for indie game studios.</p>
+            <div class="cs-meta fade-up delay-2">
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Role</span>
+                <span class="cs-meta-value">UX Research · UI Design · Frontend Development</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Timeline</span>
+                <span class="cs-meta-value">5–8 weeks</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Type</span>
+                <span class="cs-meta-value">Self-initiated portfolio project</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Stack</span>
+                <span class="cs-meta-value">Figma · HTML · CSS · JavaScript</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;" class="fade-up delay-3">
+              <a href="https://liviakiss.github.io/goldmaster/" target="_blank" rel="noopener" class="btn btn-gold">
+                View Live Demo
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="https://github.com/liviakiss/goldmaster" target="_blank" rel="noopener" class="btn btn-ghost">View on GitHub</a>
+            </div>
+          </div>
+          <div class="fade-up delay-2">
+            <video class="cs-video" autoplay muted loop playsinline>
+              <source src="https://res.cloudinary.com/dnnfhyeuv/video/upload/q_auto/f_auto/v1776083621/grok-video-206e4d90-3af6-4ae9-9dbc-67dd9728a267_sdjt74.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- OVERVIEW -->
+    <section id="cs-overview" class="cs-section light">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">Project Overview</p>
+            <h2 class="cs-section-title">The short version.</h2>
+          </div>
+          <div class="fade-up delay-1">
+            <p class="cs-body">Goldmaster is a project management dashboard designed specifically for small indie game studios — the teams of 2–5 people making real games on tight budgets, tight deadlines, and zero tolerance for tools that get in the way.</p>
+            <p class="cs-body" style="margin-top:16px;">It covers five core areas: project overview, task board, milestone tracking, bug logging, and team coordination. It was designed in Figma, built in HTML/CSS/JS, and deployed live on GitHub Pages.</p>
+            <p class="cs-body" style="margin-top:16px;">This project demonstrates my Package 4 offer — end-to-end product design and frontend implementation — from blank brief to working product.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- THE PROBLEM -->
+    <section id="cs-problem" class="cs-section">
+      <div class="container">
+        <p class="cs-section-label fade-up">The Problem</p>
+        <h2 class="cs-section-title fade-up delay-1">The tools don't fit the people.</h2>
+        <p class="cs-body fade-up delay-2">Small indie studios are stuck between tools built for the wrong users. Goldmaster is built around the one question every project lead wakes up asking: <em style="color:var(--gold);">Are we on track?</em></p>
+        <div class="cs-problem-grid" style="margin-top:40px;">
+          <div class="cs-problem-card fade-up delay-1">
+            <p class="cs-problem-tool">Jira</p>
+            <p class="cs-problem-desc">Designed for enterprise engineering teams. Powerful, expensive, and takes days to configure. A four-person indie studio doesn't have a Scrum Master. They have a developer who also writes the design brief.</p>
+          </div>
+          <div class="cs-problem-card fade-up delay-2">
+            <p class="cs-problem-tool">Trello</p>
+            <p class="cs-problem-desc">Too simple. No milestone tracking. No build versioning. No game-specific vocabulary. Everything has to be hacked together with custom labels and workarounds.</p>
+          </div>
+          <div class="cs-problem-card fade-up delay-1">
+            <p class="cs-problem-tool">Notion</p>
+            <p class="cs-problem-desc">Flexible but demanding. Every team builds their own system from scratch, and that system needs constant maintenance. Time spent organising the tool is time not spent making the game.</p>
+          </div>
+          <div class="cs-problem-card fade-up delay-2">
+            <p class="cs-problem-tool">Spreadsheets</p>
+            <p class="cs-problem-desc">What most small studios actually use. They work, but they don't scale, they don't surface blockers, and they don't answer the one question every project lead wakes up asking.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- THE USER -->
+    <section id="cs-user" class="cs-section light">
+      <div class="container">
+        <p class="cs-section-label fade-up">The User</p>
+        <h2 class="cs-section-title fade-up delay-1">Kaito, project lead at PixelForge Studio.</h2>
+        <div class="cs-user-card fade-up delay-1">
+          <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/q_auto/f_auto/v1776083933/kairo_bejg21.jpg" alt="Kaito — fictional persona" />
+          <div>
+            <p class="cs-user-name">Kaito</p>
+            <p class="cs-user-role">Lead Developer & Project Manager · PixelForge Studio, Tokyo</p>
+            <p class="cs-user-bio">PixelForge is a fictional four-person indie studio building their first commercial title. Kaito is the lead developer — and by default, the project manager. He wears too many hats. He codes, he reviews, he tracks progress, he keeps the team moving. He doesn't have time for a tool that requires maintenance.</p>
+            <p class="cs-user-bio">He needs to open the dashboard, understand the situation in under five seconds, and get back to work.</p>
+            <div class="cs-user-cols">
+              <div>
+                <p class="cs-user-col-title">His goals</p>
+                <ul class="cs-user-list">
+                  <li>Know exactly where the project stands at any moment</li>
+                  <li>Catch scope creep before it becomes a crisis</li>
+                  <li>Keep the team aligned without daily standups</li>
+                  <li>Ship on time — or at least knowingly late, not accidentally late</li>
+                </ul>
+              </div>
+              <div>
+                <p class="cs-user-col-title">His fears</p>
+                <ul class="cs-user-list">
+                  <li>Crunch that could have been prevented</li>
+                  <li>A blocker nobody flagged until it was too late</li>
+                  <li>Losing track of which build introduced which bug</li>
+                </ul>
+                <p style="margin-top:16px;font-size:0.82rem;color:#888899;font-style:italic;">His tools before Goldmaster: A Notion doc that stopped being updated in week three, and a spreadsheet he built himself and hates.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- RESEARCH -->
+    <section id="cs-research" class="cs-section">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">Research</p>
+            <h2 class="cs-section-title">Real problems, real sources.</h2>
+            <p class="cs-body">This is a concept project with a fictional client — but the problem is real. Indie game development is well-documented, and the pain points around production tooling come up consistently in the community.</p>
+            <p style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-top:28px;margin-bottom:12px;">Sources referenced</p>
+            <ul class="cs-outcome-list">
+              <li>GDC postmortems — public talks where developers reflect honestly on what went wrong</li>
+              <li>r/gamedev — threads about production workflows, crunch, and tooling frustrations</li>
+              <li>itch.io developer blogs — indie studios writing about their processes</li>
+              <li><em>Blood, Sweat, and Pixels</em> by Jason Schreier</li>
+            </ul>
+          </div>
+          <div class="fade-up delay-1">
+            <p style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Key patterns</p>
+            <div class="cs-pattern-list" style="border-top:1px solid rgba(91,168,160,0.08);">
+              <div class="cs-pattern-item">
+                <p class="cs-pattern-title" style="color:var(--text-light);">Scope creep is the number one killer</p>
+                <p class="cs-pattern-desc" style="color:var(--text-secondary);">Studios consistently underestimate tasks and don't notice the drift until they're deep in crunch. A tool that surfaces completion percentages per milestone makes drift visible earlier.</p>
+              </div>
+              <div class="cs-pattern-item">
+                <p class="cs-pattern-title" style="color:var(--text-light);">Game dev has its own language</p>
+                <p class="cs-pattern-desc" style="color:var(--text-secondary);">Alpha, Beta, Gold Master, build number, QA pass — these terms mean specific things. A tool that uses generic PM language creates friction. A tool that speaks the same language removes it.</p>
+              </div>
+              <div class="cs-pattern-item">
+                <p class="cs-pattern-title" style="color:var(--text-light);">Small teams need visibility, not hierarchy</p>
+                <p class="cs-pattern-desc" style="color:var(--text-secondary);">Nobody needs to assign tickets to managers. They need to see what everyone is working on, what's blocked, and what's next.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:48px;" class="fade-up">
+          <p class="cs-section-label" style="margin-bottom:16px;">User Flow</p>
+          <div class="cs-scroll-inner">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1776085828/Flow_chart_afaw2d.png" alt="Goldmaster user flow diagram" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- DESIGN SYSTEM -->
+    <section id="cs-ds" class="cs-section light">
+      <div class="container">
+        <p class="cs-section-label fade-up">Design System</p>
+        <h2 class="cs-section-title fade-up delay-1">Built before any screen was designed.</h2>
+        <div class="cs-ds-grid fade-up delay-1">
+          <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/q_auto/f_auto/v1776083127/Color_Tokens_jgpwvi.png" alt="Color tokens" />
+          <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/q_auto/f_auto/v1776083128/Typography_carqfy.png" alt="Typography" />
+          <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/q_auto/f_auto/v1776083128/Spacing_Radii_m1my9x.png" alt="Spacing and radii" />
+        </div>
+        <div class="two-col-start" style="margin-top:48px;">
+          <div class="fade-up">
+            <p class="cs-section-label">Color</p>
+            <p class="cs-body">Near-black backgrounds (#0D0D0D, #141414, #1C1C1C) with a single gold accent (#E8C547). The gold connects directly to the product name — gold master, the moment a game is finished and ready to ship. Status colors are muted versions of standard red/amber/green — the UI stays calm even when the data isn't.</p>
+          </div>
+          <div class="fade-up delay-1">
+            <p class="cs-section-label">Typography</p>
+            <p class="cs-body">DM Mono for all data, numbers, build versions, and code-adjacent labels. Syne for headings, navigation, and UI labels. The combination reads as technical and editorial — a tool made by someone who cared.</p>
+            <p class="cs-section-label" style="margin-top:28px;">Components built</p>
+            <p class="cs-body">Navigation · Card shell · Task cards (all states) · Type tags · Status badges · Severity badges · Progress bar · Avatar with status dot · Buttons · Filter pills · Table rows. Every component was built with Auto Layout in Figma. The file is handoff-ready.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- THE SCREENS -->
+    <section id="cs-screens" class="cs-section">
+      <div class="container">
+        <p class="cs-section-label fade-up">The Screens</p>
+        <h2 class="cs-section-title fade-up delay-1">Five screens. One question answered per screen.</h2>
+ 
+        <div class="cs-screen fade-up">
+          <div class="two-col">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/q_auto/f_auto/v1776082972/browse_3_psduoq.png" alt="Project Overview screen" class="cs-img" />
+            <div>
+              <div class="cs-screen-header">
+                <p class="cs-screen-num">Screen 01</p>
+                <h3 class="cs-screen-title">Project Overview</h3>
+                <p class="cs-screen-question">"Are we on track?"</p>
+              </div>
+              <p class="cs-screen-body">The dashboard home. Every element is chosen to answer one question as fast as possible. Game title, build number, overall completion, days until next milestone, active sprint goal, top blockers, team status. Nothing else. The three top blockers are the most important design decision on this screen — instead of burying blocked tasks in the task board, they surface here automatically.</p>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="cs-screen fade-up">
+          <div class="two-col">
+            <div>
+              <div class="cs-screen-header">
+                <p class="cs-screen-num">Screen 02</p>
+                <h3 class="cs-screen-title">Task Board</h3>
+                <p class="cs-screen-question">"What is everyone working on?"</p>
+              </div>
+              <p class="cs-screen-body">A kanban board structured for game development — not generic PM work. Columns are Backlog, In Progress, In Review/QA, and Done. Tasks are tagged by type: Art, Code, Audio, Design, QA, Writing. The type tags solve a real problem — in game dev, a "blocked" task means something different depending on whether it's a code dependency or an art asset waiting on a brief. Drag-and-drop is implemented in JavaScript.</p>
+            </div>
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/q_auto/f_auto/v1776082972/browse_1_oceka7.png" alt="Task Board screen" class="cs-img" />
+          </div>
+        </div>
+ 
+        <div class="cs-screen fade-up">
+          <div class="two-col">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/q_auto/f_auto/v1776082992/browse_5_niwkhy.png" alt="Milestone Tracker screen" class="cs-img" />
+            <div>
+              <div class="cs-screen-header">
+                <p class="cs-screen-num">Screen 03</p>
+                <h3 class="cs-screen-title">Milestone Tracker</h3>
+                <p class="cs-screen-question">"How far are we from shipping?"</p>
+              </div>
+              <p class="cs-screen-body">A horizontal timeline running from Pre-Production through Post-Launch. Completed milestones are filled with the gold accent. Below the timeline, each milestone has a card showing target date, completion percentage, status (On Track / At Risk / Delayed), and the number of open blocking tasks. The design intent was to make the timeline feel like a map — not a progress report. A navigation tool.</p>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="cs-screen fade-up">
+          <div class="two-col">
+            <div>
+              <div class="cs-screen-header">
+                <p class="cs-screen-num">Screen 04</p>
+                <h3 class="cs-screen-title">Bug & Issue Log</h3>
+                <p class="cs-screen-question">"What is broken and who owns it?"</p>
+              </div>
+              <p class="cs-screen-body">A clean data table. Bug title, severity, assigned to, build number it was found in, and current status. Rows are 52px — readable but dense. Sort by severity. Filter by status. Quick-resolve toggle on each row. The build number column is a small but important detail — in game development, knowing when a bug was introduced is as important as knowing what it is.</p>
+            </div>
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/q_auto/f_auto/v1776082973/browse_4_nvtlhq.png" alt="Bug and Issue Log screen" class="cs-img" />
+          </div>
+        </div>
+ 
+        <div class="cs-screen fade-up">
+          <div class="two-col">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/q_auto/f_auto/v1776082992/browse_6_e3wejj.png" alt="Team View screen" class="cs-img" />
+            <div>
+              <div class="cs-screen-header">
+                <p class="cs-screen-num">Screen 05</p>
+                <h3 class="cs-screen-title">Team View</h3>
+                <p class="cs-screen-question">"Is everyone okay?"</p>
+              </div>
+              <p class="cs-screen-body">Four team member cards. Each shows name, role, current assignment, capacity indicator, a personal focus note, and last active timestamp. This screen is explicitly not a time-tracking tool. The design intent is coordination, not surveillance. The personal focus note — a short freetext field where each team member writes what they're focused on this week — came directly from research.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <hr class="cs-divider" />
+
+    <!-- THE BUILD -->
+    <section id="cs-build" class="cs-section light">
+      <div class="container">
+        <div class="two-col">
+          <div class="fade-up">
+            <p class="cs-section-label">The Build</p>
+            <h2 class="cs-section-title">Designed in Figma. Built in HTML/CSS/JS.</h2>
+            <p class="cs-body">All five screens were built as a responsive frontend in vanilla HTML, CSS, and JavaScript. No frameworks. No libraries except SortableJS for drag-and-drop on the task board.</p>
+            <ul class="cs-tech-list" style="margin-top:24px;">
+              <li>CSS custom properties for all colors, type sizes, and spacing — the entire visual system lives in :root</li>
+              <li>Sidebar is a fixed component shared across all screens</li>
+              <li>Progress bars animate on page load with CSS @keyframes</li>
+              <li>Milestone timeline built with pure CSS — no canvas, no SVG library</li>
+              <li>Task board drag-and-drop implemented with SortableJS</li>
+              <li>Fully responsive — works on tablet and mobile</li>
+              <li>Deployed on GitHub Pages</li>
+            </ul>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;">
+              <a href="https://liviakiss.github.io/goldmaster/" target="_blank" rel="noopener" class="btn btn-gold">
+                View Live Demo
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="fade-up delay-1">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/q_auto/f_auto/v1776082971/macbook_mockup_oinn2r.jpg" alt="Goldmaster on MacBook" class="cs-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- REFLECTION -->
+    <section id="cs-reflection" class="cs-section">
+      <div class="container">
+        <p class="cs-section-label fade-up">Reflection</p>
+        <h2 class="cs-section-title fade-up delay-1">What I would do differently with a real client.</h2>
+        <p class="cs-body fade-up delay-2" style="margin-bottom:48px;">This project was self-directed, which gave me freedom but removed something important — friction. A real client would have pushed back. They would have had constraints I didn't anticipate, preferences I would have had to design around, and business goals that might have changed the priorities entirely.</p>
+        <div class="cs-learned-grid">
+          <div class="fade-up delay-1">
+            <p class="cs-learned-col-title went-well">What I learned</p>
+            <ul class="cs-learned-list">
+              <li><strong>Writing the brief before opening Figma</strong> was the single best decision. It forced design decisions before I was tempted to just make things look good.</li>
+              <li><strong>Building the design system before the screens</strong> made the whole process faster and more consistent. Components first, screens second — that's the order that works.</li>
+              <li><strong>The coded frontend taught me things the Figma file couldn't.</strong> The gap between design and implementation is where the real craft lives.</li>
+            </ul>
+          </div>
+          <div class="fade-up delay-2">
+            <p class="cs-learned-col-title refine">What I'd build next</p>
+            <ul class="cs-learned-list">
+              <li>User authentication and persistent data</li>
+              <li>A "crunch alert" that flags when a milestone is at risk based on current task velocity</li>
+              <li>Notifications for blocked tasks and overdue milestones</li>
+            </ul>
+            <p style="margin-top:20px;font-size:0.85rem;color:var(--text-secondary);line-height:1.75;">That's the feature that would make Goldmaster genuinely useful, not just visually compelling.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT CTA -->
+    <section id="cs-next">
+      <div class="container fade-up">
+        <p class="cs-next-label">Like what you see?</p>
+        <h2 class="cs-next-title">This is my <span>Package 4 offer.</span></h2>
+        <p class="cs-next-subtitle">Full UX/UI + Frontend Development. If you're building a product and need one person to take it from research to coded reality, let's talk.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="index.html#contact" class="btn btn-primary">
+            Get in Touch
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="index.html#work" class="btn btn-ghost">Back to All Work</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="nav-logo">
+          <span class="nav-logo-name">ALIVE</span>
+          <span class="nav-logo-tagline">Design Studio</span>
+        </a>
+        <p class="footer-copy">&copy; 2026 Lívia Kiss</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top = mouseY + 'px';
+    });
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function animateRing() {
+      ringX = lerp(ringX, mouseX, 0.12);
+      ringY = lerp(ringY, mouseY, 0.12);
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    requestAnimationFrame(() => {
+      document.querySelectorAll('#cs-hero .fade-up').forEach(el => setTimeout(() => el.classList.add('visible'), 50));
+    });
+  </script>
+
+</body>
+</html>

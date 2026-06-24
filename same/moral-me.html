@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moral Me — Unsolicited Redesign · ALIVE Design Studio</title>
+  <link rel="canonical" href="https://alivedesignstudio.net/moral-me.html" />
+  <meta name="description" content="A philosophical product deserves a design that thinks as deeply as it does. Three directions, each with a different strategic rationale." />
+  <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YP41XDWRW"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0YP41XDWRW');
+    </script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alivedesignstudio.net/moral-me.html" />
+  <meta property="og:title" content="Moral Me — Unsolicited Redesign · ALIVE Design Studio" />
+  <meta property="og:description" content="A philosophical product deserves a design that thinks as deeply as it does." />
+  <meta property="og:image" content="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1773139605/mockupcover_qvqxrh.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Moral Me — Unsolicited Redesign · ALIVE Design Studio" />
+  <meta name="twitter:description" content="A philosophical product deserves a design that thinks as deeply as it does." />
+  <meta name="twitter:image" content="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1773139605/mockupcover_qvqxrh.png" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G4X1G366K1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G4X1G366K1');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Theme Name: Cool Winter / Alpinesque */
+      --dark-bg: #090F15;                  /* Midnight */
+      --dark-surface: #262E36;             /* Mountainside */
+      --light-bg: #D3D1CE;                 /* Arctic */
+      --accent: #88867A;                   /* Golden Hour */
+      --accent-border: rgba(108, 109, 116, 0.25); /* Apres Ski based border */
+      
+      /* Preserved Signature Project Accents */
+      --orange: #f97316;
+      --orange-dim: rgba(249, 115, 22, 0.15);
+      --orange-border: rgba(249, 115, 22, 0.25);
+      
+      --text-light: #D3D1CE;               /* Arctic */
+      --text-secondary: #B3B7BA;           /* Slopes */
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
+      --container: 1200px;
+      --transition: 0.35s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--dark-bg); color: var(--text-light); line-height: 1.6; overflow-x: hidden; cursor: none; }
+    a { text-decoration: none; color: inherit; }
+    img, video { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+    /* Cursor */
+    #cursor-dot { width: 8px; height: 8px; background: #D3D1CE; border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+    #cursor-ring { width: 32px; height: 32px; border: 1.5px solid #D3D1CE; border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: transform 0.3s ease; mix-blend-mode: difference; }
+    #cursor-ring.hovered { transform: translate(-50%, -50%) scale(2); }
+
+    /* Animations */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* Navbar */
+    #navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: transparent; transition: background var(--transition), backdrop-filter var(--transition); }
+    #navbar.scrolled { background: rgba(9, 15, 21, 0.85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(108, 109, 116, 0.1); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-name { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; }
+    .nav-logo-tagline { font-size: 0.65rem; color: var(--text-secondary); letter-spacing: 0.12em; text-transform: uppercase; }
+    .nav-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); transition: color var(--transition); }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back:hover svg { transform: translateX(-4px); }
+    .nav-back svg { transition: transform var(--transition); }
+
+    /* Shared section */
+    .cs-section { padding: 100px 0; position: relative; }
+    .cs-section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .cs-section-title { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--text-light); line-height: 1.2; margin-bottom: 32px; }
+    .cs-body { font-size: 0.98rem; color: var(--text-secondary); line-height: 1.85; max-width: 680px; }
+    .cs-divider { border: none; border-top: 1px solid rgba(108, 109, 116, 0.1); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .two-col-start { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .cs-img { border-radius: 12px; border: 1px solid var(--accent-border); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+    .cs-scroll-inner { overflow-y: auto; max-height: 480px; border-radius: 12px; border: 1px solid var(--accent-border); box-shadow: 0 24px 60px rgba(0,0,0,0.5); cursor: ns-resize; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; }
+    .cs-scroll-inner img { width: 100%; display: block; }
+
+    /* Light sections */
+    .light { background-color: var(--light-bg); }
+    .light .cs-section-title { color: #090F15; } /* Updated to Midnight */
+    .light .cs-body { color: #262E36; }          /* Updated to Mountainside */
+    .light .cs-section-label { color: var(--accent); }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; border: none; transition: all var(--transition); cursor: none; }
+    .btn-primary { background: var(--accent); color: var(--dark-bg); }
+    .btn-primary:hover { background: #6F6D64; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(136,134,122,0.3); } /* Tuned to Golden Hour */
+    .btn-ghost { background: transparent; color: var(--text-light); border: 1.5px solid rgba(108,109,116,0.4); } /* Updated to Apres Ski */
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* Hero */
+    #cs-hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center;
+      overflow: hidden; padding: 160px 0 120px;
+      background-color: #090F15; /* Midnight */
+      background-image: url(https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779014929/Case_study_hy97qn.png);
+      background-size: cover; background-position: center;
+    }
+    #cs-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(136,134,122,0.12) 1px, transparent 1px); /* Golden Hour accent points */
+      background-size: 36px 36px; pointer-events: none; z-index: 0;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 80%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 80%);
+    }
+    .cs-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .cs-back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; transition: gap var(--transition); }
+    .cs-back-link:hover { gap: 10px; }
+    .cs-hero-title { font-family: var(--font-serif); font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.05; color: var(--text-light); margin-bottom: 20px; }
+    .cs-hero-title em { font-style: italic; color: var(--orange); }
+    .cs-hero-subtitle { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; max-width: 480px; margin-bottom: 40px; }
+    .cs-meta { display: flex; flex-direction: column; gap: 10px; }
+    .cs-meta-row { display: flex; align-items: baseline; gap: 12px; }
+    .cs-meta-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); min-width: 50px; }
+    .cs-meta-value { font-size: 0.88rem; color: var(--text-secondary); }
+    .cs-hero-media img { width: 100%; border-radius: 12px; border: 1px solid var(--accent-border); box-shadow: 0 32px 80px rgba(0,0,0,0.6); }
+
+    /* Status badge */
+    .cs-status-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--orange-dim); border: 1px solid var(--orange-border); border-radius: 20px; padding: 6px 14px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 24px; }
+    .cs-status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+
+    /* Before/After */
+    .cs-before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+    .cs-before-after-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+    .cs-before-after-label.before { color: #6C6D74; } /* Updated to Apres Ski tint */
+    .cs-before-after-label.after { color: var(--orange); }
+
+    /* Audit list — adapts to dark/light context */
+    .cs-audit-list { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+    .cs-audit-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; }
+    .cs-audit-list li::before { content: '→'; color: var(--orange); font-size: 0.8rem; margin-top: 3px; flex-shrink: 0; }
+    .light .cs-audit-list li { color: #262E36; } /* Updated to Mountainside */
+
+    /* Page flow */
+    .cs-flow { display: flex; flex-direction: column; gap: 0; margin-top: 24px; }
+    .cs-flow-item { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(108,109,116,0.12); } /* Updated to Apres Ski */
+    .cs-flow-item:last-child { border-bottom: none; }
+    .cs-flow-num { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; color: var(--orange); min-width: 28px; margin-top: 2px; }
+    .cs-flow-text { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; }
+    .cs-flow-text strong { color: var(--text-light); font-weight: 500; }
+    .light .cs-flow-text { color: #262E36; }          /* Updated to Mountainside */
+    .light .cs-flow-text strong { color: #090F15; }   /* Updated to Midnight */
+
+    /* Version cards */
+    .cs-versions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+    .cs-version-card { border-radius: 12px; overflow: hidden; border: 1px solid var(--accent-border); transition: border-color var(--transition), transform var(--transition); background: var(--dark-surface); }
+    .cs-version-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+    .cs-version-card img { width: 100%; height: 220px; object-fit: cover; object-position: top; }
+    .cs-version-card-body { padding: 24px; background: var(--dark-surface); }
+    .cs-version-number { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+    .cs-version-title { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: var(--text-light); margin-bottom: 8px; }
+    .cs-version-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; }
+
+    /* Principles */
+    .cs-principles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 16px; }
+    .cs-principle { background: rgba(38, 46, 54, 0.15); border: 1px solid rgba(108, 109, 116, 0.25); border-radius: 10px; padding: 24px; } /* Cleaned to Mountainside/Apres Ski */
+    .cs-principle-title { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: #090F15; margin-bottom: 8px; } /* Updated to Midnight */
+    .cs-principle-desc { font-size: 0.88rem; color: #262E36; line-height: 1.65; } /* Updated to Mountainside */
+
+    /* Outcome list — adapts to dark/light */
+    .cs-outcome-list { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+    .cs-outcome-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.93rem; color: var(--text-secondary); line-height: 1.65; }
+    .cs-outcome-list li::before { content: '→'; color: var(--accent); font-size: 0.8rem; margin-top: 3px; flex-shrink: 0; }
+    .light .cs-outcome-list li { color: #262E36; } /* Updated to Mountainside */
+
+    /* Learned */
+    .cs-learned-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .cs-learned-col-title { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+    .cs-learned-col-title.went-well { color: var(--accent); }
+    .cs-learned-col-title.refine { color: var(--text-secondary); }
+    .cs-learned-list { display: flex; flex-direction: column; gap: 16px; }
+    .cs-learned-list li { font-size: 0.92rem; color: #262E36; line-height: 1.65; padding-left: 20px; position: relative; } /* Updated to Mountainside */
+    .cs-learned-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); font-size: 1.2rem; line-height: 1.4; }
+    .cs-learned-list li strong { color: #090F15; font-weight: 500; } /* Updated to Midnight */
+
+    /* Next CTA */
+    #cs-next { padding: 120px 0; text-align: center; position: relative; background-color: #090F15; /* Midnight */
+      background-image: url(https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779014929/Case_study_hy97qn.png); background-size: cover; background-position: center;}
+    #cs-next::before { content: ''; position: absolute; inset: 0; background: rgba(9, 15, 21, 0.75); pointer-events: none; z-index: 0; } /* Updated to Midnight overlay */
+    #cs-next .container { position: relative; z-index: 1; }
+    .cs-next-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 16px; }
+    .cs-next-title { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--text-light); margin-bottom: 32px; }
+    .cs-next-title span { font-style: italic; color: var(--accent); }
+
+    /* Footer */
+    #footer { padding: 40px 0; border-top: 1px solid rgba(108, 109, 116, 0.12); background: var(--dark-bg); } /* Updated to Apres Ski */
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { font-size: 0.82rem; color: var(--text-secondary); }
+
+    /* Section Overlays (Ensures high text contrast across image backgrounds) */
+    #cs-challenge, #cs-audit, #cs-process, #cs-solutions, #cs-results {
+      position: relative;
+    }
+    #cs-challenge::before, #cs-audit::before, #cs-process::before, #cs-solutions::before, #cs-results::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(9, 15, 21, 0.75); /* Midnight Background Block overlay */
+      pointer-events: none;
+      z-index: 0;
+    }
+    #cs-challenge .container, #cs-audit .container, #cs-process .container, #cs-solutions .container, #cs-results .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .cs-hero-inner, .two-col, .two-col-start, .cs-before-after, .cs-versions-grid, .cs-principles-grid, .cs-learned-grid { grid-template-columns: 1fr; gap: 40px; }
+      .cs-section { padding: 60px 0; }
+      #cs-hero { padding: 120px 0 80px; }
+      #cursor-dot, #cursor-ring { display: none; }
+      body { cursor: auto; }
+    }
+</style>
+</head>
+<body>
+
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <header id="navbar">
+    <nav class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-name">ALIVE</span>
+        <span class="nav-logo-tagline">Design Studio</span>
+      </a>
+      <a href="index.html#work" class="nav-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Work
+      </a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section id="cs-hero">
+      <div class="container">
+        <div class="cs-hero-inner">
+          <div>
+            <a href="index.html#work" class="cs-back-link fade-up">← All Projects</a>
+            <div class="cs-status-badge fade-up delay-1">
+              <span class="cs-status-dot"></span>
+              Concept — 3 directions delivered
+            </div>
+            <h1 class="cs-hero-title fade-up delay-1">Moral <em>Me</em></h1>
+            <p class="cs-hero-subtitle fade-up delay-2">A philosophical product deserves a design that thinks as deeply as it does.</p>
+            <div class="cs-meta fade-up delay-3">
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Role</span>
+                <span class="cs-meta-value">UX/UI Design · Brand Alignment · UX Audit</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Type</span>
+                <span class="cs-meta-value">Unsolicited Redesign · Web</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Tools</span>
+                <span class="cs-meta-value">Figma · Browser DevTools</span>
+              </div>
+            </div>
+          </div>
+          <div class="cs-hero-media fade-up delay-2">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/92470663-6fa7-412f-8ea0-d82902f0ba8f_ldc2c1" alt="Moral Me redesign cover" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Overview -->
+    <section id="cs-overview" class="cs-section light">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">Project Overview</p>
+            <h2 class="cs-section-title">The concept is genuinely original. The website wasn't keeping up with it.</h2>
+          </div>
+          <div class="fade-up delay-1">
+            <p class="cs-body">Moral Me is a gamified social platform built around character development. It rewards meaningful dialogue and virtuous choices — not follower counts.</p>
+            <p class="cs-body" style="margin-top:16px;">I redesigned the homepage without being asked. Three directions, each with a different strategic rationale. Sent it to the founder cold. He responded the same day.</p>
+            <div class="cs-before-after">
+              <div>
+                <p class="cs-before-after-label before">Before</p>
+                <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/3fb51428-c826-4b5b-a3c0-8edaec6c8d48_t5uslq" alt="Moral Me before redesign" class="cs-img" />
+              </div>
+              <div>
+                <p class="cs-before-after-label after">After</p>
+                <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/hero_xvykgi" alt="Moral Me after redesign" class="cs-img" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Background & Goals -->
+    <section id="cs-background" class="cs-section" style="background-color: #090F15;">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">Background & Goals</p>
+            <h2 class="cs-section-title">Align the design with the depth of the product.</h2>
+            <p class="cs-body">Moral Me's copy is sharp. "Where content creation becomes character formation" is a strong line. But the design around it told a different story — light blue gradients, floating mockups, generic SaaS layout. It looked like every other app landing page from 2021.</p>
+            <p class="cs-body" style="margin-top:16px;">The deeper problem: Kane's writing is philosophical, intentional, emotionally intelligent. The design didn't match that voice at all.</p>
+            <div style="margin-top:32px;">
+              <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/116bf183-bf77-467f-a344-1b1e19939c43_n7fqhd" alt="Moral Me brand asset" class="cs-img" />
+            </div>
+          </div>
+          <div class="fade-up delay-1">
+            <p class="cs-section-label">What I set out to do</p>
+            <ul class="cs-outcome-list">
+              <li>Align the visual language with the depth of the product</li>
+              <li>Create immediate emotional trust — this platform asks people to be vulnerable</li>
+              <li>Make the gamification feel earned, not shallow</li>
+              <li>Respect existing brand elements (logo, orange accent) while elevating everything around them</li>
+              <li>Deliver three directions to give the founder a real creative choice</li>
+            </ul>
+            <p class="cs-section-label" style="margin-top:32px;">Working within</p>
+            <ul class="cs-outcome-list">
+              <li>No brief — I had to write my own</li>
+              <li>Existing Framer site structure as reference</li>
+              <li>One strong brand asset: the orange in the logo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Research -->
+    <section id="cs-research" class="cs-section light">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">Research & Inspiration</p>
+            <h2 class="cs-section-title">Moral Me needs to signal depth, safety, growth.</h2>
+            <p class="cs-body">I read everything on the site carefully before touching Figma. The mission, the features, the copy. Moral Me isn't trying to be Instagram. It's closer to a personal development tool with social mechanics layered on top.</p>
+            <p class="cs-body" style="margin-top:16px;">The people it's trying to attract are reflective, values-driven. They need to feel understood before they sign up.</p>
+            <p class="cs-body" style="margin-top:16px;">The one brand asset worth keeping: the orange in the logo. Warm, human, distinctive. I built all three directions around it — pulling it forward instead of the cool blue that dominated the original.</p>
+          </div>
+          <div class="fade-up delay-1">
+            <p class="cs-section-label">Closest references</p>
+            <ul class="cs-audit-list">
+              <li><strong style="color:#1a1a1a;font-weight:500;">Duolingo</strong> — gamification that feels purposeful, not gimmicky</li>
+              <li><strong style="color:#1a1a1a;font-weight:500;">Headspace</strong> — warmth and trust in a wellness context</li>
+              <li><strong style="color:#1a1a1a;font-weight:500;">Are.na</strong> — intellectual depth, minimal noise</li>
+              <li><strong style="color:#1a1a1a;font-weight:500;">Medium</strong> — writing-forward, ideas over performance</li>
+            </ul>
+            <div style="margin-top:32px;">
+              <p class="cs-before-after-label before">Before</p>
+              <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/a8145c21-8077-40cc-89cf-03b0f2f2ce9b_yrylox" alt="UX audit" class="cs-img" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- UX Audit -->
+    <section id="cs-audit" class="cs-section" style="background-color: #090F15;">
+      <div class="container">
+        <p class="cs-section-label fade-up">UX Planning & Information Architecture</p>
+        <h2 class="cs-section-title fade-up delay-1">Before redesigning anything, I audited the existing site.</h2>
+        <div class="two-col-start" style="margin-top:40px;">
+          <div class="fade-up delay-1">
+            <p class="cs-section-label">What I found</p>
+            <ul class="cs-outcome-list">
+              <li>No clear hierarchy — hero, features, mission, and CTA all competing at the same weight</li>
+              <li>"PositiveFeed" still in the footer — the old brand name, creating identity confusion</li>
+              <li>Copy errors in the features section — typos, inconsistent capitalisation</li>
+              <li>Contrast issues — light grey text on white throughout</li>
+              <li>Gamification metrics shown raw — numbers without context for what they actually mean</li>
+              <li>The robot Ami notice handled with emoji in plain body text — unprofessional first impression</li>
+            </ul>
+          </div>
+          <div class="fade-up delay-2">
+            <p class="cs-section-label">Restructured page flow</p>
+            <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:20px;line-height:1.7;">The original had no narrative arc. I reorganised it into one — every section earns the next.</p>
+            <div class="cs-flow">
+              <div class="cs-flow-item">
+                <span class="cs-flow-num">01</span>
+                <p class="cs-flow-text"><strong>Hero</strong> — What is this? Why does it matter? One CTA.</p>
+              </div>
+              <div class="cs-flow-item">
+                <span class="cs-flow-num">02</span>
+                <p class="cs-flow-text"><strong>Mission</strong> — The emotional core in one sentence</p>
+              </div>
+              <div class="cs-flow-item">
+                <span class="cs-flow-num">03</span>
+                <p class="cs-flow-text"><strong>How it works</strong> — Gamification explained simply</p>
+              </div>
+              <div class="cs-flow-item">
+                <span class="cs-flow-num">04</span>
+                <p class="cs-flow-text"><strong>Features</strong> — What you actually get</p>
+              </div>
+              <div class="cs-flow-item">
+                <span class="cs-flow-num">05</span>
+                <p class="cs-flow-text"><strong>Metrics</strong> — Evidence the system works</p>
+              </div>
+              <div class="cs-flow-item">
+                <span class="cs-flow-num">06</span>
+                <p class="cs-flow-text"><strong>Waitlist CTA</strong> — Low friction, high intention</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Three Versions -->
+    <section id="cs-versions" class="cs-section light">
+      <div class="container">
+        <p class="cs-section-label fade-up">Visual Design</p>
+        <h2 class="cs-section-title fade-up delay-1">Three directions. Each a different strategic position.</h2>
+        <div class="cs-versions-grid">
+          <div class="cs-version-card fade-up delay-1">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/hero_xvykgi" alt="Version 1 - Clarity First" />
+            <div class="cs-version-card-body">
+              <p class="cs-version-number">Version 01</p>
+              <h3 class="cs-version-title">Clarity First</h3>
+              <p class="cs-version-desc">Dark background, orange accent, clean white type. Maximum contrast. Editorial layout. The hero leads with their strongest line set large against a dark field. Orange used in exactly one place: the CTA button. Best for the intellectually serious early adopter.</p>
+            </div>
+          </div>
+          <div class="cs-version-card fade-up delay-2">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/sneak_peek_vyzbqo" alt="Version 2 - Evolutionary" />
+            <div class="cs-version-card-body">
+              <p class="cs-version-number">Version 02</p>
+              <h3 class="cs-version-title">Evolutionary</h3>
+              <p class="cs-version-desc">Keeps the existing video hero and gradient structure. Fixes everything else. Tighter hierarchy. Corrected copy. Stronger contrast. Lowest friction for existing community members. Most buildable in the shortest time.</p>
+            </div>
+          </div>
+          <div class="cs-version-card fade-up delay-3">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/hero_3_fzvije" alt="Version 3 - Brand Led" />
+            <div class="cs-version-card-body">
+              <p class="cs-version-number">Version 03</p>
+              <h3 class="cs-version-title">Brand Led</h3>
+              <p class="cs-version-desc">Takes the orange from the logo and makes it the emotional foundation of the entire page. Warm dark background, rich and textured. Leans most directly into the wellness and personal growth angle.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:48px;" class="fade-up">
+          <p class="cs-section-label">Design Principles Across All Three</p>
+          <div class="cs-principles-grid" style="margin-top:20px;">
+            <div class="cs-principle">
+              <h3 class="cs-principle-title">Depth over decoration</h3>
+              <p class="cs-principle-desc">Nothing decorative that doesn't carry meaning.</p>
+            </div>
+            <div class="cs-principle">
+              <h3 class="cs-principle-title">Warmth over cold tech</h3>
+              <p class="cs-principle-desc">Orange, rounded but not bubbly.</p>
+            </div>
+            <div class="cs-principle">
+              <h3 class="cs-principle-title">Earned metrics</h3>
+              <p class="cs-principle-desc">Gamification numbers shown with narrative, not as raw readouts.</p>
+            </div>
+            <div class="cs-principle">
+              <h3 class="cs-principle-title">One primary CTA</h3>
+              <p class="cs-principle-desc">Always visible, never buried.</p>
+            </div>
+          </div>
+          <div style="margin-top:32px;">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/contact_liopzh" alt="Design principles" class="cs-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Motion -->
+    <section id="cs-motion" class="cs-section" style="background-color: #090F15;">
+      <div class="container">
+        <div class="two-col">
+          <div class="fade-up">
+            <p class="cs-section-label">Motion & Interaction</p>
+            <h2 class="cs-section-title">Every animation should feel like breathing, not bouncing.</h2>
+            <p class="cs-body">This was a visual concept, not a coded prototype. But interaction intent was considered in every layout decision.</p>
+            <ul class="cs-outcome-list" style="margin-top:24px;">
+              <li><strong style="color:var(--text-light);font-weight:500;">Hero entrance</strong> — slow fade with slight upward drift. The pace should feel considered.</li>
+              <li><strong style="color:var(--text-light);font-weight:500;">Metric counters</strong> — count-up animation on scroll. Makes the numbers feel earned, not static.</li>
+              <li><strong style="color:var(--text-light);font-weight:500;">CTA hover</strong> — subtle warm glow, not a flat colour shift. Reinforces the warmth of the brand.</li>
+              <li><strong style="color:var(--text-light);font-weight:500;">Feature cards</strong> — gentle lift on hover. Light and exploratory, not mechanical.</li>
+            </ul>
+          </div>
+          <div class="fade-up delay-1">
+            <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/sneak_peek_2_mipio6" alt="Motion and interaction" class="cs-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Development -->
+    <section id="cs-dev" class="cs-section light">
+      <div class="container">
+        <div class="two-col">
+          <div class="fade-up delay-1">
+            <div class="cs-scroll-inner">
+              <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/Desktop_version_2_aur0sm" alt="Desktop version 2" />
+            </div>
+          </div>
+          <div class="fade-up">
+            <p class="cs-section-label">Development & Platform</p>
+            <h2 class="cs-section-title">The problems were entirely design and copy — not infrastructure.</h2>
+            <p class="cs-body">The "PositiveFeed" footer text was a forgotten template remnant from an earlier brand iteration. Easy to miss. Easy to fix. The kind of detail that erodes trust without anyone knowing why.</p>
+            <p class="cs-body" style="margin-top:16px;">All three directions are buildable. Version 1 would benefit most from a considered font pairing — Playfair Display for display headings, Inter for body. Philosophical-meets-functional. Matches the product's voice.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- What I Learned -->
+    <section id="cs-learned" class="cs-section light">
+      <div class="container">
+        <p class="cs-section-label fade-up">What I Learned</p>
+        <h2 class="cs-section-title fade-up delay-1">Designing for depth is a different constraint.</h2>
+        <p class="cs-body fade-up delay-2" style="margin-bottom:48px;">Most UX work is about making things simpler. Moral Me needed that — but it also needed to feel weighty. Removing friction can accidentally remove meaning. That tension shaped every decision.</p>
+        <div class="cs-learned-grid">
+          <div class="fade-up delay-1">
+            <p class="cs-learned-col-title went-well">Key insights</p>
+            <ul class="cs-learned-list">
+              <li><strong>Writing your own brief sharpens your thinking.</strong> Without a client, you have to answer the hard question yourself: what does this product actually need right now?</li>
+              <li><strong>Lead with feeling, then logic.</strong> Emotional trust before feature explanation became the filter for every layout choice.</li>
+              <li><strong>Three options is better than one.</strong> One solution says you found the answer. Three says you understood the problem from multiple angles.</li>
+            </ul>
+          </div>
+          <div class="fade-up delay-2">
+            <p class="cs-learned-col-title went-well">What I'd refine</p>
+            <ul class="cs-learned-list">
+              <li>User interviews with the target audience before finalising direction</li>
+              <li>A proper mobile-first pass on all three versions</li>
+              <li>Prototype the metric animations to test if the gamification reads as meaningful</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- Outcome -->
+    <section id="cs-outcome" class="cs-section" style="background-color: #090F15;">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">Outcome</p>
+            <h2 class="cs-section-title">The founder responded the same day.</h2>
+            <p class="cs-body">This is an unsolicited concept. The founder was informed and responded positively.</p>
+          </div>
+          <div class="fade-up delay-1">
+            <ul class="cs-outcome-list" style="margin-top:8px;">
+              <li>Identifying a design problem without being asked</li>
+              <li>Strategic thinking across three distinct directions, each with clear rationale</li>
+              <li>Brand alignment — reading a founder's voice and translating it visually</li>
+              <li>UX auditing beyond surface aesthetics</li>
+              <li>The confidence to reach out with real work, not a pitch</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Next CTA -->
+    <section id="cs-next">
+      <div class="container fade-up">
+        <p class="cs-next-label">Next Project</p>
+        <h2 class="cs-next-title">Design — <span>System</span></h2>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="design-system.html" class="btn btn-primary">
+            View Case Study
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="index.html#work" class="btn btn-ghost">Back to All Work</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="nav-logo">
+          <span class="nav-logo-name">ALIVE</span>
+          <span class="nav-logo-tagline">Design Studio</span>
+        </a>
+        <p class="footer-copy">&copy; 2026 Lívia Kiss</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top = mouseY + 'px';
+    });
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function animateRing() {
+      ringX = lerp(ringX, mouseX, 0.12);
+      ringY = lerp(ringY, mouseY, 0.12);
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    requestAnimationFrame(() => {
+      document.querySelectorAll('#cs-hero .fade-up').forEach(el => setTimeout(() => el.classList.add('visible'), 50));
+    });
+  </script>
+
+</body>
+</html>

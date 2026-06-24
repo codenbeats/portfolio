@@ -1,0 +1,299 @@
+/* ALIVE Design Studio — Portfolio-specific styles */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Offset in-page anchor targets so the fixed header doesn't cover them */
+section[id],
+div[id="hero"] {
+    scroll-margin-top: 6rem;
+}
+
+:root {
+    --dark-bg: #090f15;
+    --dark-surface: #262e36;
+    --light-bg: #d3d1ce;
+    --light-surface: #c8c6c0;
+    --accent: #6c6d74;
+    --accent-warm: #88867a;
+    --text-light: #d3d1ce;
+    --text-light-secondary: #b3b7ba;
+    --text-dark: #090f15;
+    --text-dark-secondary: #4a4f54;
+    --font-serif: var(--font-playfair, "Playfair Display"), serif;
+    --font-sans: var(--font-inter, "Inter"), sans-serif;
+    --section-padding: 120px 0;
+    --container-max: 1200px;
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.35s ease;
+    --transition-slow: 0.7s ease;
+}
+
+/* Portfolio base resets */
+.portfolio-page {
+    font-family: var(--font-sans);
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.portfolio-container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Section labels */
+.section-label {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 48px;
+}
+
+/* Fade-up animation */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity var(--transition-slow),
+        transform var(--transition-slow),
+        translate var(--transition-base),
+        scale var(--transition-base),
+        box-shadow var(--transition-base);
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 {
+    transition-delay: 0.1s;
+}
+.delay-2 {
+    transition-delay: 0.2s;
+}
+.delay-3 {
+    transition-delay: 0.3s;
+}
+
+/* Custom cursor */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+}
+
+.cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 44px;
+    height: 44px;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    mix-blend-mode: difference;
+    isolation: isolate;
+}
+
+.cursor-ring::before,
+.cursor-ring::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid transparent;
+    border-top-color: #ffffff;
+    border-right-color: #ffffff;
+}
+
+.cursor-ring::before {
+    animation: spin 2.5s linear infinite;
+    opacity: 1;
+}
+
+.cursor-ring::after {
+    border-top-color: transparent;
+    border-left-color: #ffffff;
+    border-bottom-color: #ffffff;
+    animation: spinReverse 3.5s linear infinite;
+    opacity: 0.8;
+    inset: 4px;
+}
+
+.cursor-ring.hovered {
+    width: 70px;
+    height: 70px;
+}
+
+.cursor-ring.hovered::before {
+    animation-duration: 1s;
+    opacity: 1;
+}
+.cursor-ring.hovered::after {
+    animation-duration: 1.4s;
+    inset: 8px;
+    opacity: 0.9;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes spinReverse {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .cursor-dot,
+    .cursor-ring {
+        display: none;
+    }
+}
+
+/* Case study shared styles */
+.cs-section {
+    padding: 100px 0;
+}
+
+.cs-section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 16px;
+}
+
+.cs-section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 32px;
+}
+
+.cs-body {
+    font-size: 0.98rem;
+    color: var(--text-light-secondary);
+    line-height: 1.85;
+    max-width: 680px;
+}
+
+.cs-body + .cs-body {
+    margin-top: 18px;
+}
+
+.cs-body strong {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.cs-img {
+    border-radius: 12px;
+    border: 1px solid rgba(108, 109, 116, 0.25);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Light section variant */
+.light-section {
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+}
+
+.light-section .cs-section-title {
+    color: var(--text-dark);
+}
+
+.light-section .cs-body {
+    color: var(--text-dark-secondary);
+}
+
+.light-section .cs-body strong {
+    color: var(--text-dark);
+}
+
+/* Button styles */
+.btn-portfolio {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: none;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-portfolio-primary {
+    background-color: var(--accent-warm);
+    color: var(--dark-bg);
+}
+
+.btn-portfolio-primary:hover {
+    background-color: #9b9888;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(136, 134, 122, 0.35);
+}
+
+.btn-portfolio-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    color: var(--text-light);
+    border: 1.5px solid rgba(211, 209, 206, 0.2);
+}
+
+.btn-portfolio-secondary:hover {
+    background: rgba(108, 109, 116, 0.15);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.btn-portfolio-ghost {
+    background: transparent;
+    color: var(--text-light);
+    border: 1.5px solid rgba(108, 109, 116, 0.4);
+}
+
+.btn-portfolio-ghost:hover {
+    border-color: var(--accent-warm);
+    color: var(--accent-warm);
+    transform: translateY(-2px);
+}

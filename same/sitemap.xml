@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- English pages -->
+  <url>
+    <loc>https://alivedesignstudio.net/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/"/>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/services.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/services.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/services.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/services.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/ondine.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/ondine.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/ondine.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/ondine.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/alive-studio.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/alive-studio.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/alive-studio.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/alive-studio.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/moral-me.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/moral-me.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/moral-me.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/moral-me.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/design-system.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/design-system.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/design-system.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/design-system.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/goldmaster.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/goldmaster.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/goldmaster.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/goldmaster.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/privacy-policy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/privacy-policy.html"/>
+    <priority>0.3</priority>
+  </url>
+  <url>
+  <loc>https://alivedesignstudio.net/pantry.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/pantry.html"/>
+  <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/pantry.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/pantry.html"/>
+  <priority>0.8</priority>
+</url>
+
+  <!-- Hungarian pages -->
+  <url>
+    <loc>https://alivedesignstudio.net/hu/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/"/>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/hu/services.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/services.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/services.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/services.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/hu/ondine.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/ondine.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/ondine.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/ondine.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/hu/alive-studio.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/alive-studio.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/alive-studio.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/alive-studio.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/hu/moral-me.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/moral-me.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/moral-me.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/moral-me.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/hu/design-system.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/design-system.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/design-system.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/design-system.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/hu/goldmaster.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/goldmaster.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/goldmaster.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/goldmaster.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://alivedesignstudio.net/hu/privacy-policy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/privacy-policy.html"/>
+    <priority>0.3</priority>
+  </url>
+  <url>
+  <loc>https://alivedesignstudio.net/hu/pantry.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/pantry.html"/>
+  <xhtml:link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/pantry.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/pantry.html"/>
+  <priority>0.8</priority>
+</url>
+
+</urlset>

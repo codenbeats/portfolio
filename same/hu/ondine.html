@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ondine — Filmes landing page · ALIVE Design Studio</title>
+  <meta name="description" content="Landing page egy fiktív óceánvédő nonprofitnak, érzelmi ívre építve félelem helyett." />
+  <link rel="canonical" href="https://alivedesignstudio.net/hu/ondine.html" />
+  <link rel="alternate" hreflang="en" href="https://alivedesignstudio.net/ondine.html" />
+  <link rel="alternate" hreflang="hu" href="https://alivedesignstudio.net/hu/ondine.html" />
+  <link rel="alternate" hreflang="x-default" href="https://alivedesignstudio.net/ondine.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alivedesignstudio.net/hu/ondine.html" />
+  <meta property="og:title" content="Ondine — Filmes landing page · ALIVE Design Studio" />
+  <meta property="og:description" content="Egy landing page, amit érezni kell, mielőtt elolvasnád." />
+  <meta property="og:locale" content="hu_HU" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ondine — Filmes landing page · ALIVE Design Studio" />
+  <meta name="twitter:description" content="Egy landing page, amit érezni kell, mielőtt elolvasnád." />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YP41XDWRW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0YP41XDWRW');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --dark-bg: #090F15;
+      --dark-surface: #262E36;
+      --light-bg: #EDEBE6;
+      --accent: #6C6D74;
+      --accent-warm: #88867A;
+      --accent-border: rgba(108, 109, 116, 0.25);
+      --ondine: #5fe3d4;
+      --ondine-dim: rgba(95, 227, 212, 0.12);
+      --ondine-border: rgba(95, 227, 212, 0.3);
+      --text-light: #D3D1CE;
+      --text-secondary: #B3B7BA;
+      --text-dark: #090F15;
+      --text-dark-secondary: #4A4F54;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
+      --container: 1200px;
+      --transition: 0.35s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--dark-bg); color: var(--text-light); line-height: 1.6; overflow-x: hidden; cursor: none; }
+    a { text-decoration: none; color: inherit; }
+    img, video { max-width: 100%; display: block; }
+    ul { list-style: none; }
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+    #cursor-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+    #cursor-ring { width: 32px; height: 32px; border: 1.5px solid #fff; border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: transform 0.3s ease; mix-blend-mode: difference; }
+    #cursor-ring.hovered { transform: translate(-50%, -50%) scale(2); }
+
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    #navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: transparent; transition: background var(--transition), backdrop-filter var(--transition); }
+    #navbar.scrolled { background: rgba(9, 15, 21, 0.85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(108, 109, 116, 0.12); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-name { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--accent-warm); letter-spacing: 0.05em; }
+    .nav-logo-tagline { font-size: 0.65rem; color: var(--text-secondary); letter-spacing: 0.12em; text-transform: uppercase; }
+    .nav-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); transition: color var(--transition); }
+    .nav-back:hover { color: var(--accent-warm); }
+    .nav-back:hover svg { transform: translateX(-4px); }
+    .nav-back svg { transition: transform var(--transition); }
+
+    .cs-section { padding: 100px 0; }
+    .cs-section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ondine); margin-bottom: 16px; }
+    .cs-section-title { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; color: var(--text-light); line-height: 1.2; margin-bottom: 32px; }
+    .cs-section-title em { font-style: italic; color: var(--ondine); }
+    .cs-body { font-size: 0.98rem; color: var(--text-secondary); line-height: 1.85; max-width: 720px; }
+    .cs-body + .cs-body { margin-top: 18px; }
+    .cs-body strong { color: var(--text-light); font-weight: 500; }
+    .cs-body em { font-style: italic; color: var(--text-light); }
+    .cs-divider { border: none; border-top: 1px solid rgba(108, 109, 116, 0.12); }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .two-col-start { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+    .light { background-color: var(--light-bg); }
+    .light .cs-section-title { color: var(--text-dark); }
+    .light .cs-body { color: var(--text-dark-secondary); }
+    .light .cs-body strong { color: var(--text-dark); }
+    .light .cs-body em { color: var(--text-dark); }
+    .light .cs-section-label { color: var(--ondine); }
+
+    .cs-video-frame { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--accent-border); box-shadow: 0 24px 60px rgba(0,0,0,0.5); aspect-ratio: 16/10; background: #000; }
+    .cs-video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cs-video-frame::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 60px rgba(0,0,0,0.4); pointer-events: none; }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; border: none; transition: all var(--transition); cursor: none; }
+    .btn-primary { background: var(--accent-warm); color: var(--dark-bg); }
+    .btn-primary:hover { background: #9b9888; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(136,134,122,0.3); }
+    .btn-ondine { background: var(--ondine); color: var(--dark-bg); }
+    .btn-ondine:hover { background: #7eede0; transform: translateY(-2px); box-shadow: 0 0 28px rgba(95,227,212,0.35); }
+    .btn-ghost { background: transparent; color: var(--text-light); border: 1.5px solid rgba(211,209,206,0.22); }
+    .btn-ghost:hover { border-color: var(--ondine); color: var(--ondine); transform: translateY(-2px); }
+
+    #cs-hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding: 160px 0 120px; background-color: #090F15; background-image: url(https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779014929/Case_study_hy97qn.png); background-size: cover; background-position: center; }
+    #cs-hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(95,227,212,0.10) 1px, transparent 1px); background-size: 36px 36px; pointer-events: none; z-index: 0; mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 80%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 80%); }
+    .cs-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .cs-back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ondine); margin-bottom: 32px; transition: gap var(--transition); }
+    .cs-back-link:hover { gap: 10px; }
+    .cs-hero-title { font-family: var(--font-serif); font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.05; color: var(--text-light); margin-bottom: 16px; }
+    .cs-hero-subtitle-tagline { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.15rem, 1.7vw, 1.5rem); color: var(--ondine); margin-bottom: 28px; line-height: 1.4; }
+    .cs-hero-subtitle { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; max-width: 480px; margin-bottom: 36px; }
+    .cs-meta { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
+    .cs-meta-row { display: flex; align-items: baseline; gap: 12px; }
+    .cs-meta-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ondine); min-width: 80px; }
+    .cs-meta-value { font-size: 0.88rem; color: var(--text-secondary); }
+    .cs-hero-media { position: relative; }
+
+    .arc-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 48px; }
+    .arc-step { padding: 24px 18px; border-top: 1px solid var(--ondine-border); }
+    .arc-num { font-family: var(--font-serif); font-style: italic; font-size: 0.78rem; color: var(--ondine); letter-spacing: 0.08em; margin-bottom: 10px; }
+    .arc-word { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .arc-desc { font-size: 0.82rem; color: var(--text-dark-secondary); line-height: 1.65; }
+
+    .pillars { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
+    .pillar { padding: 28px 0; border-top: 1px solid rgba(108,109,116,0.16); }
+    .pillar:last-child { border-bottom: 1px solid rgba(108,109,116,0.16); }
+    .pillar-num { font-family: var(--font-serif); font-style: italic; font-size: 0.8rem; color: var(--ondine); letter-spacing: 0.08em; margin-bottom: 8px; }
+    .pillar-title { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: var(--text-light); line-height: 1.3; margin-bottom: 10px; }
+    .pillar-body { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.85; }
+    .pillar-body em { font-style: italic; color: var(--text-light); }
+
+    .quote-list { display: flex; flex-direction: column; gap: 22px; margin-top: 32px; padding-left: 24px; border-left: 2px solid var(--ondine); max-width: 720px; }
+    .quote-list li { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; color: var(--text-light); line-height: 1.55; }
+
+    .cs-pullquote { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.3rem, 2.2vw, 1.9rem); line-height: 1.45; color: var(--text-light); max-width: 820px; margin: 56px auto 0; text-align: center; padding: 0 24px; }
+    .cs-pullquote .pq-em { color: var(--ondine); }
+    .cs-pullquote .pq-attr { display: block; font-style: normal; font-family: var(--font-sans); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-secondary); margin-top: 22px; }
+    .light .cs-pullquote { color: var(--text-dark); }
+    .light .cs-pullquote .pq-attr { color: var(--text-dark-secondary); }
+
+    .build-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 32px; }
+    .build-col-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ondine); margin-bottom: 16px; }
+    .build-list { display: flex; flex-direction: column; gap: 10px; }
+    .build-list li { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; padding-left: 18px; position: relative; }
+    .build-list li::before { content: '→'; position: absolute; left: 0; color: var(--ondine); }
+    .build-list li strong { color: var(--text-light); font-weight: 500; }
+
+    .next-steps { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+    .next-steps li { padding: 16px 22px; background: #FFFFFF; border-left: 2px solid var(--ondine); border-radius: 0 6px 6px 0; font-size: 0.9rem; color: var(--text-dark-secondary); line-height: 1.7; }
+    .next-steps li strong { color: var(--text-dark); font-weight: 500; }
+
+    #cs-next { padding: 120px 0; text-align: center; position: relative; background-color: #090F15; background-image: url(https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779014929/Case_study_hy97qn.png); background-size: cover; background-position: center; }
+    #cs-next::before { content: ''; position: absolute; inset: 0; background: rgba(9,15,21,0.78); pointer-events: none; z-index: 0; }
+    #cs-next .container { position: relative; z-index: 1; }
+    .cs-next-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 16px; }
+    .cs-next-title { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--text-light); margin-bottom: 16px; line-height: 1.2; }
+    .cs-next-title em { font-style: italic; color: var(--ondine); }
+    .cs-next-subtitle { font-size: 0.95rem; color: var(--text-secondary); max-width: 580px; margin: 0 auto 40px; line-height: 1.75; }
+
+    #footer { padding: 40px 0; border-top: 1px solid rgba(108,109,116,0.12); background: var(--dark-bg); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { font-size: 0.82rem; color: var(--text-secondary); }
+
+    @media (max-width: 968px) {
+      .cs-hero-inner, .two-col, .two-col-start, .build-grid { grid-template-columns: 1fr; gap: 40px; }
+      .arc-grid { grid-template-columns: repeat(2, 1fr); }
+      .cs-section { padding: 60px 0; }
+      #cs-hero { padding: 120px 0 80px; }
+      #cursor-dot, #cursor-ring { display: none; }
+      body { cursor: auto; }
+    }
+    @media (max-width: 560px) {
+      .arc-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <header id="navbar">
+    <nav class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-name">ALIVE</span>
+        <span class="nav-logo-tagline">Design Studio</span>
+      </a>
+      <a href="index.html#work" class="nav-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Vissza a munkákhoz
+      </a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="cs-hero">
+      <div class="container">
+        <div class="cs-hero-inner">
+          <div>
+            <a href="index.html#work" class="cs-back-link fade-up">← Összes projekt</a>
+            <h1 class="cs-hero-title fade-up delay-1">Ondine</h1>
+            <p class="cs-hero-subtitle-tagline fade-up delay-1">Egy landing page, ami először <em>érzést</em> kér.</p>
+            <p class="cs-hero-subtitle fade-up delay-2">Filmes koncepcióoldal egy fiktív óceánvédő nonprofitnak — szeretetre építve, nem félelemre.</p>
+            <div class="cs-meta fade-up delay-2">
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Szerep</span>
+                <span class="cs-meta-value">Koncepció · Design · Frontend · Copywriting</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Típus</span>
+                <span class="cs-meta-value">Saját kezdeményezés · Fiktív nonprofit</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Stack</span>
+                <span class="cs-meta-value">Figma · HTML · CSS · JavaScript · AI képanyag</span>
+              </div>
+              <div class="cs-meta-row">
+                <span class="cs-meta-label">Élő</span>
+                <span class="cs-meta-value">liviakiss.github.io/ondine</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;" class="fade-up delay-3">
+              <a href="https://liviakiss.github.io/ondine/" target="_blank" rel="noopener" class="btn btn-ondine">
+                Élő oldal megtekintése
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="cs-hero-media fade-up delay-2">
+            <div class="cs-video-frame">
+              <img src="https://res.cloudinary.com/dnnfhyeuv/image/upload/v1780317008/ondine_mockup_image_ku8x47.jpg" alt="Ondine landing page mockup">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 01 WHY -->
+    <section id="cs-why" class="cs-section light">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">01 — Miért készítettem</p>
+            <h2 class="cs-section-title">Egy <em>érzéssel</em> indult, nem briefből.</h2>
+          </div>
+          <div class="fade-up delay-1">
+            <p class="cs-body">A párommal arról álmodunk, hogy egyszer majd vitorlázni fogunk. De minden alkalommal, amikor erről beszélgetünk, ugyanaz a szomorú gondolat tér vissza: a tenger tele van szeméttel. Az, amibe szeretnénk beleszeretni, az, amit lassan tönkreteszünk.</p>
+            <p class="cs-body">Aztán egy nap Amszterdamban láttam egy anyát és a lányát SUP-on a csatornán, ahogy kézzel emelték ki a szemetet a vízből. Olyan apró dolog. Olyan jó dolog. Nem kampány, nem támogatás, nem reflektorfény — csak két ember, aki úgy döntött, hogy a víz megéri a délutánjukat.</p>
+            <p class="cs-body">Ez velem maradt. Olyan valamit akartam tervezni, ami pontosan ezt az érzést megragadja: nem bűntudatot, nem félelmet, hanem <strong>csendes szeretetet a tenger iránt</strong> — és azt az egyszerű hitet, hogy ennek a védelme olyasmi, amit hétköznapi emberek valóban meg tudnak tenni.</p>
+            <p class="cs-body">Így megalkottam az <strong>Ondine</strong>-t, egy fiktív óceánvédő nonprofitot, és megterveztem azt a landing page-t, amit szerettem volna, ha több környezetvédő szervezetnek lenne. Olyat, ami megérezteti veled az óceánt, mielőtt bármit is kérne tőled.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 02 PROBLEM -->
+    <section id="cs-problem" class="cs-section">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">02 — A probléma</p>
+            <h2 class="cs-section-title">A legtöbb környezetvédő oldal <em>arra kényszerít, hogy bezárd az oldalt.</em></h2>
+            <div class="cs-video-frame" style="margin-top:32px;">
+              <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                <source src="https://res.cloudinary.com/dnnfhyeuv/video/upload/v1779961773/Section_2_background_bsu8ht.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="fade-up delay-1">
+            <p class="cs-body">A tervezés előtt alaposan megnéztem, hogyan kommunikálnak általában a természetvédelmi és nonprofit oldalak. A többségük ugyanazt csinálja: riasztással indít. Hatalmas, ijesztő statisztikák. Piros figyelmeztető színek. Sürgős visszaszámlálók. <em>"Cselekedj most, mielőtt késő lenne."</em></p>
+            <p class="cs-body">A szándék jó — de a pszichológia visszafelé sül el.</p>
+            <p class="cs-body">Amikor az emberek elárasztva érzik magukat ijesztő információkkal, az agy nem a cselekvés felé mozdul. Az önvédelem felé. A túlnyomó fenyegetéssel szemben az idegrendszer inkább elkerülésbe és érzelmi leállásba húzódik. A pszichológusok ezt <strong>"az aggódás véges medencéjének"</strong> hívják — csak ennyi félelmet bírunk el, mielőtt elzárkóznánk, hogy megvédjük magunkat.</p>
+            <p class="cs-body">Egyszerűen: az emberek ijesztgetésével nem segítenek nekik. Hanem bezárják az oldalt. <strong>Én ennek az ellenkezőjét akartam megtervezni.</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 03 CORE IDEA — the arc -->
+    <section id="cs-arc" class="cs-section light">
+      <div class="container">
+        <div class="fade-up">
+          <p class="cs-section-label">03 — Az alapgondolat</p>
+          <h2 class="cs-section-title">Először tedd lehetővé, hogy <em>beleszeressenek</em>. Aztán mutasd meg a tétet. Aztán mutasd meg, hogy megoldható. Aztán kérd meg őket — gyengéden.</h2>
+          <p class="cs-body" style="max-width: 820px;">Az Ondine minden részlete egyetlen érzelmi ívre épül, pontosan ebben a sorrendben. Nem dekoratív — azon alapul, ahogyan az emberek valójában eldöntik, hogy törődnek-e valamivel és cselekednek-e érte.</p>
+        </div>
+
+        <div class="arc-grid">
+          <div class="arc-step fade-up delay-1">
+            <p class="arc-num">— i.</p>
+            <h3 class="arc-word">Csodálat</h3>
+            <p class="arc-desc">Megnyitja az embereket. A csodálatról szóló kutatások szerint összekapcsoltságot ad valami nagyobbal, és nyitottabbá tesz a közösségi cselekvésre. Az oldal az óceán szépségével nyit, nem a pusztulásával.</p>
+          </div>
+          <div class="arc-step fade-up delay-1">
+            <p class="arc-num">— ii.</p>
+            <h3 class="arc-word">Jelentés</h3>
+            <p class="arc-desc">Okot ad az érzésnek. Amint valaki érez valamit, készen áll megérteni, miért is fontos.</p>
+          </div>
+          <div class="arc-step fade-up delay-2">
+            <p class="arc-num">— iii.</p>
+            <h3 class="arc-word">Valóság</h3>
+            <p class="arc-desc">Csak akkor jön elő — gyengéden —, ha az érzelmi kapcsolat már megvan. Így motivációként érkezik, nem kétségbeesésként.</p>
+          </div>
+          <div class="arc-step fade-up delay-2">
+            <p class="arc-num">— iv.</p>
+            <h3 class="arc-word">Remény</h3>
+            <p class="arc-desc">Azonnal a nehéz igazság után, mert az emberek csak olyan problémákra reagálnak, amiket megoldhatónak hisznek. Az oldal tisztán kimondja: ez visszafordítható.</p>
+          </div>
+          <div class="arc-step fade-up delay-3">
+            <p class="arc-num">— v.</p>
+            <h3 class="arc-word">Cselekvés</h3>
+            <p class="arc-desc">Utoljára jön, amikor az ember érzelmileg már készen áll — és kedvesen kínálják fel, nyomás nélkül.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 04 HOW DESIGN SUPPORTS THE FEELING -->
+    <section id="cs-design" class="cs-section">
+      <div class="container">
+        <div class="fade-up">
+          <p class="cs-section-label">04 — Hogyan szolgálja a dizájn az érzést</p>
+          <h2 class="cs-section-title">Minden döntés <em>ugyanazt a nyugalmat</em> hordozza.</h2>
+          <p class="cs-body">Egy oldal a tenger iránti csendes szeretetről nem mozoghat, hangzhat vagy nézhet ki úgy, mint egy fintech hirdetés. Minden tervezési döntésnek — paletta, mozgás, szöveg, struktúra — találkoznia kellett azzal az érzéssel, amivel a látogatót szeretném elengedni.</p>
+        </div>
+
+        <div class="two-col-start" style="margin-top:48px;">
+          <div class="fade-up">
+            <div class="cs-video-frame">
+              <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                <source src="https://res.cloudinary.com/dnnfhyeuv/video/upload/v1779961773/Section_3_background_mqjyjt.mp4" type="video/mp4">
+              </video>
+            </div>
+            <ul class="quote-list fade-up" style="margin-top:56px;">
+                <li>"Az óceán nem egy szemetesláda. Egy élő dolog — és valakinek meg kell védenie."</li>
+                <li>"Második dagályt adunk az állatoknak."</li>
+                <li>"A védelemnek ára van. Egy apró ár."</li>
+                <li>"Válaszd azt, ami jólesik. Nincs rossz összeg, és nem lesz utánkövetés, amit nem kértél."</li>
+            </ul>
+          </div>
+
+          <div class="pillars fade-up delay-1">
+            <div class="pillar">
+              <p class="pillar-num">— i.</p>
+              <h3 class="pillar-title">Görgetéskor lemerülsz.</h3>
+              <p class="pillar-body">Az egész oldal egy búvárkodásra épül. A háttér fixen marad, miközben a tartalom mozog rajta, és az óceán fokozatosan mélyül — a napsütötte felszíntől a sötét, izzó mélységig. Nem nézed az óceánt. <em>Benne vagy.</em></p>
+            </div>
+            <div class="pillar">
+              <p class="pillar-num">— ii.</p>
+              <h3 class="pillar-title">Nyugodt mozgás, szándékosan.</h3>
+              <p class="pillar-body">Minden animáció lassú. Az átmenetek gyengéden halványulnak. A gyors, agresszív mozgás éberséget vált ki; a lassú, kiszámítható mozgás biztonságot jelez. Mivel az üzenet <em>nyugodt törődés</em>, ahogy az oldal mozog, annak találkoznia kellett azzal, ahogy érezni akarja a látogatót. A médium hordozza az üzenetet.</p>
+            </div>
+            <div class="pillar">
+              <p class="pillar-num">— iii.</p>
+              <h3 class="pillar-title">Egy szín, ami azt jelenti: él.</h3>
+              <p class="pillar-body">A paletta mélykék óceán. Ez ellen a sok kék ellen pontosan egyetlen accent áll: egy lágy, izzó teal, mint a biolumineszcencia. Csak a legfontosabb pillanatokban használtam — a navigációs jelzőn és az adományozó gombon. <em>A visszafogottság adja az accent erejét.</em></p>
+            </div>
+            <div class="pillar">
+              <p class="pillar-num">— iv.</p>
+              <h3 class="pillar-title">Szavak, amik tisztelik az olvasót.</h3>
+              <p class="pillar-body">A szöveg csendes és őszinte. Nincs bűntudat, nincs hype, nincs vállalati nyelvezet. Az internet nagy része nyomást és manipulációt használ. Az Ondine bizonyítja, hogy méltósággal is lehet segítséget kérni — és bízni az emberekben, hogy válaszolni fognak.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 05 THE GENTLE REALITY -->
+    <section id="cs-reality" class="cs-section light">
+      <div class="container">
+        <div class="two-col">
+          <div class="fade-up">
+            <p class="cs-section-label">05 — A valóság, gyengéden bemutatva</p>
+            <h2 class="cs-section-title">Egy palack. Egy sor. <em>Egy csendes igazság.</em></h2>
+            <p class="cs-body">Egy szakasz kimondja a nehéz igazságot. De a megrázó képek — elpusztult állatok, hulladékhalmok — helyett egyetlen palackot mutat, ahogy egyedül sodródik a mélyben, és egy őszinte sort arról, mennyi műanyag kerül a tengerbe.</p>
+            <p class="cs-body">Ez szándékos. <strong>Egy tiszta, konkrét kép mélyebben hatol, mint tíz elsöprő.</strong> Az agy sokkal jobban dolgoz fel egy fókuszált dolgot, mint a borzalom áradatát — és az áradat csak újra elindítja a leállási reakciót. Így ez a szakasz csendes, majdnem szép, és valahogy szomorúbb is attól. Aztán azonnal a remény felé fordul: <em>visszafordítható.</em></p>
+          </div>
+          <div class="fade-up delay-1">
+            <div class="cs-video-frame">
+              <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                <source src="https://res.cloudinary.com/dnnfhyeuv/video/upload/v1779961773/Section_4_background_s8tifv.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <p class="cs-pullquote fade-up">"Az óceán olyan keveset kér. A legtöbbször csak azt, hogy <span class="pq-em">hagyjuk abba a tönkretételét</span>."<span class="pq-attr">— Dr. Mara Vinke, tengerökológus</span></p>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 06 BUILD -->
+    <section id="cs-build" class="cs-section">
+      <div class="container">
+        <div class="fade-up">
+          <p class="cs-section-label">06 — Amit terveztem és építettem</p>
+          <h2 class="cs-section-title">Működő frontend demó. <em>Nem csak egy kép.</em></h2>
+          <p class="cs-body">A nulláról terveztem és kódoltam — nincsenek frameworkök, nincs template. Csak HTML, CSS, JavaScript és döntések.</p>
+        </div>
+
+        <div class="build-grid">
+          <div class="fade-up delay-1">
+            <p class="build-col-title">Terveztem</p>
+            <ul class="build-list">
+              <li>A <strong>teljes érzelmi ívet</strong> és oldalstruktúrát</li>
+              <li>A <strong>vizuális identitást</strong> — paletta, tipográfia, a biolumineszcens accent rendszer</li>
+              <li>Az összes szakasz layoutját, desktopon és mobilon</li>
+              <li>A <strong>copywritingot</strong> és a hangnemet</li>
+              <li>A filmes víz alatti képanyagot (AI-val generálva, art-directed konzisztens hangulatra)</li>
+            </ul>
+          </div>
+          <div class="fade-up delay-2">
+            <p class="build-col-title">Építettem</p>
+            <ul class="build-list">
+              <li>A <strong>rögzített hátterű, görgethető tartalmas "lemerülés"</strong> hatást</li>
+              <li>Sima crossfade átmenetek az óceáni jelenetek között</li>
+              <li>A nyugodt, lassú animációs rendszert</li>
+              <li>Egy görgetési előrehaladás-jelzőt</li>
+              <li>Teljesen reszponzív layoutot telefonra és desktopra</li>
+              <li>Egy interaktív adományozó szekciót választható összegekkel</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="cs-divider" />
+
+    <!-- 07 WHAT'D BE NEXT -->
+    <section id="cs-future" class="cs-section light">
+      <div class="container">
+        <div class="two-col-start">
+          <div class="fade-up">
+            <p class="cs-section-label">07 — Mit csinálnék ezután</p>
+            <h2 class="cs-section-title">Ha az Ondine <em>valódi lenne</em>.</h2>
+            <p class="cs-body">Egy landing page egy kapcsolat kezdete, nem az egésze. Ha ez egy valódi szervezet lenne, a következő lépések ezek lennének:</p>
+          </div>
+          <div class="fade-up delay-1">
+            <ul class="next-steps">
+              <li><strong>Valódi fotó- és videóanyag</strong> tényleges műveletekről, a filmes képanyag mellett.</li>
+              <li><strong>Valódi hatás-adatok</strong> — őszintén és átláthatóan. Hová megy minden adomány.</li>
+              <li><strong>Egy rövid film</strong> a hero szekcióba, mozdulatlan jelenet helyett.</li>
+              <li><strong>Akadálymentesítési finomítások</strong> — kontraszt, motion-reduction beállítások a mozgásra érzékenyeknek.</li>
+              <li><strong>Felhasználói tesztelés</strong>, hogy az érzelmi ív úgy érkezik-e meg, ahogy elgondoltuk.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT CTA -->
+    <section id="cs-next">
+      <div class="container fade-up">
+        <p class="cs-next-label">— Az eredmény —</p>
+        <h2 class="cs-next-title">Mire eléred a végét,<br/>a kérés már nem érződik <em>kérésnek</em>.</h2>
+        <p class="cs-next-subtitle">Természetes következő lépésnek érződik — ugyanaz az impulzus, ami arra késztette azt az anyát és lányát, hogy kézzel emeljék ki a szemetet egy amszterdami csatornából. Ez volt az egész lényeg.</p>
+
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:80px;">
+          <a href="https://liviakiss.github.io/ondine/" target="_blank" rel="noopener" class="btn btn-ondine">
+            Tapasztald meg az oldalt
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="cs-next-project">
+          <p class="cs-next-label">Következő projekt</p>
+          <h3 class="cs-next-title">ALIVE Design Studio — <em>A nulláról építve.</em></h3>
+          <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px;">
+            <a href="alive-studio.html" class="btn btn-primary">
+              Esettanulmány megtekintése
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="index.html#work" class="btn btn-ghost">Vissza az összes munkához</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="nav-logo">
+          <span class="nav-logo-name">ALIVE</span>
+          <span class="nav-logo-tagline">Design Studio</span>
+        </a>
+        <p class="footer-copy">&copy; 2026 Kiss Lívia</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top = mouseY + 'px';
+    });
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function animateRing() {
+      ringX = lerp(ringX, mouseX, 0.12);
+      ringY = lerp(ringY, mouseY, 0.12);
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    requestAnimationFrame(() => {
+      document.querySelectorAll('#cs-hero .fade-up').forEach(el => setTimeout(() => el.classList.add('visible'), 50));
+    });
+  </script>
+
+</body>
+</html>
