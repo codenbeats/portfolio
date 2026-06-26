@@ -12,6 +12,7 @@ export const AUTHOR_SAME_AS = [
 /** Builds an absolute URL from a site-relative path. */
 export function absoluteUrl(path: string): string {
     return path.startsWith("http") ? path : `${SITE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
+    
 }
 
 /** schema.org Person used for the homepage rich result (photo in search). */
@@ -22,7 +23,7 @@ export const personJsonLd = {
     alternateName: ["Kittipong", "Kittipong Mirimera", "Kittipong Sorasuchart Mirimera"],
     url: SITE_URL,
     image: AUTHOR_IMAGE,
-    jobTitle: "AI Specialist & DevOps Engineer",
+    jobTitle: "AI Specialist & DevOps Engineer, Founder/CEO at Mirimera",
     worksFor: {
         "@type": "Organization",
         name: "Mirimera",
