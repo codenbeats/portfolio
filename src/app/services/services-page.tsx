@@ -108,7 +108,7 @@ const terms = [
         label: "Payment",
         text: (
             <>
-                <strong className="font-medium text-[#090F15]">50% upfront deposit, 50% on completion.</strong> Bank
+                <strong className="font-medium text-[#0F111C]">50% upfront deposit, 50% on completion.</strong> Bank
                 transfer via Revolut or PayPal.
             </>
         ),
@@ -117,7 +117,7 @@ const terms = [
         label: "Revisions",
         text: (
             <>
-                <strong className="font-medium text-[#090F15]">2 rounds included per phase.</strong> Additional revisions
+                <strong className="font-medium text-[#0F111C]">2 rounds included per phase.</strong> Additional revisions
                 available at hourly rate.
             </>
         ),
@@ -126,7 +126,7 @@ const terms = [
         label: "Communication",
         text: (
             <>
-                <strong className="font-medium text-[#090F15]">Weekly updates</strong>, async-friendly, calls when
+                <strong className="font-medium text-[#0F111C]">Weekly updates</strong>, async-friendly, calls when
                 needed.
             </>
         ),
@@ -135,7 +135,7 @@ const terms = [
         label: "Global-ready",
         text: (
             <>
-                English documentation, <strong className="font-medium text-[#090F15]">WCAG accessibility standards</strong>{" "}
+                English documentation, <strong className="font-medium text-[#0F111C]">WCAG accessibility standards</strong>{" "}
                 built in.
             </>
         ),
@@ -144,7 +144,7 @@ const terms = [
         label: "Timezone",
         text: (
             <>
-                <strong className="font-medium text-[#090F15]">Flexible</strong> - I work across EU and international
+                <strong className="font-medium text-[#0F111C]">Flexible</strong> - I work across EU and international
                 hours.
             </>
         ),
@@ -153,7 +153,7 @@ const terms = [
         label: "Location",
         text: (
             <>
-                Based in the <strong className="font-medium text-[#090F15]">Netherlands</strong>, serving clients
+                Based in the <strong className="font-medium text-[#0F111C]">Netherlands</strong>, serving clients
                 worldwide.
             </>
         ),
@@ -183,7 +183,7 @@ export function ServicesPage() {
                 {/* Hero */}
                 <section
                     id="services-hero"
-                    className="relative overflow-hidden bg-[#090F15] bg-cover bg-center pt-[180px] pb-20 max-md:pt-[120px] max-md:pb-[60px]"
+                    className="relative overflow-hidden bg-[#0F111C] bg-cover bg-center pt-[180px] pb-20 max-md:pt-[120px] max-md:pb-[60px]"
                     style={{
                         backgroundImage:
                             "url(https://res.cloudinary.com/dnnfhyeuv/image/upload/v1779023903/Services_hero_gcppap.png)",
@@ -200,19 +200,19 @@ export function ServicesPage() {
                         }}
                     />
                     <div className="portfolio-container relative z-10">
-                        <p className="mb-4 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#88867A]">
+                        <p className="mb-4 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#8A8D98]">
                             Services
                         </p>
-                        <h1 className="mb-6 font-[family-name:var(--font-serif)] text-[clamp(2.4rem,5vw,4rem)] font-bold leading-[1.1] text-[#D3D1CE]">
-                            Work <em className="italic text-[#88867A]">with me</em>
+                        <h1 className="mb-6 font-[family-name:var(--font-serif)] text-[clamp(2.4rem,5vw,4rem)] font-bold leading-[1.1] text-[#D2D4DB]">
+                            Work <em className="italic text-[#8A8D98]">with me</em>
                         </h1>
-                        <p className="max-w-[680px] text-[1.02rem] leading-[1.8] text-[#B3B7BA]">
+                        <p className="max-w-[680px] text-[1.02rem] leading-[1.8] text-[#B3B7C0]">
                             I design mobile apps and build websites and web applications - from landing pages to full
                             SaaS products. Every project is mobile-responsive by default. Native mobile apps
                             (iOS/Android) are outside my current scope, but if you need a web app that works beautifully
                             on mobile browsers or just mobile app design, you&apos;re in the right place.
                         </p>
-                        <p className="mt-4 max-w-[680px] text-[1.02rem] leading-[1.8] text-[#B3B7BA]">
+                        <p className="mt-4 max-w-[680px] text-[1.02rem] leading-[1.8] text-[#B3B7C0]">
                             Every project is unique - these packages are starting points, not rigid boxes. We&apos;ll
                             shape the right scope together during our first call. All prices in EUR. Custom quotes
                             available for projects outside these ranges.
@@ -221,7 +221,7 @@ export function ServicesPage() {
                 </section>
 
                 {/* Packages */}
-                <section id="services-packages" className="bg-[#090F15] py-[100px]">
+                <section id="services-packages" className="bg-[#0F111C] py-[100px]">
                     <div className="portfolio-container">
                         {packages.map((pkg, index) => (
                             <div
@@ -235,45 +235,45 @@ export function ServicesPage() {
                                                 key={tag}
                                                 className={`mb-4 mr-2 inline-block rounded-[3px] px-2.5 py-1 text-[0.68rem] font-semibold tracking-[0.15em] uppercase ${
                                                     pkg.featuredTag && tag.includes("Popular")
-                                                        ? "bg-[#88867A] text-[#090F15]"
-                                                        : "bg-[rgba(108,109,116,0.15)] text-[#B3B7BA]"
+                                                        ? "bg-[#8A8D98] text-[#0F111C]"
+                                                        : "bg-[rgba(108,109,116,0.15)] text-[#B3B7C0]"
                                                 }`}
                                             >
                                                 {tag}
                                             </span>
                                         ))}
-                                        <h2 className="mb-2 font-[family-name:var(--font-serif)] text-[2rem] font-bold leading-[1.2] text-[#D3D1CE]">
+                                        <h2 className="mb-2 font-[family-name:var(--font-serif)] text-[2rem] font-bold leading-[1.2] text-[#D2D4DB]">
                                             {pkg.name}
                                         </h2>
-                                        <p className="mb-4 text-[0.88rem] font-medium text-[#B3B7BA]">{pkg.subtitle}</p>
-                                        <p className="mb-5 font-[family-name:var(--font-serif)] text-[1.5rem] font-bold text-[#88867A]">
+                                        <p className="mb-4 text-[0.88rem] font-medium text-[#B3B7C0]">{pkg.subtitle}</p>
+                                        <p className="mb-5 font-[family-name:var(--font-serif)] text-[1.5rem] font-bold text-[#8A8D98]">
                                             {pkg.price}
                                         </p>
-                                        <p className="text-[0.82rem] tracking-[0.05em] text-[#B3B7BA]">{pkg.timeline}</p>
+                                        <p className="text-[0.82rem] tracking-[0.05em] text-[#B3B7C0]">{pkg.timeline}</p>
                                     </div>
 
                                     <div className="pt-2">
-                                        <p className="mb-6 font-[family-name:var(--font-serif)] text-[1.3rem] italic leading-[1.4] text-[#88867A]">
+                                        <p className="mb-6 font-[family-name:var(--font-serif)] text-[1.3rem] italic leading-[1.4] text-[#8A8D98]">
                                             {pkg.tagline}
                                         </p>
-                                        <p className="mb-7 text-[0.98rem] leading-[1.85] text-[#B3B7BA]">
+                                        <p className="mb-7 text-[0.98rem] leading-[1.85] text-[#B3B7C0]">
                                             {pkg.description}
                                         </p>
-                                        <p className="mt-6 mb-4 text-[0.72rem] font-semibold tracking-[0.15em] uppercase text-[#88867A]">
+                                        <p className="mt-6 mb-4 text-[0.72rem] font-semibold tracking-[0.15em] uppercase text-[#8A8D98]">
                                             What&apos;s included
                                         </p>
                                         <ul className="mb-7 flex flex-col gap-2.5">
                                             {pkg.features.map((feature) => (
                                                 <li
                                                     key={feature}
-                                                    className="flex items-start gap-2.5 text-[0.92rem] leading-[1.7] text-[#B3B7BA] before:mt-0.5 before:shrink-0 before:text-[#88867A] before:content-['→']"
+                                                    className="flex items-start gap-2.5 text-[0.92rem] leading-[1.7] text-[#B3B7C0] before:mt-0.5 before:shrink-0 before:text-[#8A8D98] before:content-['→']"
                                                 >
                                                     {feature}
                                                 </li>
                                             ))}
                                         </ul>
-                                        <div className="mb-6 rounded border-l-2 border-[#88867A] bg-[rgba(108,109,116,0.08)] px-5 py-4 text-[0.9rem] leading-[1.65] text-[#B3B7BA]">
-                                            <strong className="font-medium text-[#D3D1CE]">Best if:</strong> {pkg.bestFor}
+                                        <div className="mb-6 rounded border-l-2 border-[#8A8D98] bg-[rgba(108,109,116,0.08)] px-5 py-4 text-[0.9rem] leading-[1.65] text-[#B3B7C0]">
+                                            <strong className="font-medium text-[#D2D4DB]">Best if:</strong> {pkg.bestFor}
                                         </div>
                                         <a
                                             href={pkg.ctaHref}
@@ -291,12 +291,12 @@ export function ServicesPage() {
                 </section>
 
                 {/* Retainer */}
-                <section id="services-retainer" className="bg-[#D3D1CE] py-[100px] text-[#090F15]">
+                <section id="services-retainer" className="bg-[#D2D4DB] py-[100px] text-[#0F111C]">
                     <div className="portfolio-container">
-                        <p className="mb-4 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#88867A]">
+                        <p className="mb-4 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#8A8D98]">
                             Ongoing support
                         </p>
-                        <h2 className="mb-6 font-[family-name:var(--font-serif)] text-[clamp(2.4rem,5vw,4rem)] font-bold leading-[1.1] text-[#090F15]">
+                        <h2 className="mb-6 font-[family-name:var(--font-serif)] text-[clamp(2.4rem,5vw,4rem)] font-bold leading-[1.1] text-[#0F111C]">
                             Ongoing <em className="italic text-[#6C6D74]">partnership</em>
                         </h2>
                         <p className="max-w-[680px] text-[1.02rem] leading-[1.8] text-[#4A4F54]">
@@ -305,18 +305,18 @@ export function ServicesPage() {
                         </p>
 
                         <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
-                            <div className="rounded-xl border border-[rgba(108,109,116,0.25)] bg-[#E4E3E0] p-8 transition-all duration-350 hover:-translate-y-1 hover:border-[#88867A] md:px-8 md:py-9">
+                            <div className="rounded-xl border border-[rgba(108,109,116,0.25)] bg-[#E2E3EA] p-8 transition-all duration-350 hover:-translate-y-1 hover:border-[#8A8D98] md:px-8 md:py-9">
                                 <p className="mb-3 text-[0.72rem] font-semibold tracking-[0.15em] uppercase text-[#6C6D74]">
                                     Hourly
                                 </p>
-                                <p className="mb-1.5 font-[family-name:var(--font-serif)] text-[2.2rem] font-bold leading-[1.1] text-[#090F15]">
+                                <p className="mb-1.5 font-[family-name:var(--font-serif)] text-[2.2rem] font-bold leading-[1.1] text-[#0F111C]">
                                     €40<span className="text-base font-normal text-[#4A4F54]">/hr</span>
                                 </p>
-                                <p className="mb-3 font-[family-name:var(--font-serif)] text-[1.2rem] font-bold text-[#090F15]">
+                                <p className="mb-3 font-[family-name:var(--font-serif)] text-[1.2rem] font-bold text-[#0F111C]">
                                     On-demand support
                                 </p>
                                 <p className="mb-4 text-[0.9rem] leading-[1.65] text-[#4A4F54]">
-                                    <strong className="font-medium text-[#090F15]">Best if:</strong> Occasional need -
+                                    <strong className="font-medium text-[#0F111C]">Best if:</strong> Occasional need -
                                     design tweaks, quick iterations, ad-hoc work without a fixed commitment.
                                 </p>
                                 <a href="mailto:alivedesignstudio00@gmail.com" className="btn-portfolio btn-portfolio-primary inline-flex">
@@ -324,18 +324,18 @@ export function ServicesPage() {
                                 </a>
                             </div>
 
-                            <div className="rounded-xl border border-[rgba(108,109,116,0.25)] bg-[#E4E3E0] p-8 transition-all duration-350 hover:-translate-y-1 hover:border-[#88867A] md:px-8 md:py-9">
+                            <div className="rounded-xl border border-[rgba(108,109,116,0.25)] bg-[#E2E3EA] p-8 transition-all duration-350 hover:-translate-y-1 hover:border-[#8A8D98] md:px-8 md:py-9">
                                 <p className="mb-3 text-[0.72rem] font-semibold tracking-[0.15em] uppercase text-[#6C6D74]">
                                     Monthly Partner
                                 </p>
-                                <p className="mb-1.5 font-[family-name:var(--font-serif)] text-[2.2rem] font-bold leading-[1.1] text-[#090F15]">
+                                <p className="mb-1.5 font-[family-name:var(--font-serif)] text-[2.2rem] font-bold leading-[1.1] text-[#0F111C]">
                                     €950<span className="text-base font-normal text-[#4A4F54]">/month</span>
                                 </p>
-                                <p className="mb-3 font-[family-name:var(--font-serif)] text-[1.2rem] font-bold text-[#090F15]">
+                                <p className="mb-3 font-[family-name:var(--font-serif)] text-[1.2rem] font-bold text-[#0F111C]">
                                     30 hours/month
                                 </p>
                                 <p className="mb-4 text-[0.9rem] leading-[1.65] text-[#4A4F54]">
-                                    <strong className="font-medium text-[#090F15]">Best if:</strong> Regular iteration -
+                                    <strong className="font-medium text-[#0F111C]">Best if:</strong> Regular iteration -
                                     continuous improvement, weekly reviews, new features every month.
                                 </p>
                                 <a href="mailto:alivedesignstudio00@gmail.com" className="btn-portfolio btn-portfolio-primary inline-flex">
@@ -347,25 +347,25 @@ export function ServicesPage() {
                 </section>
 
                 {/* Scope */}
-                <section id="services-scope" className="bg-[#090F15] py-[100px]">
+                <section id="services-scope" className="bg-[#0F111C] py-[100px]">
                     <div className="portfolio-container">
-                        <p className="mb-4 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#88867A]">
+                        <p className="mb-4 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#8A8D98]">
                             Scope
                         </p>
-                        <h2 className="mb-6 font-[family-name:var(--font-serif)] text-[clamp(2.4rem,5vw,4rem)] font-bold leading-[1.1] text-[#D3D1CE]">
-                            What I <em className="italic text-[#88867A]">build</em> - and what I don&apos;t
+                        <h2 className="mb-6 font-[family-name:var(--font-serif)] text-[clamp(2.4rem,5vw,4rem)] font-bold leading-[1.1] text-[#D2D4DB]">
+                            What I <em className="italic text-[#8A8D98]">build</em> - and what I don&apos;t
                         </h2>
-                        <p className="max-w-[680px] text-[1.02rem] leading-[1.8] text-[#B3B7BA]">
+                        <p className="max-w-[680px] text-[1.02rem] leading-[1.8] text-[#B3B7C0]">
                             To save everyone time upfront, here&apos;s what falls inside and outside my scope.
                         </p>
 
                         <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2">
-                            <div className="rounded-xl border border-[rgba(108,109,116,0.2)] bg-[#262E36] p-8">
-                                <h3 className="mb-2 font-[family-name:var(--font-serif)] text-[1.2rem] font-bold text-[#D3D1CE]">
-                                    <span className="mr-2 text-[#88867A]">✓</span>
+                            <div className="rounded-xl border border-[rgba(108,109,116,0.2)] bg-[#252A38] p-8">
+                                <h3 className="mb-2 font-[family-name:var(--font-serif)] text-[1.2rem] font-bold text-[#D2D4DB]">
+                                    <span className="mr-2 text-[#8A8D98]">✓</span>
                                     What I do
                                 </h3>
-                                <p className="mb-5 text-[0.82rem] text-[#B3B7BA]">Inside my scope</p>
+                                <p className="mb-5 text-[0.82rem] text-[#B3B7C0]">Inside my scope</p>
                                 <ul className="flex flex-col gap-2">
                                     {[
                                         "Websites - marketing sites, landing pages, portfolios, blogs",
@@ -377,7 +377,7 @@ export function ServicesPage() {
                                     ].map((item) => (
                                         <li
                                             key={item}
-                                            className="relative pl-4 text-[0.9rem] leading-[1.65] text-[#B3B7BA] before:absolute before:left-0 before:text-[#88867A] before:content-['·']"
+                                            className="relative pl-4 text-[0.9rem] leading-[1.65] text-[#B3B7C0] before:absolute before:left-0 before:text-[#8A8D98] before:content-['·']"
                                         >
                                             {item}
                                         </li>
@@ -385,12 +385,12 @@ export function ServicesPage() {
                                 </ul>
                             </div>
 
-                            <div className="rounded-xl border border-[rgba(108,109,116,0.2)] bg-[#262E36] p-8">
-                                <h3 className="mb-2 font-[family-name:var(--font-serif)] text-[1.2rem] font-bold text-[#D3D1CE]">
+                            <div className="rounded-xl border border-[rgba(108,109,116,0.2)] bg-[#252A38] p-8">
+                                <h3 className="mb-2 font-[family-name:var(--font-serif)] text-[1.2rem] font-bold text-[#D2D4DB]">
                                     <span className="mr-2 text-[#C77B6B]">✗</span>
                                     What I don&apos;t currently offer
                                 </h3>
-                                <p className="mb-5 text-[0.82rem] text-[#B3B7BA]">Outside my scope</p>
+                                <p className="mb-5 text-[0.82rem] text-[#B3B7C0]">Outside my scope</p>
                                 <ul className="flex flex-col gap-2">
                                     {[
                                         "Native mobile apps (iOS/Android requiring Swift, Kotlin, React Native, or Flutter) building",
@@ -399,7 +399,7 @@ export function ServicesPage() {
                                     ].map((item) => (
                                         <li
                                             key={item}
-                                            className="relative pl-4 text-[0.9rem] leading-[1.65] text-[#B3B7BA] before:absolute before:left-0 before:text-[#C77B6B] before:content-['·']"
+                                            className="relative pl-4 text-[0.9rem] leading-[1.65] text-[#B3B7C0] before:absolute before:left-0 before:text-[#C77B6B] before:content-['·']"
                                         >
                                             {item}
                                         </li>
@@ -408,21 +408,21 @@ export function ServicesPage() {
                             </div>
                         </div>
 
-                        <p className="mx-auto mt-8 max-w-[680px] text-center text-[0.9rem] leading-[1.75] text-[#B3B7BA] italic">
+                        <p className="mx-auto mt-8 max-w-[680px] text-center text-[0.9rem] leading-[1.75] text-[#B3B7C0] italic">
                             If you need a native mobile app, I&apos;m happy to recommend trusted specialists. If you
-                            need a <strong className="font-medium text-[#D3D1CE] not-italic">mobile-responsive web app</strong>{" "}
+                            need a <strong className="font-medium text-[#D2D4DB] not-italic">mobile-responsive web app</strong>{" "}
                             that feels great on a phone browser - that&apos;s very much in my wheelhouse.
                         </p>
                     </div>
                 </section>
 
                 {/* Terms */}
-                <section id="services-terms" className="bg-[#D3D1CE] py-[100px] text-[#090F15]">
+                <section id="services-terms" className="bg-[#D2D4DB] py-[100px] text-[#0F111C]">
                     <div className="portfolio-container">
-                        <p className="mb-4 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#88867A]">
+                        <p className="mb-4 text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#8A8D98]">
                             How we work
                         </p>
-                        <h2 className="mb-12 font-[family-name:var(--font-serif)] text-[clamp(2.4rem,5vw,4rem)] font-bold leading-[1.1] text-[#090F15]">
+                        <h2 className="mb-12 font-[family-name:var(--font-serif)] text-[clamp(2.4rem,5vw,4rem)] font-bold leading-[1.1] text-[#0F111C]">
                             Terms & <em className="italic text-[#6C6D74]">process</em>
                         </h2>
 
@@ -430,7 +430,7 @@ export function ServicesPage() {
                             {terms.map((term) => (
                                 <div
                                     key={term.label}
-                                    className="rounded-[10px] border border-[rgba(108,109,116,0.25)] bg-[#E4E3E0] p-7"
+                                    className="rounded-[10px] border border-[rgba(108,109,116,0.25)] bg-[#E2E3EA] p-7"
                                 >
                                     <p className="mb-2.5 text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-[#6C6D74]">
                                         {term.label}
@@ -443,13 +443,13 @@ export function ServicesPage() {
                 </section>
 
                 {/* Why Me */}
-                <section id="services-why" className="bg-[#090F15] py-[100px]">
+                <section id="services-why" className="bg-[#0F111C] py-[100px]">
                     <div className="portfolio-container">
                         <p className="section-label text-center">Why me</p>
-                        <p className="fade-up mx-auto mb-12 max-w-[820px] text-center font-[family-name:var(--font-serif)] text-[clamp(1.4rem,2.5vw,2rem)] italic leading-[1.45] text-[#D3D1CE]">
+                        <p className="fade-up mx-auto mb-12 max-w-[820px] text-center font-[family-name:var(--font-serif)] text-[clamp(1.4rem,2.5vw,2rem)] italic leading-[1.45] text-[#D2D4DB]">
                             &ldquo;I bridge the gap between visual strategy and technical implementation. By combining
                             cognitive psychology with systems thinking, I deliver{" "}
-                            <span className="text-[#88867A]">
+                            <span className="text-[#8A8D98]">
                                 web interfaces that aren&apos;t just beautiful - they&apos;re buildable.
                             </span>
                             &rdquo;
@@ -471,10 +471,10 @@ export function ServicesPage() {
                                 },
                             ].map((card) => (
                                 <div key={card.title} className="border-l-2 border-[#6C6D74] p-7">
-                                    <h3 className="mb-2.5 font-[family-name:var(--font-serif)] text-[1.1rem] font-bold text-[#D3D1CE]">
+                                    <h3 className="mb-2.5 font-[family-name:var(--font-serif)] text-[1.1rem] font-bold text-[#D2D4DB]">
                                         {card.title}
                                     </h3>
-                                    <p className="text-[0.9rem] leading-[1.7] text-[#B3B7BA]">{card.desc}</p>
+                                    <p className="text-[0.9rem] leading-[1.7] text-[#B3B7C0]">{card.desc}</p>
                                 </div>
                             ))}
                         </div>
@@ -501,13 +501,13 @@ export function ServicesPage() {
                         <div className="fade-up mx-auto flex max-w-[680px] flex-col items-center text-center">
                             <p className="section-label">Ready to start?</p>
 
-                            <h2 className="mb-6 font-[family-name:var(--font-serif)] text-[clamp(2rem,4vw,3.2rem)] font-bold leading-[1.2] text-[#D3D1CE]">
+                            <h2 className="mb-6 font-[family-name:var(--font-serif)] text-[clamp(2rem,4vw,3.2rem)] font-bold leading-[1.2] text-[#D2D4DB]">
                                 Tell me about your
                                 <br />
-                                <span className="block italic text-[#88867A]">project.</span>
+                                <span className="block italic text-[#8A8D98]">project.</span>
                             </h2>
 
-                            <p className="mb-10 text-base leading-[1.75] text-[#B3B7BA]">
+                            <p className="mb-10 text-base leading-[1.75] text-[#B3B7C0]">
                                 I&apos;ll get back to you within 48 hours with thoughts and next steps.
                             </p>
 
@@ -535,10 +535,10 @@ export function ServicesPage() {
 
                             <a
                                 href="mailto:alivedesignstudio00@gmail.com"
-                                className="mt-6 mb-12 text-[0.9rem] text-[#B3B7BA] transition-colors duration-200"
+                                className="mt-6 mb-12 text-[0.9rem] text-[#B3B7C0] transition-colors duration-200"
                             >
                                 or email me directly at{" "}
-                                <span className="border-b border-[#88867A]/30 pb-px text-[#88867A] transition-colors duration-200 hover:border-[#88867A]">
+                                <span className="border-b border-[#8A8D98]/30 pb-px text-[#8A8D98] transition-colors duration-200 hover:border-[#8A8D98]">
                                     alivedesignstudio00@gmail.com
                                 </span>
                             </a>

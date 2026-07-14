@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
             "AI Specialist and DevOps Engineer building intelligent systems with reliable infrastructure.",
         start_url: "/",
         display: "standalone",
-        background_color: "#090F15",
-        theme_color: "#090F15",
+        background_color: "#0F111C",
+        theme_color: "#0F111C",
         icons: [
             {
                 src: "/favicon.svg",

@@ -63,15 +63,15 @@
     --radius-full: 9999px;
 
     /* SHADOW */
-    --shadow-xs: 0px 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-sm: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0px 12px 16px -4px rgba(0, 0, 0, 0.08), 0px 4px 6px -2px rgba(0, 0, 0, 0.03), 0px 2px 2px -1px rgba(0, 0, 0, 0.04);
-    --shadow-xl: 0px 20px 24px -4px rgba(0, 0, 0, 0.08), 0px 8px 8px -4px rgba(0, 0, 0, 0.03), 0px 3px 3px -1.5px rgba(0, 0, 0, 0.04);
-    --shadow-2xl: 0px 24px 48px -12px rgba(0, 0, 0, 0.18), 0px 4px 4px -2px rgba(0, 0, 0, 0.04);
-    --shadow-3xl: 0px 32px 64px -12px rgba(0, 0, 0, 0.14), 0px 5px 5px -2.5px rgba(0, 0, 0, 0.04);
+    --shadow-xs: 0px 1px 2px rgba(15, 17, 28, 0.05);
+    --shadow-sm: 0px 1px 3px rgba(15, 17, 28, 0.1), 0px 1px 2px -1px rgba(15, 17, 28, 0.1);
+    --shadow-md: 0px 4px 6px -1px rgba(15, 17, 28, 0.1), 0px 2px 4px -2px rgba(15, 17, 28, 0.06);
+    --shadow-lg: 0px 12px 16px -4px rgba(15, 17, 28, 0.08), 0px 4px 6px -2px rgba(15, 17, 28, 0.03), 0px 2px 2px -1px rgba(15, 17, 28, 0.04);
+    --shadow-xl: 0px 20px 24px -4px rgba(15, 17, 28, 0.08), 0px 8px 8px -4px rgba(15, 17, 28, 0.03), 0px 3px 3px -1.5px rgba(15, 17, 28, 0.04);
+    --shadow-2xl: 0px 24px 48px -12px rgba(15, 17, 28, 0.18), 0px 4px 4px -2px rgba(15, 17, 28, 0.04);
+    --shadow-3xl: 0px 32px 64px -12px rgba(15, 17, 28, 0.14), 0px 5px 5px -2.5px rgba(15, 17, 28, 0.04);
 
-    --shadow-skeuomorphic: 0px 0px 0px 1px rgba(0, 0, 0, 0.18) inset, 0px -2px 0px 0px rgba(0, 0, 0, 0.05) inset;
+    --shadow-skeuomorphic: 0px 0px 0px 1px rgba(15, 17, 28, 0.18) inset, 0px -2px 0px 0px rgba(15, 17, 28, 0.05) inset;
     --shadow-xs-skeuomorphic: var(--shadow-skeuomorphic), var(--shadow-xs);
 
     --shadow-modern-mockup-inner-lg: 0px 0px 3.765px 1.255px rgba(10, 13, 18, 0.08) inset, 0px 0px 2.51px 1.255px rgba(10, 13, 18, 0.03) inset;
@@ -114,12 +114,25 @@
     /* BASE COLOR */
     --color-transparent: rgb(0 0 0 / 0);
 
-    --color-white: rgb(255 255 255);
-    --color-black: rgb(0 0 0);
+    --color-white: rgb(247 248 253);
+    --color-black: rgb(15 17 28);
 
     /* These will be inverted in dark mode. */
-    --color-alpha-white: rgb(255 255 255);
-    --color-alpha-black: rgb(0 0 0);
+    --color-alpha-white: rgb(247 248 253);
+    --color-alpha-black: rgb(15 17 28);
+
+    /* Cool-toned neutral palette */
+    --color-neutral-50: rgb(247 248 252);
+    --color-neutral-100: rgb(242 243 248);
+    --color-neutral-200: rgb(228 230 237);
+    --color-neutral-300: rgb(209 212 221);
+    --color-neutral-400: rgb(157 162 177);
+    --color-neutral-500: rgb(109 114 131);
+    --color-neutral-600: rgb(79 84 101);
+    --color-neutral-700: rgb(59 64 80);
+    --color-neutral-800: rgb(36 40 54);
+    --color-neutral-900: rgb(22 25 38);
+    --color-neutral-950: rgb(15 17 28);
 
     --color-brand-50: rgb(238 245 254);
     --color-brand-100: rgb(214 231 253);
@@ -135,8 +148,8 @@
 
     /* LIGHT MODE VARIABLES */
 
-    --color-alpha-white: rgb(255 255 255);
-    --color-alpha-black: rgb(0 0 0);
+    --color-alpha-white: rgb(247 248 253);
+    --color-alpha-black: rgb(15 17 28);
 
     /* UTILITY COLORS */
     --color-utility-blue-50: var(--color-blue-50);
@@ -316,7 +329,7 @@
     /* BORDER COLORS */
     --color-border-primary: var(--color-neutral-300);
     --color-border-secondary: var(--color-neutral-200);
-    --color-border-secondary_alt: rgb(0 0 0 / 0.1);
+    --color-border-secondary_alt: rgb(15 17 28 / 0.1);
     --color-border-tertiary: var(--color-neutral-100);
     --color-border-error: var(--color-red-500);
     --color-border-error_subtle: var(--color-red-300);
@@ -498,8 +511,8 @@
     /* DARK MODE VARIABLES */
 
     .dark-mode {
-        --color-alpha-white: rgb(12 14 18);
-        --color-alpha-black: rgb(255 255 255);
+        --color-alpha-white: rgb(15 17 28);
+        --color-alpha-black: rgb(237 239 247);
 
         /* UTILITY COLORS */
 

@@ -1,25 +1,18 @@
-"use client";
-
-import Script from "next/script";
-
-/**
- * Contra "Hire Me" embed button. The Contra SDK scans the DOM for
- * `.contra-hire-me-button` nodes and hydrates them into the live button.
- */
 export function ContraHireButton() {
     return (
-        <>
-            <div
-                className="contra-hire-me-button"
-                data-analyticsuserid="4de1f805-6e13-494b-b53a-13fbe0214293"
-                data-theme="light"
-                data-username="kittipong"
+        <a
+            href="https://contra.com/kittipong"
+            target="_blank"
+            rel="noopener"
+            className="flex items-center gap-2 rounded-full border border-secondary px-5 py-2.5 text-sm font-medium text-secondary transition-all duration-200 hover:-translate-y-0.5 hover:border-brand hover:text-brand-secondary"
+        >
+            <img
+                src="/contra-logo.svg"
+                alt=""
+                aria-hidden="true"
+                className="size-[18px] shrink-0 dark:invert dark:brightness-200"
             />
-            <Script
-                src="https://contra.com/static/embed/sdk.js"
-                strategy="afterInteractive"
-                charSet="utf-8"
-            />
-        </>
+            Hire Me on Contra
+        </a>
     );
 }

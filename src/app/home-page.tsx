@@ -2,10 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useRef } from "react";
 import { Badge } from "@/components/base/badges/badges";
+import { InteractiveGrid } from "@/components/portfolio/interactive-grid";
 import { Button } from "@/components/base/buttons/button";
 import { ContraHireButton } from "@/components/portfolio/contra-hire-button";
 import { useFadeUp } from "@/hooks/use-fade-up";
+import { navigateWithTransition } from "@/utils/navigate-with-transition";
 
 const projects = [
     {
@@ -61,7 +65,7 @@ const projects = [
 const services = [
     {
         num: "01",
-        title: "AI Strategy & Prototyping",
+        title: "AI Strategy + Prototyping",
         tagline: "Turn your AI idea into a working proof of concept.",
         forText: "Startups and teams exploring how AI can solve a real business problem - before committing to a full build.",
         items: [
@@ -94,7 +98,7 @@ const services = [
     },
     {
         num: "03",
-        title: "Ongoing DevOps & AI Ops",
+        title: "Ongoing DevOps + AI Ops",
         tagline: "Keep your systems healthy. Ship with confidence.",
         forText: "Growing products that need continuous infrastructure improvements, model updates, and reliable deployments.",
         items: [
@@ -149,27 +153,16 @@ const socials = [
 
 export function HomePage() {
     const ref = useFadeUp();
+    const router = useRouter();
+    const cardRefs = useRef<Map<string, HTMLElement>>(new Map());
 
     return (
         <div ref={ref} className="bg-primary text-primary">
             {/* Hero */}
             <div className="relative overflow-hidden bg-primary">
-                <img
-                    alt=""
-                    aria-hidden="true"
-                    loading="eager"
-                    src="https://www.untitledui.com/patterns/light/grid-check-md-desktop.svg"
-                    className="pointer-events-none absolute top-0 left-1/2 z-0 hidden max-w-none -translate-x-1/2 dark:brightness-[0.2] md:block"
-                />
-                <img
-                    alt=""
-                    aria-hidden="true"
-                    loading="eager"
-                    src="https://www.untitledui.com/patterns/light/grid-check-md-mobile.svg"
-                    className="pointer-events-none absolute top-0 left-1/2 z-0 max-w-none -translate-x-1/2 dark:brightness-[0.2] md:hidden"
-                />
+                <InteractiveGrid className="absolute inset-0 z-0 size-full" />
 
-                <section id="hero" className="relative pt-40 pb-36 md:pt-52 md:pb-48">
+                <section id="hero" className="relative pt-44 pb-60 md:pt-60 md:pb-84">
                     <div className="mx-auto w-full max-w-container px-4 md:px-8">
                         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
                             <p className="fade-up text-sm font-semibold tracking-[0.15em] uppercase text-brand-secondary md:text-md">
@@ -213,7 +206,17 @@ export function HomePage() {
                         {projects.map((project) => (
                             <article
                                 key={project.slug}
-                                className="fade-up group relative overflow-hidden rounded-xl bg-primary_alt shadow-xs ring-1 ring-secondary ring-inset transition-all duration-[350ms] ease-out hover:-translate-y-1.5 hover:shadow-lg"
+                                ref={(el) => {
+                                    if (el) cardRefs.current.set(project.slug, el);
+                                }}
+                                onClick={() =>
+                                    navigateWithTransition(
+                                        router,
+                                        `/work/${project.slug}`,
+                                        cardRefs.current.get(project.slug),
+                                    )
+                                }
+                                className="fade-up group relative cursor-pointer overflow-hidden rounded-xl bg-primary_alt shadow-xs ring-1 ring-secondary ring-inset transition-all duration-[350ms] ease-out hover:-translate-y-1.5 hover:shadow-lg"
                             >
                                 <div className="h-[220px] overflow-hidden">
                                     <Image
@@ -234,12 +237,9 @@ export function HomePage() {
                                     <p className="text-sm leading-[1.65] text-tertiary">
                                         {project.description}
                                     </p>
-                                    <Link
-                                        href={`/work/${project.slug}`}
-                                        className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brand-secondary transition-all duration-200 after:absolute after:inset-0 after:z-10 after:content-[''] group-hover:gap-2.5 group-hover:underline"
-                                    >
+                                    <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brand-secondary transition-all duration-200 group-hover:gap-2.5 group-hover:underline">
                                         View Case Study →
-                                    </Link>
+                                    </span>
                                 </div>
                             </article>
                         ))}

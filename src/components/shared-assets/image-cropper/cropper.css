@@ -145,7 +145,7 @@
     position: absolute;
     width: var(--rc-drag-handle-size);
     height: var(--rc-drag-handle-size);
-    background-color: #ffffff;
+    background-color: #f7f8fd;
     border: 2px solid var(--rc-border-color);
 }
 
