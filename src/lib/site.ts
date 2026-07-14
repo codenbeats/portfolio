@@ -1,11 +1,12 @@
-export const SITE_URL = "https://kittipong.dev";
+export const SITE_URL = "https://kittipong.org";
 export const SITE_NAME = "Kittipong Sorasuchart";
 export const AUTHOR_NAME = "Kittipong Sorasuchart";
 export const AUTHOR_IMAGE = `${SITE_URL}/photo.png`;
 
 export const AUTHOR_SAME_AS = [
-    "https://github.com/codenbeats",
-    "https://www.linkedin.com/in/kittisorasu/",
+    "https://github.com/kittisora",
+    "https://www.linkedin.com/in/kittisora",
+    "https://facebook.com/kittisoras",
     "https://contra.com/kittipong",
 ];
 

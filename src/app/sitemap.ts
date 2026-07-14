@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = "https://kittipong.dev";
+    const baseUrl = "https://kittipong.org";
 
     const caseStudies = [
         "server-monitor",

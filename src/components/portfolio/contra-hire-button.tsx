@@ -3,8 +3,8 @@ export function ContraHireButton() {
         <a
             href="https://contra.com/kittipong"
             target="_blank"
-            rel="noopener"
-            className="flex items-center gap-2 rounded-full border border-secondary px-5 py-2.5 text-sm font-medium text-secondary transition-all duration-200 hover:-translate-y-0.5 hover:border-brand hover:text-brand-secondary"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded-lg border border-primary px-4 py-2 text-sm font-medium text-secondary shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-brand hover:text-fg-brand-primary hover:bg-brand-secondary dark:hover:border-brand-600/40 dark:hover:bg-brand-600/10 dark:hover:text-brand-400"
         >
             <img
                 src="/contra-logo.svg"

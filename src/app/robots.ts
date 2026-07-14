@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
                 allow: "/",
             },
         ],
-        sitemap: "https://kittipong.dev/sitemap.xml",
+        sitemap: "https://kittipong.org/sitemap.xml",
     };
 }
