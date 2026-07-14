@@ -237,9 +237,13 @@ export function HomePage() {
                                     <p className="text-sm leading-[1.65] text-tertiary">
                                         {project.description}
                                     </p>
-                                    <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brand-secondary transition-all duration-200 group-hover:gap-2.5 group-hover:underline">
+                                    <Link
+                                        href={`/work/${project.slug}`}
+                                        onClick={(e) => e.preventDefault()}
+                                        className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brand-secondary transition-all duration-200 group-hover:gap-2.5 group-hover:underline"
+                                    >
                                         View Case Study →
-                                    </span>
+                                    </Link>
                                 </div>
                             </article>
                         ))}
